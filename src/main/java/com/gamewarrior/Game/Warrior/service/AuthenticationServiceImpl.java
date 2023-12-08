@@ -42,6 +42,9 @@ public class AuthenticationServiceImpl implements AuthenticationService{
     public boolean verifyOtpValue(String otp, HttpSession session) throws OtpException, UserException, MessagingException {
         String userEmail = (String)session.getAttribute("email");
 
+
+
+
         if(userEmail==null){
             throw new UserException("Unauthorized User!!");
         }
