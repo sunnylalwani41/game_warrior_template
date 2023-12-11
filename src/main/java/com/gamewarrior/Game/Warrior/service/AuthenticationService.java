@@ -6,8 +6,11 @@ import com.gamewarrior.Game.Warrior.model.User;
 import jakarta.servlet.http.HttpSession;
 
 import javax.mail.MessagingException;
+import java.security.NoSuchAlgorithmException;
+import java.util.Map;
 
 public interface AuthenticationService {
     public User saveUserDetail(User user, HttpSession session) throws UserException, MessagingException;
     public String verifyOtpValue(String otp, HttpSession session) throws OtpException, UserException, MessagingException;
+    public User matchUserCrediential(Map<String, Object> map, HttpSession session) throws UserException, NoSuchAlgorithmException;
 }

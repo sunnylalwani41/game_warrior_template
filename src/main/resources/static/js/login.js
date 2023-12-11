@@ -1,22 +1,21 @@
 var sub, user, pass, mainContent, loggedIn;
-var loggedIn = document.querySelector('.logged-in')
+// var loggedIn = document.querySelector('.logged-in')
 
-let form = document.querySelector(".registration");
-let firstName= document.querySelector(".firstName");
-let lastName= document.querySelector(".lastName");
-let email = document.querySelector(".email");
-let password = document.querySelector(".password");
-let redirect=(data)=>{
+const formLogin = document.getElementsByClassName("login")[0];
+const email = document.querySelector(".email");
+const password = document.querySelector(".password");
+
+const redirect=(data, url, message)=>{
   $.ajax({
-     url:"/sendAuthentication",
+     url:url,
      data:data,
      contentType:"application/json",
      type:"post",
      dataType:"json",
      success:function(response){
        console.log(response);
-       Swal.fire({ title: "Good job!", text: "OTP has been sent to email "+email, icon: "success"});
-       window.location.href="./otp.html"
+       Swal.fire({ title: "Good job!", text: message+email, icon: "success"});
+       window.location.href="../index.html"
      },
      error:function(error){
        console.log(error);
@@ -25,49 +24,17 @@ let redirect=(data)=>{
    });
 }
 
-form.addEventListener("submit", (event)=>{
+formLogin.addEventListener("submit", (event)=>{
   event.preventDefault();
-  firstName= firstName.value;
-  lastName= lastName.value;
-  email=email.value;
-  password= password.value;
+  const loginEmail = email.value;
+  const loginPassword = password.value;
+  const loginData = {
+    email: loginEmail,
+    password: loginPassword
+  }
+  const jsonData = JSON.stringify(loginData);
+  const url = "/verifyUser";
+  const message = "Login successfully!! ";
 
-  const data = {
-    firstName: firstName,
-    lastName: lastName,
-    email: email,
-    password: password
-  };
-  const jsonData = JSON.stringify(data);
-  console.log(jsonData);
-   redirect(jsonData);
+  redirect(jsonData, url, message);
 });
-
-
-
-function _(x) {
-  return document.getElementById(x);
-}
-
-// sub = _('submit');
-user = _('user-name');
-pass = _('user-pass');
-mainContent = _('main');
-loggedIn = _('logged-in');
-
-sub.addEventListener('click', login);
-
-function login(event) {
-  event.preventDefault();
-  var userValue = user.value;
-  var passValue = pass.value;
-  
-  if (userValue.length >= 3 && passValue.length >= 3) {_
-      mainContent.classList.add('login-true');
-      loggedIn.style.display = 'block';
-      loggedIn.innerHTML = '<h2>Welcome, ' + userValue + '</h2>';
-   } else {
-     alert('Username and Password must contain at least 3 characters.')
-   }
-}
-

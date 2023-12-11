@@ -69,16 +69,16 @@
 			<div class="hs-item set-bg" data-setbg="img/slider-1.jpg">
 				<div class="box">
                     <h2>Login</h2>
-                    <form>
+                    <form class="login">
                       <div class="input-box">
-                        <input id="user-name" type="text" name="" required="">
-                        <label>Username</label>
+                        <input class="email" type="text" required>
+                        <label>Email</label>
                       </div>
                       <div class="input-box">
-                        <input id="user-pass" type="password" name="" required="">
+                        <input class="password" type="password" required>
                         <label>Password</label>
                       </div>
-                      <input id="submit" type="submit" name="" value="Submit">
+                      <input type="submit" value="Submit">
                     </form>
                     <p><a href="forgotpswd.html">Lost your password?</a></p>
                     <p><a href="registration.html">Register</a></p>
@@ -427,12 +427,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 
 	<!--====== Javascripts & Jquery ======-->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="js/login.js"></script>
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/jquery.marquee.min.js"></script>
 	<script src="js/main.js"></script>
-	<script src="js/login.js"></script>
 
     </body>
 </html>
