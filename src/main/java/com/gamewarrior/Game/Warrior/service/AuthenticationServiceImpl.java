@@ -1,5 +1,6 @@
 package com.gamewarrior.Game.Warrior.service;
 
+import com.gamewarrior.Game.Warrior.configure.SecurityConfig;
 import com.gamewarrior.Game.Warrior.dao.UserRepo;
 import com.gamewarrior.Game.Warrior.exception.OtpException;
 import com.gamewarrior.Game.Warrior.exception.UserException;
@@ -9,12 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
+import java.util.Map;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService{
     @Autowired
     private UserRepo userRepo;
+    @Autowired
+    private SecurityConfig securityConfig;
 
     @Autowired
     private Email email;
@@ -60,6 +65,22 @@ public class AuthenticationServiceImpl implements AuthenticationService{
             return otp;
         }
         throw new OtpException("Invalid Otp or expire the otp");
+    }
+
+    @Override
+    public User matchUserCrediential(Map<String, Object> map, HttpSession session) throws UserException, NoSuchAlgorithmException {
+        String email = (String)map.get("email");
+        String password = (String) map.get("password");
+        User user = userRepo.findByEmail(email);
+
+        if(user==null || !user.isVerify())
+            throw new UserException("Invalid User");
+        if(securityConfig.checkPassword(password, user.getPassword())){
+            session.setAttribute("userId", user.getId());
+            return user;
+        }
+
+        throw new UserException("Email or password is wrong!");
     }
 
     private boolean isExpireOtp(LocalDateTime timestamp){

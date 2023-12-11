@@ -46,6 +46,12 @@ public class AuthenticationController {
     @ResponseBody
     @PostMapping("/verifyOtp")
     public ResponseEntity<String> matchOtpHandler(@RequestBody Map<String, Object> map, HttpSession session) throws OtpException, MessagingException, UserException {
-        return new ResponseEntity<>(authenticationService.verifyOtpValue(String.valueOf(map.get("otp")), session), HttpStatus.OK);
+        return new ResponseEntity<>(authenticationService.verifyOtpValue(String.valueOf(map.get("otp")), session), HttpStatus.ACCEPTED);
+    }
+
+    @ResponseBody
+    @PostMapping("/verifyUser")
+    public ResponseEntity<User> verifyUserHandler(@RequestBody Map<String, Object> map, HttpSession session) throws UserException, NoSuchAlgorithmException {
+        return new ResponseEntity<>(authenticationService.matchUserCrediential(map, session), HttpStatus.OK);
     }
 }
