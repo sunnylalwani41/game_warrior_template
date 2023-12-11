@@ -15,7 +15,7 @@ public class EmailImpl implements Email{
     private final Integer OTPLENGTH =6;
 
     @Override
-    public String sendEmail(String to, String subject, String message) throws MessagingException {
+    public void sendEmail(String to, String subject, String message) throws MessagingException {
         //host
         String host = "smtp.gmail.com";
 
@@ -39,7 +39,6 @@ public class EmailImpl implements Email{
 
         MimeMessage mimeMessage = new MimeMessage(session);
 
-
         mimeMessage.setFrom(EMAIL);
         mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
         mimeMessage.setSubject(subject);
@@ -47,8 +46,6 @@ public class EmailImpl implements Email{
         Transport.send(mimeMessage);
 
         System.out.println("Email sent....");
-
-        return message;
     }
 
     @Override
@@ -57,15 +54,16 @@ public class EmailImpl implements Email{
         String otp = generateOtp();
         String message = "Your verification code is "+otp+"\nThis otp is valid for 10 minutes only.";
 
-        return sendEmail(email, subject, message);
+        sendEmail(email, subject, message);
+        return otp;
     }
 
     @Override
-    public String sendGreetingEmail(String email) throws MessagingException {
+    public void sendGreetingEmail(String email) throws MessagingException {
         String subject = "Greeting! Verified Successfully";
         String message = "Hi user!, \nYour email id "+email+" is successfully verified. Now you can login.";
 
-        return sendEmail(email, subject, message);
+        sendEmail(email, subject, message);
     }
 
     private String generateOtp(){

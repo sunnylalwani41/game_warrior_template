@@ -8,6 +8,8 @@ import com.gamewarrior.Game.Warrior.service.AuthenticationService;
 import com.gamewarrior.Game.Warrior.service.Email;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,13 +38,14 @@ public class AuthenticationController {
         user.setLastName((String)map.get("lastName"));
         user.setEmail((String)map.get("email"));
         user.setVerify(false);
-        user.setPassword(securityConfig.encryptPassword((String)map.get("password")));
+        String password= (String)map.get("password");
+        user.setPassword(securityConfig.encryptPassword(password));
 
         return authenticationService.saveUserDetail(user, session);
     }
     @ResponseBody
     @PostMapping("/verifyOtp")
-    public boolean matchOtpHandler(@RequestBody Map<String, Object> map, HttpSession session) throws OtpException, MessagingException, UserException {
-        return authenticationService.verifyOtpValue((String)map.get("otp"), session);
+    public ResponseEntity<String> matchOtpHandler(@RequestBody Map<String, Object> map, HttpSession session) throws OtpException, MessagingException, UserException {
+        return new ResponseEntity<>(authenticationService.verifyOtpValue(String.valueOf(map.get("otp")), session), HttpStatus.OK);
     }
 }

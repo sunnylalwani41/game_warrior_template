@@ -9,5 +9,5 @@ import javax.mail.MessagingException;
 
 public interface AuthenticationService {
     public User saveUserDetail(User user, HttpSession session) throws UserException, MessagingException;
-    public boolean verifyOtpValue(String otp, HttpSession session) throws OtpException, UserException, MessagingException;
+    public String verifyOtpValue(String otp, HttpSession session) throws OtpException, UserException, MessagingException;
 }

@@ -39,16 +39,16 @@ public class AuthenticationServiceImpl implements AuthenticationService{
     }
 
     @Override
-    public boolean verifyOtpValue(String otp, HttpSession session) throws OtpException, UserException, MessagingException {
+    public String verifyOtpValue(String otp, HttpSession session) throws OtpException, UserException, MessagingException {
         String userEmail = (String)session.getAttribute("email");
-
-
-
 
         if(userEmail==null){
             throw new UserException("Unauthorized User!!");
         }
         User user = userRepo.findByEmail(userEmail);
+
+        if(user==null)
+            throw new UserException("Unauthorized User!!");
 
         if(user.getOtp().equals(otp) && !isExpireOtp(user.getTimestamp())){
             user.setVerify(true);
@@ -57,7 +57,7 @@ public class AuthenticationServiceImpl implements AuthenticationService{
             session.invalidate();
             email.sendGreetingEmail(user.getEmail());
 
-            return true;
+            return otp;
         }
         throw new OtpException("Invalid Otp or expire the otp");
     }
