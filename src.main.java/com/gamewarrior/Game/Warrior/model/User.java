@@ -1,6 +1,5 @@
 package com.gamewarrior.Game.Warrior.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -25,6 +24,4 @@ public class User {
     private LocalDateTime timestamp;
     private String otp;
     private boolean isVerify;
-    @OneToOne
-    private Wallet wallet;
 }
