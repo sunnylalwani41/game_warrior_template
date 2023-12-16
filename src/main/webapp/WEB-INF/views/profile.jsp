@@ -1,3 +1,7 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -13,13 +17,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="../static/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="../static/css/owl.carousel.css"/>
-    <link rel="stylesheet" href="../static/css/style.css"/>
-    <link rel="stylesheet" href="../static/css/animate.css"/>
-    <link rel="stylesheet" href="../static/css/login.css"/>
-    <link rel="stylesheet" href="../static/css/profile.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="css/owl.carousel.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/animate.css"/>
+    <link rel="stylesheet" href="css/login.css"/>
+    <link rel="stylesheet" href="css/profile.css">
 
 
 
@@ -34,17 +38,22 @@
 <div id="preloder">
     <div class="loader"></div>
 </div>
-
+<c:if test="${empty userId}">
+	<%
+		response.sendRedirect("login");
+	%>
+</c:if>
 <!-- Header section -->
 <header class="header-section">
     <div class="container">
         <!-- logo -->
-        <a class="site-logo" href="index.html">
-            <img src="../static/img/logo.png" alt="">
+        <a class="site-logo" href="/">
+            <img src="img/logo.png" alt="">
         </a>
+        
         <div class="user-panel">
-            <a href="login.html">Login</a>  /  <a href="registration.html">Register</a>
-        </div>
+			<a href="profile">Profile</a>
+		</div>
         <!-- responsive -->
         <div class="nav-switch">
             <i class="fa fa-bars"></i>
@@ -67,7 +76,7 @@
 <!-- Hero section -->
 <section class="hero-section">
     <div class="hero-slider owl-carousel">
-        <div class="hs-item set-bg" data-setbg="../static/img/slider-1.jpg">
+        <div class="hs-item set-bg" data-setbg="img/slider-1.jpg">
             <div class="box">
                 <h2>Profile</h2>
                 <form>
@@ -111,13 +120,13 @@
 
 
 <!--====== Javascripts & Jquery ======-->
-<script src="../static/js/profile.js"></script>
+<script src="js/profile.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="../static/js/jquery-3.2.1.min.js"></script>
-<script src="../static/js/bootstrap.min.js"></script>
-<script src="../static/js/owl.carousel.min.js"></script>
-<script src="../static/js/jquery.marquee.min.js"></script>
-<script src="../static/js/main.js"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery.marquee.min.js"></script>
+<script src="js/main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>

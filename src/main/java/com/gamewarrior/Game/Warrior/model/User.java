@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -27,4 +29,6 @@ public class User {
     private boolean isVerify;
     @OneToOne
     private Wallet wallet;
+    @OneToMany
+    private List<Notification> notifications = new ArrayList<>();
 }
