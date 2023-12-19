@@ -1,3 +1,8 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -19,7 +24,7 @@
 	<link rel="stylesheet" href="css/style.css"/>
 	<link rel="stylesheet" href="css/animate.css"/>
 	<link rel="stylesheet" href="css/login.css"/>
-
+	<link rel="stylesheet" href="css/error-container.css"/>
 
 
 	<!--[if lt IE 9]>
@@ -33,7 +38,12 @@
 	<div id="preloder">
 		<div class="loader"></div>
 	</div>
-
+	
+	<c:if test="${not empty userId }">
+		<%
+			response.sendRedirect("/");
+		%>
+	</c:if>
 	<!-- Header section -->
 	<header class="header-section">
 		<div class="container">
@@ -67,9 +77,16 @@
 	<section class="hero-section">
 		<div class="hero-slider owl-carousel">
 			<div class="hs-item set-bg" data-setbg="img/slider-1.jpg">
+				<c:if test="${not empty errorMessage}">
+					<div class="errorContainer">${errorMessage}</div>
+					<%
+						session.removeAttribute("errorMessage");
+						session.invalidate();
+					%>
+				</c:if>
 				<div class="box">
                     <h2>Register Here!</h2>
-                    <form class="registration">
+                    <form action="/sendAuthentication" method="post">
                       <div class="input-box">
                         <input class="firstName" type="text" name="firstName" required>
                         <label>Firstname</label>
@@ -79,7 +96,7 @@
                         <label>Lastname</label>
                       </div>
 					  <div class="input-box">
-                        <input class="email" type="text" name="email" required>
+                        <input type="email" class="email" type="text" name="email" required>
                         <label>Email Address</label>
                       </div>
                       <div class="input-box">
@@ -89,7 +106,7 @@
                       <input type="submit" value="Submit">
                     </form>
                     
-                    <p><a href="login.html">Login</a></p>
+                    <p><a href="login">Login</a></p>
                   </div>
                   </div>
 			</div>
@@ -286,7 +303,7 @@
 							<div class="score yellow">9.3</div>
 						</div>
 						<div class="review-text">
-							<h5>Assasin’’s Creed</h5>
+							<h5>Assasinââs Creed</h5>
 							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
 						</div>
 					</div>

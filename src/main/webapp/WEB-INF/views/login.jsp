@@ -1,3 +1,7 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -19,6 +23,7 @@
 	<link rel="stylesheet" href="css/style.css"/>
 	<link rel="stylesheet" href="css/animate.css"/>
 	<link rel="stylesheet" href="css/login.css"/>
+	<link rel="stylesheet" href="css/error-container.css"/>
 
 
 
@@ -33,12 +38,16 @@
 	<div id="preloder">
 		<div class="loader"></div>
 	</div>
-
+	<c:if test="${not empty userId }">
+		<%
+			response.sendRedirect("/");
+		%>
+	</c:if>
 	<!-- Header section -->
 	<header class="header-section">
 		<div class="container">
 			<!-- logo -->
-			<a class="site-logo" href="index.jsp">
+			<a class="site-logo" href="/">
 				<img src="img/logo.png" alt="">
 			</a>
 			<div class="user-panel">
@@ -51,11 +60,11 @@
 			<!-- site menu -->
 			<nav class="main-menu">
 				<ul>
-					<li><a href="index.jsp">Home</a></li>
-					<li><a href="review.html">Games</a></li>
-					<li><a href="categories.html">Blog</a></li>
-					<li><a href="community.html">Forums</a></li>
-					<li><a href="contact.html">Contact</a></li>
+					<li><a href="/">Home</a></li>
+					<li><a href="review">Games</a></li>
+					<li><a href="categories">Blog</a></li>
+					<li><a href="community">Forums</a></li>
+					<li><a href="contact">Contact</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -67,21 +76,35 @@
 	<section class="hero-section">
 		<div class="hero-slider owl-carousel">
 			<div class="hs-item set-bg" data-setbg="img/slider-1.jpg">
+				<c:if test="${not empty errorMessage}">
+					<div class="errorContainer">${errorMessage}</div>
+					<%
+						session.removeAttribute("errorMessage");
+						session.invalidate();
+					%>
+				</c:if>
+				<c:if test="${not empty message}">
+					<div class="errorContainer">${message}</div>
+					<%
+						session.removeAttribute("message");
+						session.invalidate();
+					%>
+				</c:if>
 				<div class="box">
                     <h2>Login</h2>
-                    <form class="login">
+                    <form action="verifyUser" method="post">
                       <div class="input-box">
-                        <input class="email" type="text" required>
+                        <input type="email" name="email" required>
                         <label>Email</label>
                       </div>
                       <div class="input-box">
-                        <input class="password" type="password" required>
+                        <input type="password" name = "password" required>
                         <label>Password</label>
                       </div>
                       <input type="submit" value="Submit">
                     </form>
-                    <p><a href="forgotpswd.html">Lost your password?</a></p>
-                    <p><a href="registration.html">Register</a></p>
+                    <p><a href="forgotpswd">Lost your password?</a></p>
+                    <p><a href="registration">Register</a></p>
                   </div>
                   </div>
 			</div>
@@ -278,7 +301,7 @@
 							<div class="score yellow">9.3</div>
 						</div>
 						<div class="review-text">
-							<h5>Assasin’’s Creed</h5>
+							<h5>Assasinââs Creed</h5>
 							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
 						</div>
 					</div>
@@ -411,11 +434,11 @@
 	<footer class="footer-section">
 		<div class="container">
 			<ul class="footer-menu">
-				<li><a href="index.jsp">Home</a></li>
-				<li><a href="review.html">Games</a></li>
-				<li><a href="categories.html">Blog</a></li>
-				<li><a href="community.html">Forums</a></li>
-				<li><a href="contact.html">Contact</a></li>
+				<li><a href="/">Home</a></li>
+				<li><a href="review">Games</a></li>
+				<li><a href="categories">Blog</a></li>
+				<li><a href="community">Forums</a></li>
+				<li><a href="contact">Contact</a></li>
 			</ul>
 			<p class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>

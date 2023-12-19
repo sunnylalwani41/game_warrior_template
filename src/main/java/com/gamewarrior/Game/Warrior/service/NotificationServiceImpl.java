@@ -21,7 +21,7 @@ public class NotificationServiceImpl implements NotificationService{
 		Integer userId= (Integer)session.getAttribute("userId");
 		
 		if(userId==null) {
-			throw new UserException("Invalid user!!");
+			throw new UserException("Invalid user!! Please login first");
 		}
 		
 		List<Notification> notifications = userRepo.findById(userId).orElseThrow(()-> new UserException("Unauthorized user!!")).getNotifications();

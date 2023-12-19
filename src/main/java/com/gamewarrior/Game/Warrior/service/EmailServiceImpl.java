@@ -2,6 +2,9 @@ package com.gamewarrior.Game.Warrior.service;
 
 import org.springframework.stereotype.Service;
 
+import com.gamewarrior.Game.Warrior.model.Notification;
+import com.gamewarrior.Game.Warrior.model.User;
+
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -9,7 +12,7 @@ import java.util.Properties;
 import java.util.Random;
 
 @Service
-public class EmailImpl implements Email{
+public class EmailServiceImpl implements EmailService{
     private final String EMAIL ="sinchanuhara@gmail.com";
     private final String PASSWORD = "hupnxhjihdsuihpp";
     private final Integer OTPLENGTH =6;
@@ -59,11 +62,18 @@ public class EmailImpl implements Email{
     }
 
     @Override
-    public void sendGreetingEmail(String email) throws MessagingException {
+    public void sendGreetingEmail(User user) throws MessagingException {
         String subject = "Greeting! Verified Successfully";
-        String message = "Hi user!, \nYour email id "+email+" is successfully verified. Now you can login.";
-
-        sendEmail(email, subject, message);
+        String message = "Hi user!, \nYour email id "+user.getEmail()+" is successfully verified. Now you can login.";
+        
+        Notification notification = new Notification();
+        
+        notification.setMessage(message);
+        notification.setSubject(subject);
+        notification.setUser(user);
+        user.getNotifications().add(notification);
+        
+        sendEmail(user.getEmail(), subject, message);
     }
 
     private String generateOtp(){

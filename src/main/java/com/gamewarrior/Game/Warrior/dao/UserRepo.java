@@ -1,9 +1,12 @@
 package com.gamewarrior.Game.Warrior.dao;
 
-import com.gamewarrior.Game.Warrior.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Optional;
+import com.gamewarrior.Game.Warrior.model.User;
+import com.gamewarrior.Game.Warrior.model.Wallet;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 public interface UserRepo extends JpaRepository<User, Integer> {
     public User findByEmail(String email);

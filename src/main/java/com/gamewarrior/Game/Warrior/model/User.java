@@ -27,8 +27,8 @@ public class User {
     private LocalDateTime timestamp;
     private String otp;
     private boolean isVerify;
-    @OneToOne
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Wallet wallet;
-    @OneToMany
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Notification> notifications = new ArrayList<>();
 }

@@ -2,9 +2,13 @@ package com.gamewarrior.Game.Warrior.service;
 
 import com.gamewarrior.Game.Warrior.configure.SecurityConfig;
 import com.gamewarrior.Game.Warrior.dao.UserRepo;
+import com.gamewarrior.Game.Warrior.dao.WalletRepo;
 import com.gamewarrior.Game.Warrior.exception.OtpException;
 import com.gamewarrior.Game.Warrior.exception.UserException;
+import com.gamewarrior.Game.Warrior.model.Notification;
 import com.gamewarrior.Game.Warrior.model.User;
+import com.gamewarrior.Game.Warrior.model.Wallet;
+
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,26 +24,42 @@ public class AuthenticationServiceImpl implements AuthenticationService{
     private UserRepo userRepo;
     @Autowired
     private SecurityConfig securityConfig;
-
     @Autowired
-    private Email email;
+    private EmailService emailService;
 
     @Override
     public User saveUserDetail(User user, HttpSession session) throws UserException, MessagingException {
         User user1 = userRepo.findByEmail(user.getEmail());
 
         if(user1 !=null && user1.isVerify() ){
-            throw new UserException("User already registered! You can login or use another emailId");
+            throw new UserException("User already registered! You can login or use another email id");
         }
-        String otp= this.email.sendOtpEmail(user.getEmail());
+        String otp= this.emailService.sendOtpEmail(user.getEmail());
 
         if(user1!= null){
             user.setId(user1.getId());
+            
+            user.setNotifications(user1.getNotifications());
+            user.setWallet(user1.getWallet());
+        }
+        else {
+        	Wallet wallet = new Wallet();
+            Notification notification = new Notification();
+            
+            wallet.setBalance(0);
+            wallet.setUser(user);
+            notification.setUser(user);
+            notification.setSubject("Validation Otp");
+            notification.setMessage("OTP has been sent to email "+user.getEmail());
+            
+            user.getNotifications().add(notification);
+            user.setWallet(wallet);
         }
         user.setOtp(otp);
         user.setTimestamp(LocalDateTime.now());
         session.setAttribute("email", user.getEmail());
-
+        session.setAttribute("message", "OTP has been sent to email "+user.getEmail());
+        
         return userRepo.save(user);
     }
 
@@ -57,26 +77,28 @@ public class AuthenticationServiceImpl implements AuthenticationService{
 
         if(user.getOtp().equals(otp) && !isExpireOtp(user.getTimestamp())){
             user.setVerify(true);
-            userRepo.save(user);
+            
             session.removeAttribute("email");
-            session.invalidate();
-            email.sendGreetingEmail(user.getEmail());
-
+            
+            emailService.sendGreetingEmail(user);
+            
+            userRepo.save(user);
+            
             return otp;
         }
         throw new OtpException("Invalid Otp or expire the otp");
     }
 
     @Override
-    public User matchUserCrediential(Map<String, Object> map, HttpSession session) throws UserException, NoSuchAlgorithmException {
-        String email = (String)map.get("email");
-        String password = (String) map.get("password");
+    public User matchUserCrediential(String email, String password, HttpSession session) throws UserException, NoSuchAlgorithmException {
         User user = userRepo.findByEmail(email);
-
+        
         if(user==null || !user.isVerify())
             throw new UserException("Invalid User");
+        
         if(securityConfig.checkPassword(password, user.getPassword())){
             session.setAttribute("userId", user.getId());
+            session.setAttribute("balance", user.getWallet().getBalance());
             return user;
         }
 

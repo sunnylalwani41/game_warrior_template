@@ -12,5 +12,5 @@ import java.util.Map;
 public interface AuthenticationService {
     public User saveUserDetail(User user, HttpSession session) throws UserException, MessagingException;
     public String verifyOtpValue(String otp, HttpSession session) throws OtpException, UserException, MessagingException;
-    public User matchUserCrediential(Map<String, Object> map, HttpSession session) throws UserException, NoSuchAlgorithmException;
+    public User matchUserCrediential(String email, String password, HttpSession session) throws UserException, NoSuchAlgorithmException;
 }

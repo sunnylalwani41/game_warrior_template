@@ -1,3 +1,8 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html lang="en">
     <html lang="zxx">
@@ -20,7 +25,7 @@
             <link rel="stylesheet" href="css/style.css"/>
             <link rel="stylesheet" href="css/animate.css"/>
             <link rel="stylesheet" href="css/login.css"/>
-        
+        	<link rel="stylesheet" href="css/error-container.css"/>
         
         
             <!--[if lt IE 9]>
@@ -33,6 +38,19 @@
     <div id="preloder">
 		<div class="loader"></div>
 	</div>
+	
+	<c:if test="${not empty userId }">
+		<%
+			response.sendRedirect("/");
+		%>
+	</c:if>
+	<c:if test="${empty email}">
+		<%
+			session.setAttribute("errorMessage", "Invalid user!! You are not register.");
+			response.sendRedirect("/registration");
+		%>
+	</c:if>
+	
     <header class="header-section">
 		<div class="container">
 			<!-- logo -->
@@ -49,11 +67,11 @@
 			<!-- site menu -->
 			<nav class="main-menu">
 				<ul>
-					<li><a href="index.jsp">Home</a></li>
-					<li><a href="review.html">Games</a></li>
-					<li><a href="categories.html">Blog</a></li>
-					<li><a href="community.html">Forums</a></li>
-					<li><a href="contact.html">Contact</a></li>
+					<li><a href="/">Home</a></li>
+					<li><a href="review">Games</a></li>
+					<li><a href="categories">Blog</a></li>
+					<li><a href="community">Forums</a></li>
+					<li><a href="contact">Contact</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -62,18 +80,30 @@
 	<section class="hero-section">
 		<div class="hero-slider owl-carousel">
 			<div class="hs-item set-bg" data-setbg="img/slider-1.jpg">
+				<c:if test="${not empty errorMessage}">
+					<div class="errorContainer">${errorMessage}</div>
+					<%
+						session.removeAttribute("errorMessage");
+
+					%>
+				</c:if>
+				<c:if test="${not empty message}">
+					<div class="errorContainer">${message}</div>
+					<%
+						session.removeAttribute("message");
+
+					%>
+				</c:if>
 				<div class="box">
                     <h2>Enter Your OTP</h2>
                     <p>You receive the OTP in your registered Email</p>
-                    <form class="otpForm">
+                    <form action="verifyOtp" method="post">
                       <div class="input-box">
-                        <input class="otp" type="password" required>
+                        <input type="text" name="otp" required>
                         <label>Enter Your OTP</label>
                       </div>
                       <input id="submit" type="submit" name="" value="Submit">
                     </form>
-                    <!-- <p><a href="#">Lost your password?</a></p> -->
-                    <!-- <p><a href="registration.html">Register</a></p> -->
                   </div>
                   </div>
 			</div>
@@ -270,7 +300,7 @@
 							<div class="score yellow">9.3</div>
 						</div>
 						<div class="review-text">
-							<h5>Assasin’’s Creed</h5>
+							<h5>Assasinââs Creed</h5>
 							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
 						</div>
 					</div>
@@ -403,11 +433,11 @@
 	<footer class="footer-section">
 		<div class="container">
 			<ul class="footer-menu">
-				<li><a href="index.jsp">Home</a></li>
-				<li><a href="review.html">Games</a></li>
-				<li><a href="categories.html">Blog</a></li>
-				<li><a href="community.html">Forums</a></li>
-				<li><a href="contact.html">Contact</a></li>
+				<li><a href="/">Home</a></li>
+				<li><a href="review">Games</a></li>
+				<li><a href="categories">Blog</a></li>
+				<li><a href="community">Forums</a></li>
+				<li><a href="contact">Contact</a></li>
 			</ul>
 			<p class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
@@ -421,8 +451,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<!--====== Javascripts & Jquery ======-->
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="./js/otp.js"></script>
-	<script src="js/jquery-3.2.1.min.js"></script>
+   	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/jquery.marquee.min.js"></script>

@@ -1,9 +1,10 @@
+/* .whatsapp_float>a>img{
+	width: 10%;
+} */
 .whatsapp_float{
 	position: fixed;
 	z-index: 100;
-	right: 10px;
 	bottom: 15px;
-}
-.whatsapp_float>a>img{
-	width: 100px;
+	right: 10px;
+	width: 10%;
 }

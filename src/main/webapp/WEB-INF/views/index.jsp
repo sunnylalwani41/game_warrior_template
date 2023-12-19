@@ -52,6 +52,12 @@
 			
 				<c:when test="${not empty userId}">
 					<div class="user-panel">
+						<a href="logout">
+							<i class="fa-solid fa-arrow-right-from-bracket"></i>
+							Logout
+						</a>
+					</div>
+					<div class="user-panel">
 						<i class="fa-solid fa-wallet"> : ${balance}</i>
 						
 					</div>
@@ -73,12 +79,7 @@
 							Create Id and My Ids
 						</a>
 					</div>
-					<div class="user-panel">
-						<a href="logout">
-							<i class="fa-solid fa-arrow-right-from-bracket"></i>
-							Logout
-						</a>
-					</div>
+					
 				</c:when>
 				<c:otherwise>
 					<div class="user-panel">
@@ -470,11 +471,11 @@
 			</ul>
 			<a href="termsandcondition">
 				<i class="fa-solid fa-file-invoice"></i>
-				<p>Terms and condition</p>
+				Terms and condition
 			</a>
 			<a href="notification">
 				<i class="fa-solid fa-bell"></i>
-				<p>Notification</p>
+				Notification
 			</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 </p>
