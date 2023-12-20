@@ -4,38 +4,38 @@
     pageEncoding="UTF-8"%>
     
 <!DOCTYPE html>
-<html lang="zxx">
-<head>
-	<title>Game Warrior Template</title>
-	<meta charset="UTF-8">
-	<meta name="description" content="Game Warrior Template">
-	<meta name="keywords" content="warrior, game, creative, html">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- Favicon -->   
-	<link href="img/favicon.ico" rel="shortcut icon"/>
-
-	<!-- Google Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
-
-	<!-- Stylesheets -->
-	<link rel="stylesheet" href="css/bootstrap.min.css"/>
-	<link rel="stylesheet" href="css/font-awesome.min.css"/>
-	<link rel="stylesheet" href="css/owl.carousel.css"/>
-	<link rel="stylesheet" href="css/style.css"/>
-	<link rel="stylesheet" href="css/animate.css"/>
-	<link rel="stylesheet" href="css/login.css"/>
-
-
-
-	<!--[if lt IE 9]>
-	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
-
-</head>
+<html lang="en">
+    <html lang="zxx">
+        <head>
+            <title>Game Warrior Enter OTP</title>
+            <meta charset="UTF-8">
+            <meta name="description" content="Game Warrior Template">
+            <meta name="keywords" content="warrior, game, creative, html">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <!-- Favicon -->   
+            <link href="img/favicon.ico" rel="shortcut icon"/>
+        
+            <!-- Google Fonts -->
+            <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+        
+            <!-- Stylesheets -->
+            <link rel="stylesheet" href="css/bootstrap.min.css"/>
+            <link rel="stylesheet" href="css/font-awesome.min.css"/>
+            <link rel="stylesheet" href="css/owl.carousel.css"/>
+            <link rel="stylesheet" href="css/style.css"/>
+            <link rel="stylesheet" href="css/animate.css"/>
+            <link rel="stylesheet" href="css/login.css"/>
+        	<link rel="stylesheet" href="css/error-container.css"/>
+        
+        
+            <!--[if lt IE 9]>
+              <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+              <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+            <![endif]-->
+        
+        </head>
 <body>
-	<!-- Page Preloder -->
-	<div id="preloder">
+    <div id="preloder">
 		<div class="loader"></div>
 	</div>
 	
@@ -44,11 +44,22 @@
 			response.sendRedirect("/");
 		%>
 	</c:if>
-	<!-- Header section -->
-	<header class="header-section">
+	<c:if test="${empty forgotemail}">
+		<%
+			session.setAttribute("errorMessage", "Invalid user!! You are not register.");
+			response.sendRedirect("/registration");
+		%>
+	</c:if>
+	<c:if test="${empty verifiedOtp}">
+		<%
+			session.setAttribute("errorMessage", "Invalid user!!");
+			response.sendRedirect("/forgotpswd");
+		%>
+	</c:if>
+    <header class="header-section">
 		<div class="container">
 			<!-- logo -->
-			<a class="site-logo" href="index.jsp">
+			<a class="site-logo" href="/">
 				<img src="img/logo.png" alt="">
 			</a>
 			<div class="user-panel">
@@ -70,10 +81,7 @@
 			</nav>
 		</div>
 	</header>
-	<!-- Header section end -->
-
-
-	<!-- Hero section -->
+    	<!-- Hero section -->
 	<section class="hero-section">
 		<div class="hero-slider owl-carousel">
 			<div class="hs-item set-bg" data-setbg="img/slider-1.jpg">
@@ -92,20 +100,19 @@
 					%>
 				</c:if>
 				<div class="box">
-                    <h2>Reset your Password Here!</h2>
-                    <form action="forgotpassword" method="post">
-                        <div class="input-box">
-                            <input type="email" name="email" required>
-                            <label>Email Address</label>
-                          </div>
-                      <!-- <div class="input-box">
-                        <input id="user-pass" type="password" name="" required="">
-                        <label>Reset your Password</label>
-                      </div> -->
-                      <input id="submit" type="submit" name="" value="Submit">
+                    <h2>Enter Your OTP</h2>
+                    <p>You receive the OTP in your registered Email</p>
+                    <form action="updatepassword" method="post">
+                      <div class="input-box">
+                        <input type="password" name="password" required>
+                        <label>Enter Your New Password</label>
+                      </div>
+                      <div class="input-box">
+                        <input type="password" name="confirmPassword" required>
+                        <label>Enter Your New Password Again</label>
+                      </div>
+                      <input type="submit" value="Submit">
                     </form>
-                    <!-- <p><a href="#">Lost your password?</a></p> -->
-                    <!-- <p><a href="registration">Register</a></p> -->
                   </div>
                   </div>
 			</div>
@@ -451,12 +458,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 
 	<!--====== Javascripts & Jquery ======-->
-	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/jquery.marquee.min.js"></script>
 	<script src="js/main.js"></script>
-	<script src="js/login.js"></script>
-
     </body>
+</body>
 </html>

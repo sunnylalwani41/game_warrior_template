@@ -10,4 +10,6 @@ public interface EmailService {
     public String sendOtpEmail(String email)throws MessagingException;
 
     public void sendGreetingEmail(User user) throws MessagingException;
+
+	void sendGreetingEmailForResetPassword(User user) throws MessagingException;
 }

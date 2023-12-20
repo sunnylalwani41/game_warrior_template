@@ -54,7 +54,7 @@
     <header class="header-section">
 		<div class="container">
 			<!-- logo -->
-			<a class="site-logo" href="index.jsp">
+			<a class="site-logo" href="/">
 				<img src="img/logo.png" alt="">
 			</a>
 			<div class="user-panel">

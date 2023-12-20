@@ -90,4 +90,14 @@ public class EndPointMappingClass {
 	public String withdraw() {
 		return "withdraw";
 	}
+	
+	@GetMapping("/forgot-otp")
+	public String forgetOtp() {
+		return "forgot-otp";
+	}
+	
+	@GetMapping("/changePassword")
+	public String changePassword() {
+		return "change-password";
+	}
 }

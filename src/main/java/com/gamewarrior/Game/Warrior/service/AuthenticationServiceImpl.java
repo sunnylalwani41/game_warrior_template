@@ -108,4 +108,25 @@ public class AuthenticationServiceImpl implements AuthenticationService{
     private boolean isExpireOtp(LocalDateTime timestamp){
         return LocalDateTime.now().isAfter(timestamp.plusMinutes(10));
     }
+
+	@Override
+	public String verifyForgetOtpValue(String otp, HttpSession session)
+			throws OtpException, UserException, MessagingException {
+		String userEmail = (String)session.getAttribute("forgotemail");
+
+        if(userEmail==null){
+            throw new UserException("Unauthorized User!!");
+        }
+        User user = userRepo.findByEmail(userEmail);
+
+        if(user==null)
+            throw new UserException("Unauthorized User!!");
+
+        if(user.getOtp().equals(otp) && !isExpireOtp(user.getTimestamp())){
+        	session.setAttribute("verifiedOtp", "otp");
+        	
+            return otp;
+        }
+        throw new OtpException("Invalid Otp or expire the otp");
+	}
 }

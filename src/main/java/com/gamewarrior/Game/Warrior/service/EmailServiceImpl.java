@@ -75,6 +75,21 @@ public class EmailServiceImpl implements EmailService{
         
         sendEmail(user.getEmail(), subject, message);
     }
+    
+    @Override
+    public void sendGreetingEmailForResetPassword(User user) throws MessagingException {
+        String subject = "Greeting!Successfully reset/change your password";
+        String message = "Hi user!, \nYour email id "+user.getEmail()+" is successfully Successfully reset your password. Now you can login with new password.";
+        
+        Notification notification = new Notification();
+        
+        notification.setMessage(message);
+        notification.setSubject(subject);
+        notification.setUser(user);
+        user.getNotifications().add(notification);
+        
+        sendEmail(user.getEmail(), subject, message);
+    }
 
     private String generateOtp(){
         StringBuilder stringOtp = new StringBuilder("");

@@ -75,6 +75,20 @@ public class AuthenticationController {
 			response.sendRedirect("otp");
 		}
     }
+    
+    @PostMapping("/forgotOtp")
+    public void matchForgetOtpHandler(@RequestParam String otp, HttpServletResponse response, HttpServletRequest request) throws OtpException, MessagingException, UserException, ServletException, IOException {
+    	HttpSession session = request.getSession();
+    	try {
+    		authenticationService.verifyForgetOtpValue(otp, session);
+    		
+    		response.sendRedirect("changePassword");
+		} catch (Exception exception) {
+			session.setAttribute("errorMessage", exception.getMessage());
+			
+			response.sendRedirect("forgot-otp");
+		}
+    }
 
     @PostMapping("/verifyUser")
     public void verifyUserHandler(@RequestParam String email, @RequestParam String password, HttpServletResponse response, HttpServletRequest request) throws UserException, NoSuchAlgorithmException, IOException {
