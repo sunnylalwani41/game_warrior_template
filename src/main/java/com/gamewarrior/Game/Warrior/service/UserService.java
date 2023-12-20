@@ -17,4 +17,6 @@ public interface UserService {
 	public void forgetPassword(String email)throws UserException, MessagingException;
 
 	public void updatePassword(String password, HttpSession session)throws UserException, NoSuchAlgorithmException, MessagingException;
+
+	public void resentOtp(String userEmail) throws MessagingException;
 }

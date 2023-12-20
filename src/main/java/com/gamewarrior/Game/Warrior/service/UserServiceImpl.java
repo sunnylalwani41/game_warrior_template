@@ -92,4 +92,15 @@ public class UserServiceImpl implements UserService{
 		session.removeAttribute("forgotemail");
 		session.removeAttribute("verifiedOtp");
 	}
+
+	@Override
+	public void resentOtp(String userEmail) throws MessagingException {
+		String otp = emailService.sendOtpEmail(userEmail);
+		User user = userRepo.findByEmail(userEmail);
+		
+		user.setOtp(otp);
+		user.setTimestamp(LocalDateTime.now());
+		
+		userRepo.save(user);
+	}
 }

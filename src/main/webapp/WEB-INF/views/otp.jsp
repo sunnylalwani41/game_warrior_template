@@ -102,6 +102,9 @@
                         <input type="text" name="otp" required>
                         <label>Enter Your OTP</label>
                       </div>
+                      <p>
+						<a href="resentOtp">Resent Otp</a>
+					</p>
                       <input id="submit" type="submit" name="" value="Submit">
                     </form>
                   </div>

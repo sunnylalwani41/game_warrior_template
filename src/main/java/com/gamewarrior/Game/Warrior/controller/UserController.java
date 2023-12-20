@@ -70,4 +70,48 @@ public class UserController {
 			}
 		}
 	}
+	
+	@GetMapping("/resentOtp")
+	public void resentOtpHandler(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		HttpSession session = request.getSession();
+		String userEmail = (String)session.getAttribute("email");
+		
+		if(userEmail==null) {
+			session.setAttribute("errorMessage", "Unauthorized user!!");
+			
+			response.sendRedirect("/registration");
+		}
+		else {
+			try {
+				userService.resentOtp(userEmail);
+				
+				session.setAttribute("message", "Otp resent successfully");
+			} catch (Exception e) {
+				session.setAttribute("errorMessage", "Something went wrong!!");
+			}
+			response.sendRedirect("otp");
+		}
+	}
+	
+	@GetMapping("/resentForgetOtp")
+	public void resentForgetOtpHandler(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		HttpSession session = request.getSession();
+		String userEmail = (String)session.getAttribute("forgotemail");
+
+		if(userEmail==null) {
+			session.setAttribute("errorMessage", "Unauthorized user!!");
+			
+			response.sendRedirect("/registration");
+		}
+		else {
+			try {
+				userService.resentOtp(userEmail);
+				
+				session.setAttribute("message", "Otp resent successfully");
+			} catch (Exception e) {
+				session.setAttribute("errorMessage", "Something went wrong!!");
+			}
+			response.sendRedirect("forgot-otp");
+		}
+	}
 }
