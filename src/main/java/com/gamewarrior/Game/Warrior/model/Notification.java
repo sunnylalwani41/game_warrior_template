@@ -1,5 +1,7 @@
 package com.gamewarrior.Game.Warrior.model;
 
+import java.time.LocalDateTime;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
@@ -20,6 +22,7 @@ public class Notification {
 	private Integer Id;
 	private String subject;
 	private String message;
+	private LocalDateTime timestamp= LocalDateTime.now();
 	@JsonIgnore
 	@ManyToOne
 	private User user;

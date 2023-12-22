@@ -21,16 +21,20 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-public class FetchNotification {
+public class FetchNotificationController {
 	@Autowired
 	private NotificationService notificationService;
 	
 	@GetMapping("/notification")
-	public void fetchNotification(HttpSession session, HttpServletResponse response, HttpServletRequest request) throws IOException, NotificationException, UserException, ServletException {
+	public void fetchNotification(HttpServletResponse response, HttpServletRequest request) throws IOException, NotificationException, UserException, ServletException {
+		HttpSession session = request.getSession();
+		
+		session.setAttribute("notification", "notification");
 		try {
 			List<Notification> notifications = notificationService.fetchAllNotificationOfTheUser(session);
 			
-			session.setAttribute("notification", notifications);
+			session.setAttribute("notificationDetails", notifications);
+			response.sendRedirect("fetchnotification");
 		} catch (UserException userException) {
 			session.setAttribute("errorMessage", userException.getMessage());
 			
@@ -38,9 +42,7 @@ public class FetchNotification {
 		}
 		catch(NotificationException notificationException) {
 			session.setAttribute("errorMessage", notificationException.getMessage());
+			response.sendRedirect("fetchnotification");
 		}
-		RequestDispatcher requestDispatcher= request.getRequestDispatcher("/fetchnotification");
-		
-		requestDispatcher.include(request, response);
 	}
 }

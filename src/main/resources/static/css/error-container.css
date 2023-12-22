@@ -1,9 +1,10 @@
 .errorContainer{
 	color: red;
-	background-color: #ffdbac;
+	background-color: rgb(255, 240, 221);
 	border-radius: 15px;
 	padding: 10px 30px;
-	width: 70%;
+	font-weight: bold;
+	width: 50%;
 	margin:auto;
 	text-align: center;
 

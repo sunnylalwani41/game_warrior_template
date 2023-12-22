@@ -43,6 +43,11 @@
 		response.sendRedirect("login");
 	%>
 </c:if>
+<c:if test="${empty requestScope.name || empty requestScope.email}">
+	<%
+		response.sendRedirect("fetchProfile");
+	%>
+</c:if>
 <!-- Header section -->
 <header class="header-section">
     <div class="container">
@@ -79,19 +84,10 @@
         <div class="hs-item set-bg" data-setbg="img/slider-1.jpg">
             <div class="box">
                 <h2>Profile</h2>
-                <form>
-                    <div class="profile-info">
-                        <h4>Full Name: <label></label> </h4>
-                    </div>
-                    <div class="profile-info">
-                        <h4>Email: </h4>
-                    </div>
-
-                    <input type="submit" value="Update Password">
-                    <input type="submit" value="Return New Password">
-
-                </form>
-
+                <div class="profile-info">
+                    <p>Full Name :  </p><p> ${requestScope.name }</p>
+                    <p>Email :</p> <p> ${requestScope.email}</p>
+                </div>
             </div>
         </div>
     </div>

@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gamewarrior.Game.Warrior.dao.UserRepo;
 import com.gamewarrior.Game.Warrior.exception.UserException;
+import com.gamewarrior.Game.Warrior.model.User;
 import com.gamewarrior.Game.Warrior.service.UserService;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -113,5 +115,29 @@ public class UserController {
 			}
 			response.sendRedirect("forgot-otp");
 		}
+	}
+	
+	@GetMapping("/fetchProfile")
+	public void fetchProfileDataHandler(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		HttpSession session = request.getSession();
+		Integer userId= (Integer)session.getAttribute("userId");
+		
+		try {
+			User user = userService.fetchProfile(userId);
+			
+			request.setAttribute("email", user.getEmail());
+			request.setAttribute("name", user.getFirstName()+" "+user.getLastName());
+			
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("profile");
+			
+			requestDispatcher.include(request, response);
+		} catch (Exception exception) {
+			session.setAttribute("errorMessage", exception.getMessage());
+			
+			response.sendRedirect("login");
+		}
+		
+		
+		
 	}
 }

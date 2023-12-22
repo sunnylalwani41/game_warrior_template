@@ -62,7 +62,7 @@
 						
 					</div>
 					<div class="user-panel">
-						<a href="profile">
+						<a href="fetchProfile">
 							<i class="fa-solid fa-user"></i>
 							Profile
 						</a>
