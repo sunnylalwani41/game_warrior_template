@@ -71,11 +71,29 @@ public class TransactionController {
         	response.sendRedirect("success");
         }
     }
-
-//    public void getTransactionHistoryHandler(HttpSession session)
-//            throws UserException, TransactionException {
-//    		List<Transaction> transactions= transactionService.fetchTransactionHistory(session);
-//    }
-
-
+    
+    @GetMapping("/fetchTransactions")
+    public void getTransactionHistoryHandler(HttpServletRequest request, HttpServletResponse response)
+            throws UserException, TransactionException, IOException {
+    	HttpSession session = request.getSession();
+    	Integer userId = (Integer) session.getAttribute("userId");
+    	
+    	if(userId==null) {
+    		session.setAttribute("errorMessage", "Invalid user!! Please login");
+    		
+    		response.sendRedirect("login");
+    	}
+    	else {
+    		session.setAttribute("passbookDetail", "passbookDetail");
+        	
+        	List<Transaction> transactions= transactionService.fetchTransactionHistory(session);
+        	if(!transactions.isEmpty()) {
+        		session.setAttribute("transactionDetails", transactions);
+    		}
+        	else {
+        		session.setAttribute("errorMessage", "Transaction not found!");
+        	}
+        	response.sendRedirect("passbook");
+    	}    	
+    }
 }

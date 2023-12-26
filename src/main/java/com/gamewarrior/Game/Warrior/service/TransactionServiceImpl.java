@@ -1,11 +1,8 @@
 package com.gamewarrior.Game.Warrior.service;
 
 import jakarta.servlet.http.HttpSession;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import okhttp3.*;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,15 +44,8 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public List<Transaction> fetchTransactionHistory(HttpSession session)  throws TransactionException, UserException{
         Integer userId = (Integer) session.getAttribute("userId");
-
-        if(userId==null){
-            throw new UserException("User is logged-out!");
-        }
         List<Transaction> transactions= transactionRepo.findByUserId(userId);
-
-        if(transactions.isEmpty()){
-            throw new TransactionException("Transaction not found!");
-        }
+        
         return transactions;
     }
 
@@ -121,7 +111,7 @@ public class TransactionServiceImpl implements TransactionService {
         String accountRegistrationRequestBodyJson = accountRegistrationObjectMapper.
                 writeValueAsString(requestBodyMap);
 
-        RequestBody accountRegistrationBody = RequestBody.create(mediaType,
+		RequestBody accountRegistrationBody = RequestBody.create(mediaType,
                 accountRegistrationRequestBodyJson);
         Request accountRegistrationRequest = new Request.Builder()
                 .url("https://api.razorpay.com/v1/fund_accounts")
