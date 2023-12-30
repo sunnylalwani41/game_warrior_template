@@ -276,7 +276,7 @@ ol {
 
 .main-menu {
 	float: right;
-	margin-right: 170px;
+	margin-right: 70px;
 }
 
 .main-menu ul {
@@ -284,6 +284,8 @@ ol {
 }
 
 .main-menu ul li {
+	color: white;
+	margin-left: 10px;
 	display: inline;
 }
 
@@ -291,13 +293,33 @@ ol {
 	display: inline-block;
 	font-size: 16px;
 	color: #fff;
-	margin-left: 35px;
 	font-weight: 500;
 	padding: 10px 5px;
 }
 
 .main-menu ul li a:hover {
 	color: #ffb320;
+}
+
+.homedetails {
+	margin-right: 100px;
+}
+.details {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: nowrap;
+}
+
+.transaction {
+	padding: 40px;
+}
+.history {
+	padding: 40px;
+	margin-right: 30px;
+}
+
+#deposit {
+	margin-left: 20px;
 }
 
 .header-btn {

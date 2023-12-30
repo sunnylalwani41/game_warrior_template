@@ -1,13 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
  
 .profile-info{
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	grid-gap: 5px;
+	display:grid;
+	grid-template-columns: 130px 500px;
+	grid-gap: 2px;
 }
 .profile-info> p{
 	color: white;
-	font-size: 23px;
-	border: 1px solid white;
-	padding: 2px 7px;
+	font-size: 20px;
+	padding: 2px 2px;
 }
