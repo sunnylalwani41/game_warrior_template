@@ -96,11 +96,9 @@
 			</header>
 			<!-- Header section end -->
 
-			<!-- whatsapp click to chat -->
-			<div class="whatsapp_float">
-				<a href="https://wa.me/918890918364" target="_blank">
-					<img alt="whatsapp" src="https://pngimg.com/d/whatsapp_PNG1.png">
-				</a>
+			<!-- Live chat -->
+			<div class="live_float">
+				<img alt="whatsapp" src="img/clogo.png">
 			</div>
 
 			<!-- Hero section -->
