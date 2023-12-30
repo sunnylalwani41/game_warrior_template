@@ -97,8 +97,8 @@
 			<!-- Header section end -->
 
 			<!-- Live chat -->
-			<div class="live_float">
-				<img alt="whatsapp" src="img/clogo.png">
+			<div class="livechat_float">
+				<img alt="livechat" src="img/clogo.png">
 			</div>
 
 			<!-- Hero section -->
