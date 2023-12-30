@@ -3,9 +3,15 @@
 	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 		<!DOCTYPE html>
 		<html>
-
-<<<<<<< HEAD
-	<!-- Google Fonts -->
+		<head>
+			<title>Game Warrior Template</title>
+			<meta charset="UTF-8">
+			<meta name="description" content="Game Warrior Template">
+			<meta name="keywords" content="warrior, game, creative, html">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<!-- Favicon -->
+			<link href="img/favicon.ico" rel="shortcut icon" />
+<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
 	
 	<!-- Stylesheets -->
@@ -19,163 +25,12 @@
 	<link rel="stylesheet" href="css/livechat.css"/>
 	<!-- Font Awesome kit -->
 	<script src="https://kit.fontawesome.com/e99a9eb445.js" crossorigin="anonymous"></script>
-=======
-		<head>
-			<title>Game Warrior Template</title>
-			<meta charset="UTF-8">
-			<meta name="description" content="Game Warrior Template">
-			<meta name="keywords" content="warrior, game, creative, html">
-			<meta name="viewport" content="width=device-width, initial-scale=1.0">
-			<!-- Favicon -->
-			<link href="img/favicon.ico" rel="shortcut icon" />
->>>>>>> 08f036c9d0e4e5c89c0bd509c6d8a01d0a789bc4
-
-			<!-- Google Fonts -->
-			<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
-
-			<!-- Stylesheets -->
-			<link rel="stylesheet" href="css/bootstrap.min.css" />
-			<link rel="stylesheet" href="css/font-awesome.min.css" />
-			<link rel="stylesheet" href="css/owl.carousel.css" />
-			<link rel="stylesheet" href="css/style.css" />
-			<link rel="stylesheet" href="css/animate.css" />
-			<link rel="stylesheet" href="css/login.css" />
-			<link rel="stylesheet" href="css/deposit.css">
-			<!-- whatsapp style -->
-			<link rel="stylesheet" href="css/whatsapp.css" />
-			<!-- Font Awesome kit -->
-			<script src="https://kit.fontawesome.com/e99a9eb445.js" crossorigin="anonymous"></script>
 
 			<!--[if lt IE 9]>
 	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
-
-<<<<<<< HEAD
 </head>
-<body>
-	<!-- Page Preloder -->
-	<div id="preloder">
-		<div class="loader"></div>
-	</div>
-	
-	<!-- Header section -->
-	<header class="header-section">
-		<div class="container">
-			<!-- logo -->
-			<a class="site-logo" href="/">
-				<img src="img/logo.png" alt="">
-			</a>
-			
-			<c:choose>
-			
-				<c:when test="${not empty userId}">
-					<div class="user-panel">
-						<a href="logout">
-							<i class="fa-solid fa-arrow-right-from-bracket"></i>
-							Logout
-						</a>
-					</div>
-					<div class="user-panel">
-						<i class="fa-solid fa-wallet"> : ${balance}</i>
-						
-					</div>
-					<div class="user-panel">
-						<a href="fetchProfile">
-							<i class="fa-solid fa-user"></i>
-							Profile
-						</a>
-					</div>
-					<div class="user-panel">
-						<a href="passbook">
-							<i class="fa-solid fa-book"></i>
-							Passbook
-						</a>
-					</div>
-					<div class="user-panel">
-						<a href="ids">
-							<i class="fa-solid fa-id-card"></i>
-							Create Id and My Ids
-						</a>
-					</div>
-					
-				</c:when>
-				<c:otherwise>
-					<div class="user-panel">
-						<a href="login">Login</a>  /  <a href="registration">Register</a>
-					</div>
-				</c:otherwise>
-			</c:choose>
-			<!-- responsive -->
-			<div class="nav-switch">
-				<i class="fa fa-bars"></i>
-			</div>
-			<!-- site menu -->
-			<nav class="main-menu">
-				<ul>
-					<li><a href="/">Home</a></li>
-					<li><a href="review">Games</a></li>
-					<li><a href="categories">Blog</a></li>
-					<li><a href="community">Forums</a></li>
-					<li><a href="contact">Contact</a></li>
-				</ul>
-			</nav>
-		</div>
-	</header>
-	<!-- Header section end -->
-	
-	<!-- livechat click to chat -->
-	<div class="livechat_float">
-		<img alt="livechat" src="img/clogo.png">
-	</div>
-		
-	<!-- Hero section -->
-	<section class="hero-section">
-		<div class="hero-slider owl-carousel">
-			<div class="hs-item set-bg" data-setbg="img/slider-1.jpg">
-				
-				<div class="hs-text">
-					<div class="container">
-						<h2>The Best <span>Games</span> Out There</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada <br> lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. <br>Suspendisse cursus faucibus finibus.</p>
-						<a href="#" class="site-btn">Read More</a>
-					</div>
-				</div>
-				<c:if test="${not empty userId }">
-					<div class="user-panel">
-						<a href="deposit">
-							<i class="fa-solid fa-file-arrow-down" style="color:green"></i>
-							Deposit
-						</a>
-					</div>
-					<div class="user-panel">
-						<a href="withdraw">
-							<i class="fa-solid fa-file-arrow-up" style="color:red"></i>
-							Withdraw
-						</a>
-					</div>
-				</c:if>
-			</div>
-			
-		</div>
-	</section>
-	<!-- Hero section end -->
-	<!-- Latest news section -->
-	<div class="latest-news-section">
-		<div class="ln-title">Latest News</div>
-		<div class="news-ticker">
-			<div class="news-ticker-contant">
-				<div class="nt-item"><span class="new">new</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </div>
-				<div class="nt-item"><span class="strategy">strategy</span>Isum dolor sit amet, consectetur adipiscing elit. </div>
-				<div class="nt-item"><span class="racing">racing</span>Isum dolor sit amet, consectetur adipiscing elit. </div>
-			</div>
-		</div>
-	</div>
-	<!-- Latest news section end -->
-=======
-		</head>
->>>>>>> 08f036c9d0e4e5c89c0bd509c6d8a01d0a789bc4
-
 		<body>
 			<!-- Page Preloder -->
 			<div id="preloder">
@@ -423,16 +278,7 @@
 			<!-- Recent game section end -->
 
 
-<<<<<<< HEAD
-	<!--====== Javascripts & Jquery ======-->
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/jquery.marquee.min.js"></script>
-	<script src="js/main.js"></script>
-	<script src="js/login.js"></script>
-	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-=======
+
 			<!-- Tournaments section -->
 			<section class="tournaments-section spad">
 				<div class="container">
@@ -478,7 +324,6 @@
 				</div>
 			</section>
 			<!-- Tournaments section bg -->
->>>>>>> 08f036c9d0e4e5c89c0bd509c6d8a01d0a789bc4
 
 
 			<!-- Review section -->
@@ -651,13 +496,14 @@
 			<!-- Footer section end -->
 
 
-			<!--====== Javascripts & Jquery ======-->
-			<script src="js/jquery-3.2.1.min.js"></script>
-			<script src="js/bootstrap.min.js"></script>
-			<script src="js/owl.carousel.min.js"></script>
-			<script src="js/jquery.marquee.min.js"></script>
-			<script src="js/main.js"></script>
-			<script src="js/login.js"></script>
+				<!--====== Javascripts & Jquery ======-->
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/jquery.marquee.min.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/login.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 		</body>
 
