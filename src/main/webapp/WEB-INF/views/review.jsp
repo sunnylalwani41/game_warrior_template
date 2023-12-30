@@ -1,26 +1,30 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="zxx">
+
 <head>
 	<title>Game Warrior Template</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="Game Warrior Template">
 	<meta name="keywords" content="warrior, game, creative, html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- Favicon -->   
-	<link href="img/favicon.ico" rel="shortcut icon"/>
+	<!-- Favicon -->
+	<link href="img/favicon.ico" rel="shortcut icon" />
 
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
 
 	<!-- Stylesheets -->
-	<link rel="stylesheet" href="css/bootstrap.min.css"/>
-	<link rel="stylesheet" href="css/font-awesome.min.css"/>
-	<link rel="stylesheet" href="css/owl.carousel.css"/>
-	<link rel="stylesheet" href="css/style.css"/>
-	<link rel="stylesheet" href="css/animate.css"/>
-	<link rel="stylesheet" href="css/login.css"/>
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/font-awesome.min.css" />
+	<link rel="stylesheet" href="css/owl.carousel.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/animate.css" />
+	<link rel="stylesheet" href="css/login.css" />
 
-
+	<script src="https://kit.fontawesome.com/e99a9eb445.js" crossorigin="anonymous"></script>
 
 	<!--[if lt IE 9]>
 	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -28,6 +32,7 @@
 	<![endif]-->
 
 </head>
+
 <body>
 	<!-- Page Preloder -->
 	<div id="preloder">
@@ -41,22 +46,52 @@
 			<a class="site-logo" href="index.jsp">
 				<img src="img/logo.png" alt="">
 			</a>
-			<div class="user-panel">
-				<a href="login.html">Login</a>  /  <a href="registration.html">Register</a>
-			</div>
 			<!-- responsive -->
 			<div class="nav-switch">
 				<i class="fa fa-bars"></i>
 			</div>
 			<!-- site menu -->
 			<nav class="main-menu">
-				<ul>
-					<li><a href="index.jsp">Home</a></li>
-					<li><a href="review.html">Games</a></li>
-					<li><a href="categories.html">Blog</a></li>
-					<li><a href="community.html">Forums</a></li>
-					<li><a href="contact.html">Contact</a></li>
-				</ul>
+				<div class="details" style="display: flex; justify-content: space-between;">
+					<div class="homedetails" style="float:none;">
+						<ul>
+							<li><a href="/">Home</a></li>
+							<li><a href="review">Games</a></li>
+							<li><a href="ids">Create Id and My Ids</a></li>
+							<li><a href="contact">Contact</a></li>
+						</ul>
+					</div>
+
+					<div class="personaldetails" style="padding-right: 1px; padding-top: 5px; display: flex;">
+						<ul>
+							<c:choose>
+
+								<c:when test="${not empty userId}">
+									<li>
+										<a href="fetchProfile">
+											<i class="fa-solid fa-user"></i>
+											Profile
+										</a>
+									</li>
+									<li>
+										<i class="fa-solid fa-wallet"> : ${balance}</i>
+									</li>
+									<li>
+										<a href="logout">
+											<i class="fa-solid fa-arrow-right-from-bracket"></i>
+											Logout
+										</a>
+									</li>
+								</c:when>
+								<c:otherwise>
+									<div class="user-panel">
+										<a href="login">Login</a> / <a href="registration">Register</a>
+									</div>
+								</c:otherwise>
+							</c:choose>
+						</ul>
+					</div>
+				</div>
 			</nav>
 		</div>
 	</header>
@@ -68,9 +103,12 @@
 		<div class="ln-title">Latest News</div>
 		<div class="news-ticker">
 			<div class="news-ticker-contant">
-				<div class="nt-item"><span class="new">new</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </div>
-				<div class="nt-item"><span class="strategy">strategy</span>Isum dolor sit amet, consectetur adipiscing elit. </div>
-				<div class="nt-item"><span class="racing">racing</span>Isum dolor sit amet, consectetur adipiscing elit. </div>
+				<div class="nt-item"><span class="new">new</span>Lorem ipsum dolor sit amet, consectetur adipiscing
+					elit. </div>
+				<div class="nt-item"><span class="strategy">strategy</span>Isum dolor sit amet, consectetur adipiscing
+					elit. </div>
+				<div class="nt-item"><span class="racing">racing</span>Isum dolor sit amet, consectetur adipiscing elit.
+				</div>
 			</div>
 		</div>
 	</div>
@@ -84,7 +122,8 @@
 				<div class="row">
 					<div class="col-xl-5 col-lg-6 text-white">
 						<h2>Game reviews</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum.</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris
+							scelerisque, at rutrum nulla dictum.</p>
 					</div>
 				</div>
 			</div>
@@ -111,7 +150,8 @@
 								<i class="fa fa-star"></i>
 								<i class="fa fa-star is-fade"></i>
 							</div>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame. Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame. Lorem ipsum
+								dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
 						</div>
 					</div>
 				</div>
@@ -129,7 +169,8 @@
 								<i class="fa fa-star"></i>
 								<i class="fa fa-star is-fade"></i>
 							</div>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame. Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame. Lorem ipsum
+								dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
 						</div>
 					</div>
 				</div>
@@ -147,7 +188,8 @@
 								<i class="fa fa-star"></i>
 								<i class="fa fa-star is-fade"></i>
 							</div>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame. Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame. Lorem ipsum
+								dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
 						</div>
 					</div>
 				</div>
@@ -165,7 +207,8 @@
 								<i class="fa fa-star"></i>
 								<i class="fa fa-star is-fade"></i>
 							</div>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame. Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame. Lorem ipsum
+								dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
 						</div>
 					</div>
 				</div>
@@ -183,7 +226,8 @@
 								<i class="fa fa-star"></i>
 								<i class="fa fa-star is-fade"></i>
 							</div>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame. Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame. Lorem ipsum
+								dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
 						</div>
 					</div>
 				</div>
@@ -201,7 +245,8 @@
 								<i class="fa fa-star"></i>
 								<i class="fa fa-star is-fade"></i>
 							</div>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame. Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame. Lorem ipsum
+								dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
 						</div>
 					</div>
 				</div>
@@ -323,28 +368,28 @@
 							<div class="tc-item">
 								<div class="tc-thumb set-bg" data-setbg="img/authors/1.jpg"></div>
 								<div class="tc-content">
-									<p><a href="#">James Smith</a> <span>on</span>  Lorem ipsum dolor sit amet, co</p>
+									<p><a href="#">James Smith</a> <span>on</span> Lorem ipsum dolor sit amet, co</p>
 									<div class="tc-date">June 21, 2018</div>
 								</div>
 							</div>
 							<div class="tc-item">
 								<div class="tc-thumb set-bg" data-setbg="img/authors/2.jpg"></div>
 								<div class="tc-content">
-									<p><a href="#">James Smith</a> <span>on</span>  Lorem ipsum dolor sit amet, co</p>
+									<p><a href="#">James Smith</a> <span>on</span> Lorem ipsum dolor sit amet, co</p>
 									<div class="tc-date">June 21, 2018</div>
 								</div>
 							</div>
 							<div class="tc-item">
 								<div class="tc-thumb set-bg" data-setbg="img/authors/3.jpg"></div>
 								<div class="tc-content">
-									<p><a href="#">James Smith</a> <span>on</span>  Lorem ipsum dolor sit amet, co</p>
+									<p><a href="#">James Smith</a> <span>on</span> Lorem ipsum dolor sit amet, co</p>
 									<div class="tc-date">June 21, 2018</div>
 								</div>
 							</div>
 							<div class="tc-item">
 								<div class="tc-thumb set-bg" data-setbg="img/authors/4.jpg"></div>
 								<div class="tc-content">
-									<p><a href="#">James Smith</a> <span>on</span>  Lorem ipsum dolor sit amet, co</p>
+									<p><a href="#">James Smith</a> <span>on</span> Lorem ipsum dolor sit amet, co</p>
 									<div class="tc-date">June 21, 2018</div>
 								</div>
 							</div>
@@ -356,7 +401,7 @@
 	</section>
 	<!-- Footer top section end -->
 
-	
+
 	<!-- Footer section -->
 	<footer class="footer-section">
 		<div class="container">
@@ -368,9 +413,12 @@
 				<li><a href="contact.html">Contact</a></li>
 			</ul>
 			<p class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-</p>
+				Copyright &copy;
+				<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made
+				with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
+					target="_blank">Colorlib</a>
+				<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+			</p>
 		</div>
 	</footer>
 	<!-- Footer section end -->
@@ -384,5 +432,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="js/main.js"></script>
 	<script src="js/login.js"></script>
 
-    </body>
+</body>
+
 </html>

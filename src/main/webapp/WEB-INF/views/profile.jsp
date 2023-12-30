@@ -66,11 +66,9 @@
         <!-- site menu -->
         <nav class="main-menu">
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="review.html">Games</a></li>
-                <li><a href="categories.html">Blog</a></li>
-                <li><a href="community.html">Forums</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="review">Games</a></li>
+                <li><a href="contact">Contact</a></li>
             </ul>
         </nav>
     </div>
@@ -85,7 +83,7 @@
             <div class="box">
                 <h2>Profile</h2>
                 <div class="profile-info">
-                    <p>Full Name :  </p><p> ${requestScope.name }</p>
+                    <p>Full Name :</p><p> ${requestScope.name }</p>
                     <p>Email :</p> <p> ${requestScope.email}</p>
                 </div>
             </div>
@@ -100,11 +98,9 @@
 <footer class="footer-section">
     <div class="container">
         <ul class="footer-menu">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="review.html">Games</a></li>
-            <li><a href="categories.html">Blog</a></li>
-            <li><a href="community.html">Forums</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="review">Games</a></li>
+            <li><a href="contact">Contact</a></li>
         </ul>
         <p class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
