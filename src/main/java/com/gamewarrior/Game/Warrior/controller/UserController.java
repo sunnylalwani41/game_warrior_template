@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.gamewarrior.Game.Warrior.dao.UserRepo;
 import com.gamewarrior.Game.Warrior.exception.UserException;
 import com.gamewarrior.Game.Warrior.model.User;
+import com.gamewarrior.Game.Warrior.service.ClientService;
 import com.gamewarrior.Game.Warrior.service.UserService;
 
 import jakarta.servlet.RequestDispatcher;
@@ -24,6 +25,9 @@ import jakarta.servlet.http.HttpSession;
 public class UserController {
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private ClientService clientService;
 
 	@GetMapping("/logout")
 	public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -136,8 +140,10 @@ public class UserController {
 			
 			response.sendRedirect("login");
 		}
-		
-		
-		
+	}
+	
+	@GetMapping("/liveChat")
+	public void liveChat() {
+		clientService.connectToServer();
 	}
 }

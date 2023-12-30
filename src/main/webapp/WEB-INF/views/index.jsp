@@ -24,7 +24,7 @@
 	<link rel="stylesheet" href="css/animate.css"/>
 	<link rel="stylesheet" href="css/login.css"/>
 	<!-- whatsapp style -->
-	<link rel="stylesheet" href="css/whatsapp.css"/>
+	<link rel="stylesheet" href="css/livechat.css"/>
 	<!-- Font Awesome kit -->
 	<script src="https://kit.fontawesome.com/e99a9eb445.js" crossorigin="anonymous"></script>
 
@@ -105,11 +105,9 @@
 	</header>
 	<!-- Header section end -->
 	
-	<!-- whatsapp click to chat -->
-	<div class="whatsapp_float">
-		<a href="https://wa.me/918890918364" target="_blank">
-			<img alt="whatsapp" src="https://pngimg.com/d/whatsapp_PNG1.png">
-		</a>
+	<!-- livechat click to chat -->
+	<div class="livechat_float">
+		<img alt="livechat" src="img/clogo.png">
 	</div>
 		
 	<!-- Hero section -->
@@ -491,6 +489,7 @@
 	<script src="js/jquery.marquee.min.js"></script>
 	<script src="js/main.js"></script>
 	<script src="js/login.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     </body>
 </html>
