@@ -26,7 +26,7 @@ public class Game {
 	private Integer minimumBet;
 	private Integer minimumWithdrawal;
 	private Integer minimumMaintainingBalance;
-	private Integer maximumWithrawal
+	private Integer maximumWithrawal;
 	@ElementCollection
 	@CollectionTable(name= "game_names", joinColumns = @JoinColumn(name="game_id"))
 	@Column(name= "game_name")
