@@ -98,15 +98,15 @@
 			<caption>Transactions</caption>
 				<thead>
 					<tr>
-						<td>Id</td>
-						<td>Mobile</td>
-						<td>Account Number</td>
-						<td>IFSC</td>
-						<td>Account Holder Name</td>
-						<td>Amount</td>
-						<td>Transaction Id</td>
-						<td>Order Id</td>
-						<td>Date and Time</td>
+						<th>Id</th>
+						<th>Mobile</th>
+						<th>Account Number</th>
+						<th>IFSC</th>
+						<th>Account Holder Name</th>
+						<th>Amount</th>
+						<th>Transaction Id</th>
+						<th>Order Id</th>
+						<th>Date and Time</th>
 					</tr>
 				</thead>
 				<tbody>

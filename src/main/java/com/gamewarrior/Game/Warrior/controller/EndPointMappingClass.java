@@ -100,9 +100,4 @@ public class EndPointMappingClass {
 	public String changePassword() {
 		return "change-password";
 	}
-	
-	@GetMapping("/success")
-	public String success() {
-		return "success";
-	}
 }

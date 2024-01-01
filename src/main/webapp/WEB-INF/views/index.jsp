@@ -21,7 +21,7 @@
 	<link rel="stylesheet" href="css/style.css"/>
 	<link rel="stylesheet" href="css/animate.css"/>
 	<link rel="stylesheet" href="css/login.css"/>
-	<!-- whatsapp style -->
+	<!-- livechat style -->
 	<link rel="stylesheet" href="css/livechat.css"/>
 	<!-- Font Awesome kit -->
 	<script src="https://kit.fontawesome.com/e99a9eb445.js" crossorigin="anonymous"></script>
@@ -140,7 +140,6 @@
 							</div>
 						</c:if>
 					</div>
-
 				</div>
 			</section>
 			<!-- Hero section end -->

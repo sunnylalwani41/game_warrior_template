@@ -50,6 +50,7 @@ public class TransactionController {
     		@RequestParam Integer amount, HttpServletRequest request, HttpServletResponse response) throws IOException, TransactionException, UserException{
     	HttpSession session = request.getSession();
         Integer userId = (Integer) session.getAttribute("userId");
+        Integer balance = (Integer) session.getAttribute("balance");
         Transaction transaction = new Transaction();
         
         transaction.setMobile(mobile);
@@ -60,15 +61,23 @@ public class TransactionController {
 
         if(userId==null){
             session.setAttribute("errorMessage", "Invalid User!! Please login.");
+            
             response.sendRedirect("login");
         }
         else {
-        	transaction.setUserId(userId);
-        	transactionService.moneyTransfer(transaction);
-        	request.setAttribute("transaction", transaction);
-        	
-        	transactionService.saveTransaction(transaction);
-        	response.sendRedirect("success");
+        	if(balance !=null && balance>=amount && amount>=150) {
+	        	transaction.setUserId(userId);
+	        	transactionService.moneyTransfer(transaction);
+	        	request.setAttribute("transaction", transaction);
+	        	
+	        	transactionService.saveTransaction(transaction);
+	        	session.setAttribute("message", "Transaction Successfull");
+	        	response.sendRedirect("withdraw");
+        	}
+        	else {
+        		session.setAttribute("errorMessage", "Minimum withdraw 150 rupees");
+        		response.sendRedirect("withdraw");
+        	}
         }
     }
     

@@ -11,7 +11,7 @@
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
 			<!-- Favicon -->
 			<link href="img/favicon.ico" rel="shortcut icon" />
-	<!-- Google Fonts -->
+<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
 	
 	<!-- Stylesheets -->
@@ -25,6 +25,11 @@
 	<link rel="stylesheet" href="css/livechat.css"/>
 	<!-- Font Awesome kit -->
 	<script src="https://kit.fontawesome.com/e99a9eb445.js" crossorigin="anonymous"></script>
+
+			<!--[if lt IE 9]>
+	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
 </head>
 		<body>
 			<!-- Page Preloder -->
@@ -33,16 +38,15 @@
 			</div>
 			<c:if test="${empty userId}">
 				<%
+					session.setAttribute("errorMessage", "Invalid User! please login");
 					response.sendRedirect("login");
 				%>
 			</c:if>
-			
-			<c:if test="${empty idDetails}">
+			<c:if test="${empty requestScope.game}">
 				<%
-					response.sendRedirect("fetchIdDetails");
+					response.sendRedirect("ids");
 				%>
 			</c:if>
-
 			<!-- Header section -->
 			<header class="header-section">
 				<div class="container">
@@ -69,31 +73,21 @@
 
 							<div class="personaldetails" style="padding-right: 1px; padding-top: 5px; display: flex;">
 								<ul>
-									<c:choose>
-
-										<c:when test="${not empty userId}">
-											<li>
-												<a href="fetchProfile">
-													<i class="fa-solid fa-user"></i>
-													Profile
-												</a>
-											</li>
-											<li>
-												<i class="fa-solid fa-wallet"> : ${balance}</i>
-											</li>
-											<li>
-												<a href="logout">
-													<i class="fa-solid fa-arrow-right-from-bracket"></i>
-													Logout
-												</a>
-											</li>
-										</c:when>
-										<c:otherwise>
-											<div class="user-panel">
-												<a href="login">Login</a> / <a href="registration">Register</a>
-											</div>
-										</c:otherwise>
-									</c:choose>
+									<li>
+										<a href="fetchProfile">
+											<i class="fa-solid fa-user"></i>
+											Profile
+										</a>
+									</li>
+									<li>
+										<i class="fa-solid fa-wallet"> : ${balance}</i>
+									</li>
+									<li>
+										<a href="logout">
+											<i class="fa-solid fa-arrow-right-from-bracket"></i>
+											Logout
+										</a>
+									</li>
 								</ul>
 							</div>
 						</div>
@@ -101,75 +95,24 @@
 				</div>
 			</header>
 			<!-- Header section end -->
-
-			<!-- Live chat -->
-			<div class="livechat_float">
-				<img alt="livechat" src="img/clogo.png">
-			</div>
-
-			<section>
-				<c:if test="${not empty errorMessage}">
-					<div class="errorContainer">${errorMessage}</div>
-					<%
-						session.removeAttribute("errorMessage");
-					%>
-				</c:if>
-				<c:if test="${not empty message}">
-					<div class="errorContainer">${message}</div>
-					<%
-						session.removeAttribute("message");
-					%>
-				</c:if>
-				<div class="container-myId">
-					<c:forEach items="${myIds}" var="id">
-							<div class="card-myId">
-								<div>
-									<img src="${id.logo}" alt="${id.websiteName}" />
-									<p>${id.websiteName }</p>
-								</div>
-								<a href="${id.website}" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-								<c:choose>
-								    <c:when test="${id.status}">
-								    	<p> Username: <label>${id.username}</label></p>
-										<p> Password: <label>${id.password}</label></p>
-								        <p>Status: <label>Active</label></p>
-								    </c:when>
-								    <c:otherwise>
-								    	<p> Username: <label>null</label></p>
-										<p> Password: <label>null</label></p>
-								        <p>Status: <label>Pending</label></p>
-								    </c:otherwise>
-								</c:choose>
-							</div>
-					</c:forEach>
-				</div>
-				<div class="container-createId">
-					<c:forEach items="${games}" var="game">
-						<div class="card-createId">
-							<div><img src="${game.logo}" alt="${game.websiteName}"/></div>
-							<div><p>${game.websiteName}</p><p>${game.website}</p></div>
-							<div>
-								<form action="fetchGame" method="post">
-									Create ID
-									<input type="hidden" name="gameId" value="${game.id}">
-								</form>
-								<div class="arrow-createId"><i class="fa-solid fa-angle-down"></i></div>
-							</div>
-						</div>
-						<div class="miniCard-createId">
-							<p>Min Bet</p> <p><i class="fa-solid fa-coins"></i></p>
-							<c:forEach items="${game.gameName}" var="gameVarient">
-								<p>${gameVarient}</p><p>100</p>
-							</c:forEach>
-						</div>
-					</c:forEach>
-				</div>
+			<img src="${requestScope.game.logo }" alt="${requestScope.game.websiteName}" />
+			<p>${requestScope.game.websiteName}</p>
+			<p>${requestScope.game.website}</p>
+			<div class="container">
+				<p>Min refil</p><p>Min Withdrawal</p>
+				<p>${requestScope.game.minimumBet}</p><p>${requestScope.game.minimumWithdrawal}</p>
 				
-				<%
-					session.removeAttribute("idDetails");
-				%>
-			</section>
-
+				<p>Min Maintaining Bal</p><p>Max Withdrawal</p>
+				<p>${requestScope.game.minimumMaintainingBalance}</p><p>${requestScope.game.maximumWithrawal}</p>
+				
+				<form action="processCreateId" method="post">
+					<p>Proposal Username *</p>
+					<input type="text" placeholder="Enter Username" name="username" require/>
+					<p>Coins* (Minimum deposit amount is ${requestScope.game.minimumBet} coins)</p>
+					<input type="number" placeholder="Deposit Money" value="${requestScope.game.minimumBet}" name="balance" require/>
+					<input type="submit" value="Continue to Pay">
+				</form>
+			</div>
 			<!-- Footer section -->
 			<footer class="footer-section">
 				<div class="container">
