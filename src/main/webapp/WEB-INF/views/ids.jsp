@@ -150,7 +150,7 @@
 							<div><p>${game.websiteName}</p><p>${game.website}</p></div>
 							<div>
 								<form action="fetchGame" method="post">
-									Create ID
+									<button>Create ID</button>
 									<input type="hidden" name="gameId" value="${game.id}">
 								</form>
 								<div class="arrow-createId"><i class="fa-solid fa-angle-down"></i></div>

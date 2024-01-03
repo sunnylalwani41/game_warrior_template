@@ -22,4 +22,6 @@ public interface UserService {
 	public void resentOtp(String userEmail) throws MessagingException;
 
 	public User fetchProfile(Integer userId) throws UserException;
+	
+	public void saveUserDetail(User user);
 }

@@ -109,7 +109,8 @@
 					<p>Proposal Username *</p>
 					<input type="text" placeholder="Enter Username" name="username" require/>
 					<p>Coins* (Minimum deposit amount is ${requestScope.game.minimumBet} coins)</p>
-					<input type="number" placeholder="Deposit Money" value="${requestScope.game.minimumBet}" name="balance" require/>
+					<input type="number" placeholder="Deposit Money" value="${requestScope.game.minimumBet}" name="amount" require/>
+					<input type="hidden" name="gameId" value="${requestScope.game.id}" />
 					<input type="submit" value="Continue to Pay">
 				</form>
 			</div>

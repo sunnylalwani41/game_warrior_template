@@ -100,4 +100,9 @@ public class EndPointMappingClass {
 	public String changePassword() {
 		return "change-password";
 	}
+	
+	@GetMapping("/createId")
+	public String createId(){
+		return "create-id";
+	}
 }

@@ -2,6 +2,9 @@ package com.gamewarrior.Game.Warrior.model;
 
 import java.util.List;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -29,6 +32,7 @@ public class Game {
 	private Integer maximumWithrawal;
 	@ElementCollection
 	@CollectionTable(name= "game_names", joinColumns = @JoinColumn(name="game_id"))
+	@Fetch(FetchMode.SUBSELECT)
 	@Column(name= "game_name")
 	private List<String> gameName;
 }

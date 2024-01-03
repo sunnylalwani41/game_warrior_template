@@ -14,8 +14,12 @@ import com.gamewarrior.Game.Warrior.exception.TransactionException;
 import com.gamewarrior.Game.Warrior.exception.UserException;
 import com.gamewarrior.Game.Warrior.model.Transaction;
 import com.gamewarrior.Game.Warrior.model.UpiDetail;
+import com.gamewarrior.Game.Warrior.model.User;
+import com.gamewarrior.Game.Warrior.model.Wallet;
 import com.gamewarrior.Game.Warrior.service.TransactionService;
 import com.gamewarrior.Game.Warrior.service.UpiDetailService;
+import com.gamewarrior.Game.Warrior.service.UserService;
+import com.gamewarrior.Game.Warrior.service.WalletService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -27,7 +31,11 @@ public class TransactionController {
 	private UpiDetailService upiDetailService;
 	@Autowired
     private TransactionService transactionService;
-
+	@Autowired
+	private UserService userService;
+	@Autowired 
+	private WalletService walletService;
+	
 	@GetMapping("/fetchUpiDetails")
 	public void fetchUpiDetailHandler(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		List<UpiDetail> upiDetails = upiDetailService.fetchAllUpiDetails();
@@ -50,7 +58,6 @@ public class TransactionController {
     		@RequestParam Integer amount, HttpServletRequest request, HttpServletResponse response) throws IOException, TransactionException, UserException{
     	HttpSession session = request.getSession();
         Integer userId = (Integer) session.getAttribute("userId");
-        Integer balance = (Integer) session.getAttribute("balance");
         Transaction transaction = new Transaction();
         
         transaction.setMobile(mobile);
@@ -65,12 +72,19 @@ public class TransactionController {
             response.sendRedirect("login");
         }
         else {
+        	User user = userService.fetchProfile(userId);
+        	Integer balance = user.getWallet().getBalance();
+        	
         	if(balance !=null && balance>=amount && amount>=150) {
 	        	transaction.setUserId(userId);
 	        	transactionService.moneyTransfer(transaction);
-	        	request.setAttribute("transaction", transaction);
-	        	
+	        	user.getWallet().setBalance(user.getWallet().getBalance()-amount);
+
+	        	userService.saveUserDetail(user);
 	        	transactionService.saveTransaction(transaction);
+
+	        	session.setAttribute("balance", user.getWallet().getBalance());
+	        	request.setAttribute("transaction", transaction);
 	        	session.setAttribute("message", "Transaction Successfull");
 	        	response.sendRedirect("withdraw");
         	}

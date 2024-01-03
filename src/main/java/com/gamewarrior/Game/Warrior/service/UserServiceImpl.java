@@ -109,4 +109,9 @@ public class UserServiceImpl implements UserService{
 		return userRepo.findById(userId).orElseThrow(() -> new UserException("Invalid User!!"));
 	}
 
+	@Override
+	public void saveUserDetail(User user) {
+		userRepo.save(user);
+	}
+
 }
