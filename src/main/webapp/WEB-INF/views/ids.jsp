@@ -21,6 +21,7 @@
 	<link rel="stylesheet" href="css/style.css"/>
 	<link rel="stylesheet" href="css/animate.css"/>
 	<link rel="stylesheet" href="css/login.css"/>
+	<link rel="stylesheet" href="css/error-container.css"/>
 	<!-- livechat style -->
 	<link rel="stylesheet" href="css/livechat.css"/>
 	<!-- Font Awesome kit -->
@@ -32,17 +33,20 @@
 				<div class="loader"></div>
 			</div>
 			<c:if test="${empty userId}">
-				<%
-					response.sendRedirect("login");
-				%>
+			    <c:if test="${not pageContext.response.isCommitted()}">
+			        <%
+			            response.sendRedirect("login");
+			        %>
+			    </c:if>
 			</c:if>
 			
 			<c:if test="${empty idDetails}">
-				<%
-					response.sendRedirect("fetchIdDetails");
-				%>
+			    <c:if test="${not pageContext.response.isCommitted()}">
+			        <%
+			            response.sendRedirect("fetchIdDetails");
+			        %>
+			    </c:if>
 			</c:if>
-
 			<!-- Header section -->
 			<header class="header-section">
 				<div class="container">
@@ -62,7 +66,7 @@
 								<ul>
 									<li><a href="/">Home</a></li>
 									<li><a href="review">Games</a></li>
-									<li><a href="ids">Create Id and My Ids</a></li>
+									<li><a href="fetchIdDetails">Create Id and My Ids</a></li>
 									<li><a href="contact">Contact</a></li>
 								</ul>
 							</div>
@@ -106,7 +110,7 @@
 			<div class="livechat_float">
 				<img alt="livechat" src="img/clogo.png">
 			</div>
-
+			<h1></h1>
 			<section>
 				<c:if test="${not empty errorMessage}">
 					<div class="errorContainer">${errorMessage}</div>
@@ -165,9 +169,6 @@
 					</c:forEach>
 				</div>
 				
-				<%
-					session.removeAttribute("idDetails");
-				%>
 			</section>
 
 			<!-- Footer section -->

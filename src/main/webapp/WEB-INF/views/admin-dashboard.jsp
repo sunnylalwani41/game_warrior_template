@@ -1,18 +1,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-		<!DOCTYPE html>
-		<html>
-		<head>
-			<title>Game Warrior Template</title>
-			<meta charset="UTF-8">
-			<meta name="description" content="Game Warrior Template">
-			<meta name="keywords" content="warrior, game, creative, html">
-			<meta name="viewport" content="width=device-width, initial-scale=1.0">
-			<!-- Favicon -->
-			<link href="img/favicon.ico" rel="shortcut icon" />
-<!-- Google Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Game Warrior Template</title>
+		<meta charset="UTF-8">
+		<meta name="description" content="Game Warrior Template">
+		<meta name="keywords" content="warrior, game, creative, html">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Favicon -->
+		<link href="img/favicon.ico" rel="shortcut icon" />
+		<!-- Google Fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
 	
 	<!-- Stylesheets -->
 	<link rel="stylesheet" href="css/bootstrap.min.css"/>
@@ -25,17 +25,18 @@
 	<link rel="stylesheet" href="css/livechat.css"/>
 	<!-- Font Awesome kit -->
 	<script src="https://kit.fontawesome.com/e99a9eb445.js" crossorigin="anonymous"></script>
-
-			<!--[if lt IE 9]>
-	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
 </head>
 		<body>
 			<!-- Page Preloder -->
 			<div id="preloder">
 				<div class="loader"></div>
 			</div>
+			<c:if test="${empty adminId}">
+				<%
+					session.setAttribute("errorMessage", "Unauthorized!");
+					response.sendRedirect("admin-login");
+				%>
+			</c:if>
 
 			<!-- Header section -->
 			<header class="header-section">
@@ -54,40 +55,11 @@
 						<div class="details" style="display: flex; justify-content: space-between;">
 							<div class="homedetails" style="float:none;">
 								<ul>
-									<li><a href="/">Home</a></li>
-									<li><a href="review">Games</a></li>
-									<li><a href="fetchIdDetails">Create Id and My Ids</a></li>
-									<li><a href="contact">Contact</a></li>
-								</ul>
-							</div>
-
-							<div class="personaldetails" style="padding-right: 1px; padding-top: 5px; display: flex;">
-								<ul>
-									<c:choose>
-
-										<c:when test="${not empty userId}">
-											<li>
-												<a href="fetchProfile">
-													<i class="fa-solid fa-user"></i>
-													Profile
-												</a>
-											</li>
-											<li>
-												<i class="fa-solid fa-wallet"> : ${balance}</i>
-											</li>
-											<li>
-												<a href="logout">
-													<i class="fa-solid fa-arrow-right-from-bracket"></i>
-													Logout
-												</a>
-											</li>
-										</c:when>
-										<c:otherwise>
-											<div class="user-panel">
-												<a href="login">Login</a> / <a href="registration">Register</a>
-											</div>
-										</c:otherwise>
-									</c:choose>
+									<li><a href="adminDashboard">Dashboard</a></li>
+									<li><a href="depositRequest">Deposit Request</a></li>
+									<li><a href="createIdRequest">Create Id Request</a></li>
+									<li><a href="updateGameWesite">Update Game website</a></li>
+									<li><a href="adminLogout">Logout</a></li>
 								</ul>
 							</div>
 						</div>

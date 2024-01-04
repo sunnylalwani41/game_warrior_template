@@ -59,7 +59,7 @@ public class GameServiceImpl implements GameService{
 	}
 
 	@Override
-	public void createIdRequest(Integer userId, Integer gameId, String username, Integer amount) throws GameException, UserException, MessagingException {
+	public void createIdRequest(Integer userId, Integer gameId, String username, Integer amount, HttpSession session) throws GameException, UserException, MessagingException {
 		Game game= fetchGameById(gameId);
 		
 		if(userId==null) {
@@ -69,11 +69,13 @@ public class GameServiceImpl implements GameService{
 				User user = userService.fetchProfile(userId);
 				Wallet wallet = user.getWallet();
 				Integer balance = wallet.getBalance();
-						
+				
 				if(amount>=game.getMinimumBet() && amount<=balance) {
 					balance = balance-amount;
 					
 					wallet.setBalance(balance);
+					user.setWallet(wallet);
+					session.setAttribute("balance", balance);
 
 					AccountRequest accountRequest = new AccountRequest();
 					MyId myId = new MyId();
@@ -95,6 +97,7 @@ public class GameServiceImpl implements GameService{
 					
 					myIdService.saveMyId(myId);
 					accountRequest= accountRequestService.takeRequestToCreateAccount(accountRequest);
+					userService.saveUserDetail(user);
 					
 					String subject = "Your service request number is "+ accountRequest.getId();
 					String message = "Your service request number is "+ accountRequest.getId()+".\nIt will be process within 2 days.";

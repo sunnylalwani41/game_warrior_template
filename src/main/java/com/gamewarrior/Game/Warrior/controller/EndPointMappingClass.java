@@ -105,4 +105,14 @@ public class EndPointMappingClass {
 	public String createId(){
 		return "create-id";
 	}
+	
+	@GetMapping("/admin-login")
+	public String adminLogin() {
+		return "admin-login";
+	}
+	
+	@GetMapping("/adminDashboard")
+	public String adminDashboard() {
+		return "admin-dashboard";
+	}
 }

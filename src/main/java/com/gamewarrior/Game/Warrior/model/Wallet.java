@@ -20,6 +20,6 @@ public class Wallet {
 	private Integer id;
 	private Integer balance;
 	@JsonIgnore
-	@OneToOne(mappedBy = "wallet", cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	private User user;
 }

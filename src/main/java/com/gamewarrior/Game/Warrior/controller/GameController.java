@@ -100,17 +100,21 @@ public class GameController {
 		Integer userId = (Integer) session.getAttribute("userId");
 		
 		try {
-			gameService.createIdRequest(userId, gameId, username, amount);
+			gameService.createIdRequest(userId, gameId, username, amount, session);
 			
 			session.setAttribute("message", "Request has been taken. It will be process within 2 days.");
-			response.sendRedirect("ids");
+			response.sendRedirect("fetchIdDetails");
 		}
 		catch(UserException userException) {
 			session.setAttribute("errorMessage", userException.getMessage());
 			response.sendRedirect("login");
 		}
 		catch(GameException gameException) {
-			session.setAttribute("errorMessage",gameException.getMessage() );
+			session.setAttribute("errorMessage", gameException.getMessage());
+			response.sendRedirect("ids");
+		}
+		catch(Exception exception) {
+			session.setAttribute("errorMessage", exception.getMessage());
 			response.sendRedirect("ids");
 		}
 

@@ -18,5 +18,5 @@ public interface GameService {
 	
 	public Game fetchGameById(Integer id)throws GameException;
 	
-	public void createIdRequest(Integer userId, Integer gameId, String username, Integer amount) throws GameException, UserException, MessagingException;
+	public void createIdRequest(Integer userId, Integer gameId, String username, Integer amount, HttpSession session) throws GameException, UserException, MessagingException;
 }
