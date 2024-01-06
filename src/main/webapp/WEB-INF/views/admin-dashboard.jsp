@@ -87,30 +87,6 @@
 								<a href="#" class="site-btn">Read More</a>
 							</div>
 						</div>
-						<c:if test="${not empty userId }">
-							<div class="transaction">
-								<div class="user-panel" id="deposit">
-									<a href="deposit">
-										<i class="fa-solid fa-file-arrow-down" style="color:green"></i>
-										Deposit
-									</a>
-								</div>
-								<div class="user-panel" id="withdraw">
-									<a href="withdraw">
-										<i class="fa-solid fa-file-arrow-up" style="color:red"></i>
-										Withdraw
-									</a>
-								</div>
-							</div>
-							<div class="history">
-								<div class="user-panel">
-									<a href="passbook">
-										<i class="fa-solid fa-book"></i>
-										Transaction History
-									</a>
-								</div>
-							</div>
-						</c:if>
 					</div>
 				</div>
 			</section>

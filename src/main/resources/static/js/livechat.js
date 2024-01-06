@@ -10,3 +10,4 @@ document.getElementsByClassName("livechat_float").addEventListener("onclick", ()
         }
     })
 })
+

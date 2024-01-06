@@ -115,4 +115,9 @@ public class EndPointMappingClass {
 	public String adminDashboard() {
 		return "admin-dashboard";
 	}
+	
+	@GetMapping("/depositRequest")
+	public String depositRequest() {
+		return "depositRequest";
+	}
 }
