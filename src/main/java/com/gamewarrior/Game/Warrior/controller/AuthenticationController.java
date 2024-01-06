@@ -104,6 +104,4 @@ public class AuthenticationController {
 			response.sendRedirect("login");
 		}
     }
-    
-
 }

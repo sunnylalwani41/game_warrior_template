@@ -14,8 +14,12 @@ import com.gamewarrior.Game.Warrior.exception.TransactionException;
 import com.gamewarrior.Game.Warrior.exception.UserException;
 import com.gamewarrior.Game.Warrior.model.Transaction;
 import com.gamewarrior.Game.Warrior.model.UpiDetail;
+import com.gamewarrior.Game.Warrior.model.User;
+import com.gamewarrior.Game.Warrior.model.Wallet;
 import com.gamewarrior.Game.Warrior.service.TransactionService;
 import com.gamewarrior.Game.Warrior.service.UpiDetailService;
+import com.gamewarrior.Game.Warrior.service.UserService;
+import com.gamewarrior.Game.Warrior.service.WalletService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -27,7 +31,11 @@ public class TransactionController {
 	private UpiDetailService upiDetailService;
 	@Autowired
     private TransactionService transactionService;
-
+	@Autowired
+	private UserService userService;
+	@Autowired 
+	private WalletService walletService;
+	
 	@GetMapping("/fetchUpiDetails")
 	public void fetchUpiDetailHandler(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		List<UpiDetail> upiDetails = upiDetailService.fetchAllUpiDetails();
@@ -60,15 +68,30 @@ public class TransactionController {
 
         if(userId==null){
             session.setAttribute("errorMessage", "Invalid User!! Please login.");
+            
             response.sendRedirect("login");
         }
         else {
-        	transaction.setUserId(userId);
-        	transactionService.moneyTransfer(transaction);
-        	request.setAttribute("transaction", transaction);
+        	User user = userService.fetchProfile(userId);
+        	Integer balance = user.getWallet().getBalance();
         	
-        	transactionService.saveTransaction(transaction);
-        	response.sendRedirect("success");
+        	if(balance !=null && balance>=amount && amount>=150) {
+	        	transaction.setUserId(userId);
+	        	transactionService.moneyTransfer(transaction);
+	        	user.getWallet().setBalance(user.getWallet().getBalance()-amount);
+
+	        	userService.saveUserDetail(user);
+	        	transactionService.saveTransaction(transaction);
+
+	        	session.setAttribute("balance", user.getWallet().getBalance());
+	        	request.setAttribute("transaction", transaction);
+	        	session.setAttribute("message", "Transaction Successfull");
+	        	response.sendRedirect("withdraw");
+        	}
+        	else {
+        		session.setAttribute("errorMessage", "Minimum withdraw 150 rupees");
+        		response.sendRedirect("withdraw");
+        	}
         }
     }
     

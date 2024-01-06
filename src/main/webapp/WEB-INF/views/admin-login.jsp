@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="zxx">
 <head>
 	<title>Game Warrior Template</title>
 	<meta charset="UTF-8">
@@ -15,7 +15,7 @@
 
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
-	
+
 	<!-- Stylesheets -->
 	<link rel="stylesheet" href="css/bootstrap.min.css"/>
 	<link rel="stylesheet" href="css/font-awesome.min.css"/>
@@ -23,10 +23,8 @@
 	<link rel="stylesheet" href="css/style.css"/>
 	<link rel="stylesheet" href="css/animate.css"/>
 	<link rel="stylesheet" href="css/login.css"/>
-	<!-- whatsapp style -->
-	<link rel="stylesheet" href="css/whatsapp.css"/>
-	<!-- Font Awesome kit -->
-	<script src="https://kit.fontawesome.com/e99a9eb445.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="css/error-container.css"/>
+	<link rel="stylesheet" href="css/admin-login.css"/>
 
 	<!--[if lt IE 9]>
 	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -39,7 +37,16 @@
 	<div id="preloder">
 		<div class="loader"></div>
 	</div>
-	
+	<c:if test="${not empty userId }">
+		<%
+			response.sendRedirect("/");
+		%>
+	</c:if>
+	<c:if test="${not empty adminId}">
+		<%
+			response.sendRedirect("adminDashboard");
+		%>
+	</c:if>
 	<!-- Header section -->
 	<header class="header-section">
 		<div class="container">
@@ -47,102 +54,55 @@
 			<a class="site-logo" href="/">
 				<img src="img/logo.png" alt="">
 			</a>
-			
-			<c:choose>
-			
-				<c:when test="${not empty userId}">
-					<div class="user-panel">
-						<a href="logout">
-							<i class="fa-solid fa-arrow-right-from-bracket"></i>
-							Logout
-						</a>
-					</div>
-					<div class="user-panel">
-						<i class="fa-solid fa-wallet"> : ${balance}</i>
-						
-					</div>
-					<div class="user-panel">
-						<a href="fetchProfile">
-							<i class="fa-solid fa-user"></i>
-							Profile
-						</a>
-					</div>
-					<div class="user-panel">
-						<a href="passbook">
-							<i class="fa-solid fa-book"></i>
-							Passbook
-						</a>
-					</div>
-					<div class="user-panel">
-						<a href="ids">
-							<i class="fa-solid fa-id-card"></i>
-							Create Id and My Ids
-						</a>
-					</div>
-					
-				</c:when>
-				<c:otherwise>
-					<div class="user-panel">
-						<a href="login">Login</a>  /  <a href="registration">Register</a>
-					</div>
-				</c:otherwise>
-			</c:choose>
 			<!-- responsive -->
 			<div class="nav-switch">
 				<i class="fa fa-bars"></i>
 			</div>
 			<!-- site menu -->
-			<nav class="main-menu">
-				<ul>
-					<li><a href="/">Home</a></li>
-					<li><a href="review">Games</a></li>
-					<li><a href="categories">Blog</a></li>
-					<li><a href="community">Forums</a></li>
-					<li><a href="contact">Contact</a></li>
-				</ul>
-			</nav>
 		</div>
 	</header>
 	<!-- Header section end -->
-	
-	<!-- whatsapp click to chat -->
-	<div class="whatsapp_float">
-		<a href="https://wa.me/918890918364" target="_blank">
-			<img alt="whatsapp" src="https://pngimg.com/d/whatsapp_PNG1.png">
-		</a>
-	</div>
-		
+
+
 	<!-- Hero section -->
 	<section class="hero-section">
 		<div class="hero-slider owl-carousel">
 			<div class="hs-item set-bg" data-setbg="img/slider-1.jpg">
-				
-				<div class="hs-text">
-					<div class="container">
-						<h2>The Best <span>Games</span> Out There</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada <br> lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. <br>Suspendisse cursus faucibus finibus.</p>
-						<a href="#" class="site-btn">Read More</a>
-					</div>
-				</div>
-				<c:if test="${not empty userId }">
-					<div class="user-panel">
-						<a href="deposit">
-							<i class="fa-solid fa-file-arrow-down" style="color:green"></i>
-							Deposit
-						</a>
-					</div>
-					<div class="user-panel">
-						<a href="withdraw">
-							<i class="fa-solid fa-file-arrow-up" style="color:red"></i>
-							Withdraw
-						</a>
-					</div>
+				<c:if test="${not empty errorMessage}">
+					<div class="errorContainer">${errorMessage}</div>
+					<%
+						session.removeAttribute("errorMessage");
+					%>
 				</c:if>
+				<c:if test="${not empty message}">
+					<div class="errorContainer">${message}</div>
+					<%
+						session.removeAttribute("message");
+					%>
+				</c:if>
+				<div class="box">
+                    <h2>Admin Login</h2>
+                    <form action="verifyAdmin" method="post">
+                      <div class="input-box">
+                        <input type="email" name="adminEmail" required>
+                        <label>Email</label>
+                      </div>
+                      <div class="input-box">
+                        <input type="password" name = "adminPassword" required>
+                        <label>Password</label>
+                      </div>
+                      <input type="submit" value="Submit">
+                    </form>
+                    <p class="lostAdminPassword">Forget password?</p>
+                  </div>
+                  </div>
 			</div>
 			
 		</div>
 	</section>
 	<!-- Hero section end -->
+
+
 	<!-- Latest news section -->
 	<div class="latest-news-section">
 		<div class="ln-title">Latest News</div>
@@ -330,7 +290,7 @@
 							<div class="score yellow">9.3</div>
 						</div>
 						<div class="review-text">
-							<h5>Assasin’’s Creed</h5>
+							<h5>Assasinââs Creed</h5>
 							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
 						</div>
 					</div>
@@ -469,14 +429,8 @@
 				<li><a href="community">Forums</a></li>
 				<li><a href="contact">Contact</a></li>
 			</ul>
-			<a href="termsandcondition">
-				<i class="fa-solid fa-file-invoice"></i>
-				Terms and condition
-			</a>
-			<a href="notification">
-				<i class="fa-solid fa-bell"></i>
-				Notification
-			</a>
+			<p class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 </p>
 		</div>
@@ -485,12 +439,14 @@
 
 
 	<!--====== Javascripts & Jquery ======-->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="js/admin-login.js"></script>
+	<script src="js/login.js"></script>
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/jquery.marquee.min.js"></script>
 	<script src="js/main.js"></script>
-	<script src="js/login.js"></script>
 
     </body>
 </html>

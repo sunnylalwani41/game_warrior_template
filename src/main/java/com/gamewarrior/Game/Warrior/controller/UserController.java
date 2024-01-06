@@ -5,13 +5,17 @@ import java.io.IOException;
 import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gamewarrior.Game.Warrior.dao.UserRepo;
 import com.gamewarrior.Game.Warrior.exception.UserException;
+import com.gamewarrior.Game.Warrior.model.Message;
 import com.gamewarrior.Game.Warrior.model.User;
 import com.gamewarrior.Game.Warrior.service.ClientService;
 import com.gamewarrior.Game.Warrior.service.UserService;
@@ -142,8 +146,11 @@ public class UserController {
 		}
 	}
 	
-	@GetMapping("/liveChat")
-	public void liveChat() {
-		clientService.connectToServer();
+	@MessageMapping("/message")
+	@SendTo("/topic/return-to")
+	public Message liveChat(@RequestBody Message message) {
+		
+		
+		return message;
 	}
 }
