@@ -1,5 +1,6 @@
 package com.gamewarrior.Game.Warrior.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gamewarrior.Game.Warrior.model.Notification;
@@ -16,9 +17,11 @@ public class EmailServiceImpl implements EmailService{
     private final String EMAIL ="sinchanuhara@gmail.com";
     private final String PASSWORD = "hupnxhjihdsuihpp";
     private final Integer OTPLENGTH =6;
+    
+    @Autowired
+    private NotificationService notificationService;
 
-    @Override
-    public void sendEmail(String to, String subject, String message) throws MessagingException {
+    private void sendEmail(String to, String subject, String message) throws MessagingException {
         //host
         String host = "smtp.gmail.com";
 
@@ -99,5 +102,12 @@ public class EmailServiceImpl implements EmailService{
             stringOtp.append(random.nextInt(10));
         }
         return stringOtp.toString();
+    }
+    
+    @Override
+    public void sendCustomMessage(String to, String subject, String message, User user) throws MessagingException {
+    	sendEmail(to, subject, message);
+    	
+    	notificationService.saveNotification(subject, message, user);
     }
 }

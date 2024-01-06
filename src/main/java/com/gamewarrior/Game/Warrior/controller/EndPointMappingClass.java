@@ -101,8 +101,23 @@ public class EndPointMappingClass {
 		return "change-password";
 	}
 	
-	@GetMapping("/success")
-	public String success() {
-		return "success";
+	@GetMapping("/createId")
+	public String createId(){
+		return "create-id";
+	}
+	
+	@GetMapping("/admin-login")
+	public String adminLogin() {
+		return "admin-login";
+	}
+	
+	@GetMapping("/adminDashboard")
+	public String adminDashboard() {
+		return "admin-dashboard";
+	}
+	
+	@GetMapping("/depositRequest")
+	public String depositRequest() {
+		return "depositRequest";
 	}
 }
