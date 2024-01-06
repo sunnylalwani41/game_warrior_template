@@ -1,4 +1,37 @@
-.deposit-panel {
-    padding-top: 10px;
+.deposit_entry {
+    height: 72%;
+    padding-top: 30px;  
     
+}
+.table_heading {
+    display: grid;
+    grid-template-columns: 220px 500px 1fr;
+    padding-left: 10%   ;
+}
+.upi_image {
+    width: 50px;
+    height: 50px;
+}
+
+.data_entry {
+    display: grid;
+    grid-template-columns: 200px 500px 1fr;
+    padding-left: 10%;
+}
+
+.upi {
+    width: 15px;
+    height: 20px;
+}
+
+#fileInput {
+    display: none;
+    padding-top: 130px;
+    margin-left: 40%;
+}
+
+#upload {
+    display: none;
+    padding-top: 10px;
+    margin-left: 40%;
 }
