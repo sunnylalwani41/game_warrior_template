@@ -440,7 +440,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 	<!--====== Javascripts & Jquery ======-->
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-	<script src="js/admin-login.js"></script>
+	<script src="../js/admin-login.js"></script>
 	<script src="js/login.js"></script>
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

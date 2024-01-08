@@ -108,16 +108,16 @@ public class EndPointMappingClass {
 	
 	@GetMapping("/admin-login")
 	public String adminLogin() {
-		return "admin-login";
+		return "admin/admin-login";
 	}
 	
 	@GetMapping("/adminDashboard")
 	public String adminDashboard() {
-		return "admin-dashboard";
+		return "admin/admin-dashboard";
 	}
 	
 	@GetMapping("/depositRequest")
 	public String depositRequest() {
-		return "depositRequest";
+		return "admin/depositRequest";
 	}
 }
