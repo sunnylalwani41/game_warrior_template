@@ -12,8 +12,12 @@ import lombok.Data;
 public class DepositRequest {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "requestGenerator")
-	@SequenceGenerator(name="requestGenerator", name="requestGen", allocationSize = 1, initialValue = 100000)
+	@SequenceGenerator(name = "requestGenerator", sequenceName ="requestGen", allocationSize = 1, initialValue = 100000)
 	private Integer id;
 	private Integer userId;
-	private 
+	private String upiId;
+	private String upiName;
+	private String path;
+	private Integer amount;
+	private Boolean status=false;
 }
