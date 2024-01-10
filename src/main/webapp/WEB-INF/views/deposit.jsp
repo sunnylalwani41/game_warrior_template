@@ -39,15 +39,22 @@
 			<div id="preloder">
 				<div class="loader"></div>
 			</div>
-
 			<c:if test="${empty userId}">
-				<% response.sendRedirect("login"); %>
+			    <c:if test="${not pageContext.response.isCommitted()}">
+			        <%
+			            response.sendRedirect("login");
+			        %>
+			    </c:if>
 			</c:if>
-
+			
 			<c:if test="${empty fetchUpiDetails}">
-				<% response.sendRedirect("fetchUpiDetails"); %>
+			    <c:if test="${not pageContext.response.isCommitted()}">
+			        <%
+			            response.sendRedirect("fetchUpiDetails");
+			        %>
+			    </c:if>
 			</c:if>
-
+					
 			<!-- Header section -->
 			<header class="header-section">
 				<div class="container">
@@ -107,7 +114,8 @@
 							</c:forEach>
 						</div>
 						<form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
-							<input type="file" id="fileInput" required>
+							<input type="file" id="fileInput" name="file" required>
+							<input type="hidden" id="selectedUpiId" name="selectedUpiId" value="">
 							<br>
 							<input type="submit" value="Upload Payment Screenshot" name="upload" id="upload">
 							<script>
@@ -117,6 +125,9 @@
 
 									var upload = document.getElementById('upload');
 									upload.style.display = 'block';
+									
+									var selectedUpiId = document.querySelector('input[name="upi"]:checked').value;
+						            document.getElementById('selectedUpiId').value = selectedUpiId;
 								}
 							</script>
 						</form>

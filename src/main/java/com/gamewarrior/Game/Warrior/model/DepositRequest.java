@@ -20,4 +20,5 @@ public class DepositRequest {
 	private String path;
 	private Integer amount;
 	private Boolean status=false;
+	private String remark;
 }

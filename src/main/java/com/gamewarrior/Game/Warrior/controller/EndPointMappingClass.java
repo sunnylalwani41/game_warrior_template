@@ -120,4 +120,9 @@ public class EndPointMappingClass {
 	public String depositRequest() {
 		return "admin/depositRequest";
 	}
+	
+	@GetMapping("/createIdRequest")
+	public String createIdRequest() {
+		return "admin/createIdRequest";
+	}
 }

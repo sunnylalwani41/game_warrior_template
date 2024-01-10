@@ -32,12 +32,22 @@
 				<div class="loader"></div>
 			</div>
 			<c:if test="${empty adminId}">
-				<%
-					session.setAttribute("errorMessage", "Unauthorized!");
-					response.sendRedirect("admin-login");
-				%>
+			    <c:if test="${not pageContext.response.isCommitted()}">
+			        <%
+			        	session.setAttribute("errorMessage", "Unauthorized!");
+			            response.sendRedirect("admin-login");
+			        %>
+			    </c:if>
 			</c:if>
-
+			
+			<c:if test="${empty fetchDepositRequest}">
+			    <c:if test="${not pageContext.response.isCommitted()}">
+			        <%
+			            response.sendRedirect("fetchDepositRequest");
+			        %>
+			    </c:if>
+			</c:if>
+			
 			<!-- Header section -->
 			<header class="header-section">
 				<div class="container">
@@ -59,6 +69,7 @@
 									<li><a href="depositRequest">Deposit Request</a></li>
 									<li><a href="createIdRequest">Create Id Request</a></li>
 									<li><a href="updateGameWesite">Update Game website</a></li>
+									<li><a href="updatePaymentMethod">Payment method updation</a></li>
 									<li><a href="adminLogout">Logout</a></li>
 								</ul>
 							</div>
@@ -72,15 +83,65 @@
 			<div class="livechat_float">
 				<img alt="livechat" src="img/clogo.png">
 			</div>
-			
-			<c:if test="{not empty depositRequestPending}">
+			<c:if test="${not empty errorMessage}">
+				<div class="errorContainer">${errorMessage}</div>
+				<%
+					session.removeAttribute("errorMessage");
+				%>
+			</c:if>
+			<c:if test="${not empty message}">
+				<div class="errorContainer">${message}</div>
+				<%
+					session.removeAttribute("message");
+				%>
+			</c:if>
+			<c:if test="${not empty depositRequests}">
 				<fieldset>
-					<legend>Pending Request</legend>
-					<c:forEach items="depositRequestPending" var="pendingRequest">
-						<p>${pendingRequest. }</p>
+					<legend>Pending Deposit Request</legend>
+					<c:forEach items="${depositRequests}" var="pendingRequest">
+						<c:if test="${not pendingRequest.status }">
+							<p>${pendingRequest.userId }</p>
+							<p>${pendingRequest.upiId }</p>
+							<p>${pendingRequest.upiName}</p>
+							<img src="${pendingRequest.path}" alt="${pendingRequest.userId }">
+							<form action="approveTheDepositRequest" method="post">
+								<input type="hidden" name="id" value="${pendingRequest.id }" />
+								<input type=number name="amount" placeholder="Amount" require>
+								<input type="submit" value="Approve">
+							</form>
+							<form action="rejectTheDepositRequest" method="post">
+								<input type="hidden" name="id" value="${pendingRequest.id }" />
+								<input type=text name="remark" placeholder="Reject Reason" require>
+								<input type="submit" value="Reject">
+							</form>
+						</c:if>
+					</c:forEach>
+				</fieldset>
+				<fieldset>
+					<legend>Completed Deposit Request</legend>
+					<c:forEach items="${depositRequests}" var="completeRequest">
+						<c:if test="${completeRequest.status }">
+							<p>${completeRequest.userId }</p>
+							<p>${completeRequest.upiId }</p>
+							<p>${completeRequest.upiName}</p>
+							<img src="${completeRequest.path}" alt="${completeRequest.userId }">
+							<p>${completeRequest.remark}</p>
+							<c:choose>
+								<c:when test="${not empty completeRequest.amount }">
+									<p>${completeRequest.amount}</p>
+									<p>Approved</p>
+								</c:when>
+								<c:otherwise>
+									<p>Null</p>
+									<p>Rejected</p>
+								</c:otherwise>
+							</c:choose>
+						</c:if>
 					</c:forEach>
 				</fieldset>
 			</c:if>
+			
+			
 
 			<!-- Footer section -->
 			<footer class="footer-section">

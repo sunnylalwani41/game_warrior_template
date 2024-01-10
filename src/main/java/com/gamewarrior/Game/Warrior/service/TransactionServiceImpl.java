@@ -3,9 +3,11 @@ package com.gamewarrior.Game.Warrior.service;
 import jakarta.servlet.http.HttpSession;
 import okhttp3.*;
 
-
+import org.aspectj.apache.bcel.util.ClassPath;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,7 +17,14 @@ import com.gamewarrior.Game.Warrior.exception.UserException;
 import com.gamewarrior.Game.Warrior.model.Transaction;
 import com.gamewarrior.Game.Warrior.model.User;
 
+import io.github.classgraph.Resource;
+
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
@@ -174,4 +183,11 @@ public class TransactionServiceImpl implements TransactionService {
         String base64Auth = Base64.getEncoder().encodeToString(authString.getBytes());
         return "Basic " + base64Auth;
     }
+
+	@Override
+	public void uploadFile(MultipartFile file, Integer upiId, Integer userId) throws IOException {
+		String uploadDir = new ClassPathResource("static/deposit").getFile().getAbsolutePath();
+		
+		Files.copy(file.getInputStream(), Paths.get(uploadDir+File.separator+file.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
+	}
 }
