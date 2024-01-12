@@ -1,6 +1,7 @@
 package com.gamewarrior.Game.Warrior.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.mail.MessagingException;
 
@@ -95,8 +96,11 @@ public class GameServiceImpl implements GameService{
 					myId.setWebsite(game.getWebsite());
 					myId.setWebsiteName(game.getWebsiteName());
 					
-					myIdService.saveMyId(myId);
 					accountRequest= accountRequestService.takeRequestToCreateAccount(accountRequest);
+					
+					myId.setAccountRequestId(accountRequest.getId());
+					
+					myIdService.saveMyId(myId);
 					userService.saveUserDetail(user);
 					
 					String subject = "Your service request number is "+ accountRequest.getId();
@@ -110,6 +114,25 @@ public class GameServiceImpl implements GameService{
 					throw new GameException("Invalid Amount, Please enter valid amount");
 				}
 		}	
+	}
+
+	@Override
+	public void saveGame(Game game) {
+		gameRepo.save(game);
+	}
+
+	@Override
+	public boolean deleteTheGameById(Integer id) {
+		Optional<Game> option= gameRepo.findById(id);
+		
+		if(!option.isPresent())
+			return false;
+		
+		Game game= option.get();
+		
+		gameRepo.delete(game);
+		
+		return true;
 	}
 
 }

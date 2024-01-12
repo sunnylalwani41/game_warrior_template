@@ -1,6 +1,7 @@
 package com.gamewarrior.Game.Warrior.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,20 @@ public class UpiDetailServiceImpl implements UpiDetailService {
 	@Override
 	public UpiDetail fetchUpiDetailById(Integer id) throws TransactionException {
 		return upiDetailRepo.findById(id).orElseThrow(()-> new TransactionException("Invalid Upi id"));
+	}
+
+	@Override
+	public Boolean deleteUpiById(Integer id){
+		Optional<UpiDetail> option= upiDetailRepo.findById(id);
+		
+		if(!option.isPresent())
+			return false;
+		
+		UpiDetail upiDetail = option.get();
+		
+		upiDetailRepo.delete(upiDetail);
+		
+		return true;
 	}
 
 }

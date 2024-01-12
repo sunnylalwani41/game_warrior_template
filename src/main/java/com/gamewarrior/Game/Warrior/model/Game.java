@@ -1,5 +1,6 @@
 package com.gamewarrior.Game.Warrior.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.annotations.Fetch;
@@ -34,5 +35,5 @@ public class Game {
 	@CollectionTable(name= "game_names", joinColumns = @JoinColumn(name="game_id"))
 	@Fetch(FetchMode.SUBSELECT)
 	@Column(name= "game_name")
-	private List<String> gameName;
+	private List<String> gameName= new ArrayList<>();
 }

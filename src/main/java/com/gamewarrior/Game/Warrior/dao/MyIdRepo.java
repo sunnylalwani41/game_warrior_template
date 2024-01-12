@@ -10,4 +10,6 @@ import com.gamewarrior.Game.Warrior.model.MyId;
 @Repository
 public interface MyIdRepo extends JpaRepository<MyId, Integer>{
 	public List<MyId> findByUserId(Integer userId);
+	
+	public List<MyId> findByStatus(Boolean status);
 }

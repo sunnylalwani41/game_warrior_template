@@ -1,5 +1,6 @@
 package com.gamewarrior.Game.Warrior.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,6 +20,8 @@ public class MyId {
 	private String logo;
 	private String username;
 	private String password;
+	@Column(unique = true)
+	private Integer accountRequestId;
 	private Integer userId;
 	private Boolean status=false;
 }

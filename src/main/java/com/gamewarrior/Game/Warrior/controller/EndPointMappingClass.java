@@ -125,4 +125,14 @@ public class EndPointMappingClass {
 	public String createIdRequest() {
 		return "admin/createIdRequest";
 	}
+	
+	@GetMapping("/updateGameWebsite")
+	public String updateGameWebsite() {
+		return "admin/updateGameWebsite";
+	}
+	
+	@GetMapping("/updatePaymentMethod")
+	public String updatePaymentMethod() {
+		return "admin/updatePaymentMethod";
+	}
 }

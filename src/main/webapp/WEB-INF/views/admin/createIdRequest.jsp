@@ -32,16 +32,21 @@
 				<div class="loader"></div>
 			</div>
 			<c:if test="${empty adminId}">
-				<%
-					session.setAttribute("errorMessage", "Unauthorized!");
-					response.sendRedirect("admin-login");
-				%>
+			    <c:if test="${not pageContext.response.isCommitted()}">
+			        <%
+			        	session.setAttribute("errorMessage", "Unauthorized!");
+			            response.sendRedirect("admin-login");
+			        %>
+			    </c:if>
 			</c:if>
+			
 			<c:if test="${empty requestScope.fetchCreateId}">
-				<%
-					response.sendRedirect("fetchCreateId");
-				%>
-			</c:if>)
+			    <c:if test="${not pageContext.response.isCommitted()}">
+			        <%
+			        	response.sendRedirect("fetchCreateId");
+			        %>
+			    </c:if>
+			</c:if>
 			<!-- Header section -->
 			<header class="header-section">
 				<div class="container">
@@ -72,7 +77,14 @@
 				</div>
 			</header>
 			<!-- Header section end -->
-
+			<c:if test="${not empty errorMessage}">
+				<div class="errorContainer">${errorMessage}</div>
+				<% session.removeAttribute("errorMessage"); %>
+			</c:if>
+			<c:if test="${not empty message}">
+				<div class="errorContainer">${message}</div>
+				<% session.removeAttribute("message"); %>
+			</c:if>
 			<!-- Live chat -->
 			<div class="livechat_float">
 				<img alt="livechat" src="img/clogo.png">
@@ -81,8 +93,27 @@
 				<c:when test="${not empty createIdRequests}">
 					<fieldset>
 						<legend>Create Id Request</legend>
+						<p>Website</p>
+						<p>Require Username</p>
+						<p>Generated username</p>
+						<p>Generated password</p>
+						<p>Deposit Amount</p>
+						<p>Submit</p>
 						<c:forEach items="${createIdRequests}" var="idRequest">
-							
+							<c:if test="${not idRequest.status}">
+								<a href="${idRequest.website}">
+									<img src="${idRequest.logo }" alt="${idRequest.websiteName }"/>
+									<p>${idRequest.websiteName}</p>
+								</a>
+								<p>${idRequest.expectedUsername}</p>
+								<form action="submitUsernameAndPassword" method="post">
+									<input type="text" placeholder="Enter the username" name="username"/>
+									<input type="text" placeholder="Enter the password" name="password"/>
+									<input type="hidden" value="${idRequest.id}" name="id"/>
+									<p>${idRequest.amount}</p>
+									<input type="submit" value="Submit" />
+								</form>
+							</c:if>
 						</c:forEach>
 					</fieldset>
 				</c:when>

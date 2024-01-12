@@ -233,4 +233,18 @@ public class TransactionController {
     	}
     	response.sendRedirect("fetchDepositRequest");
     }
+    
+    @PostMapping("/deleteUpi")
+    public void deleteUpiHandler(@RequestParam Integer id, HttpServletResponse response, HttpServletRequest request) throws IOException {
+    	HttpSession session = request.getSession();
+    	
+    	if(upiDetailService.deleteUpiById(id)) {
+    		session.setAttribute("message", "Successfully deleted!");
+    	}
+    	else {
+    		session.setAttribute("errorMessage", "Something went wrong!");
+    	}
+    	
+    	response.sendRedirect("fetchAllUpi");
+    }
 }

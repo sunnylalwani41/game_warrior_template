@@ -40,10 +40,10 @@
 			    </c:if>
 			</c:if>
 			
-			<c:if test="${empty fetchDepositRequest}">
+			<c:if test="${empty requestScope.fetchGames}">
 			    <c:if test="${not pageContext.response.isCommitted()}">
 			        <%
-			            response.sendRedirect("fetchDepositRequest");
+			            response.sendRedirect("fetchGames");
 			        %>
 			    </c:if>
 			</c:if>
@@ -95,54 +95,40 @@
 					session.removeAttribute("message");
 				%>
 			</c:if>
-			<c:if test="${not empty depositRequests}">
-				<fieldset>
-					<legend>Pending Deposit Request</legend>
-					<c:forEach items="${depositRequests}" var="pendingRequest">
-						<c:if test="${not pendingRequest.status }">
-							<p>${pendingRequest.userId }</p>
-							<p>${pendingRequest.upiId }</p>
-							<p>${pendingRequest.upiName}</p>
-							<img src="${pendingRequest.path}" alt="${pendingRequest.userId }">
-							<form action="approveTheDepositRequest" method="post">
-								<input type="hidden" name="id" value="${pendingRequest.id }" />
-								<input type=number name="amount" placeholder="Amount" require>
-								<input type="submit" value="Approve">
-							</form>
-							<form action="rejectTheDepositRequest" method="post">
-								<input type="hidden" name="id" value="${pendingRequest.id }" />
-								<input type=text name="remark" placeholder="Reject Reason" require>
-								<input type="submit" value="Reject">
-							</form>
-						</c:if>
-					</c:forEach>
-				</fieldset>
-				<fieldset>
-					<legend>Completed Deposit Request</legend>
-					<c:forEach items="${depositRequests}" var="completeRequest">
-						<c:if test="${completeRequest.status }">
-							<p>${completeRequest.userId }</p>
-							<p>${completeRequest.upiId }</p>
-							<p>${completeRequest.upiName}</p>
-							<img src="${completeRequest.path}" alt="${completeRequest.userId }">
-							<p>${completeRequest.remark}</p>
-							<c:choose>
-								<c:when test="${not empty completeRequest.amount }">
-									<p>${completeRequest.amount}</p>
-									<p>Approved</p>
-								</c:when>
-								<c:otherwise>
-									<p>Null</p>
-									<p>Rejected</p>
-								</c:otherwise>
-							</c:choose>
-						</c:if>
-					</c:forEach>
-				</fieldset>
-			</c:if>
+			<form action="updateGame" method="post">
+				<input type="text" name="websiteName" placeholder="Enter the Website name" required/>
+				<input type="text" name="website" placeholder="Enter the Website link" required/>
+				<input type="text" name="logo" placeholder="Enter the Website logo" required/>
+				<input type="number" name="minimumBet" placeholder="Enter the Minimum Bet" required/>
+				<input type="number" name="minimumWithdrawal" placeholder="Enter the Minimum Withdrawal" required/>
+				<input type="number" name="minimumMaintainingBalance" placeholder="Enter the Minimum Maintaining Balance" required/>
+				<input type="number" name="maximumWithrawal" placeholder="Enter the Maximum Withrawal" required/>
+				<div class="addGame-container"></div>
+				<button onclick="addGame(event)">Add Game name</button>
+				<input type="submit" value="Submit" />
+			</form>
 			
-			
-
+			<div class="container-createId">
+					<c:forEach items="${games}" var="game">
+						<div class="card-createId">
+							<div><img src="${game.logo}" alt="${game.websiteName}"/></div>
+							<div><p>${game.websiteName}</p><p>${game.website}</p></div>
+							<div>
+								<form action="deleteGame" method="post">
+									<button>Delete Game</button>
+									<input type="hidden" name="gameId" value="${game.id}">
+								</form>
+								<div class="arrow-createId"><i class="fa-solid fa-angle-down"></i></div>
+							</div>
+						</div>
+						<div class="miniCard-createId">
+							<p>Min Bet</p> <p><i class="fa-solid fa-coins"></i></p>
+							<c:forEach items="${game.gameName}" var="gameVarient">
+								<p>${gameVarient}</p><p>100</p>
+							</c:forEach>
+						</div>
+					</c:forEach>
+				</div>
 			<!-- Footer section -->
 			<footer class="footer-section">
 				<div class="container">
@@ -166,13 +152,13 @@
 			<!-- Footer section end -->
 
 
-				<!--====== Javascripts & Jquery ======-->
+	<!--====== Javascripts & Jquery ======-->
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/jquery.marquee.min.js"></script>
 	<script src="js/main.js"></script>
-	<script src="js/login.js"></script>
+	<script src="../js/updateGameWebsite.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	</body>
 </html>
