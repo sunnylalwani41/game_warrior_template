@@ -46,4 +46,9 @@ public class UpiDetailServiceImpl implements UpiDetailService {
 		return true;
 	}
 
+	@Override
+	public void saveUpiDetail(UpiDetail upiDetail) {
+		upiDetailRepo.save(upiDetail);
+	}
+
 }

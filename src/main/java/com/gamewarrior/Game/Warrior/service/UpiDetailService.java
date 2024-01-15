@@ -14,4 +14,6 @@ public interface UpiDetailService {
 	public UpiDetail fetchUpiDetailById(Integer id) throws TransactionException;
 	
 	public Boolean deleteUpiById(Integer id);
+	
+	public void saveUpiDetail(UpiDetail upiDetail);
 }

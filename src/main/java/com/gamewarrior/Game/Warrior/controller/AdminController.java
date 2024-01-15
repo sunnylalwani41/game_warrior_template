@@ -159,16 +159,30 @@ public class AdminController {
 	public void fetchAllUpiHandler(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		HttpSession session = request.getSession();
 		
-		request.setAttribute("fetchAllUpi", "fetchAllUpi");
+		session.setAttribute("fetchAllUpi", "fetchAllUpi");
 		
 		List<UpiDetail> upiDetails = upiDetailService.fetchAllUpiDetails();
 		
 		if(upiDetails.isEmpty()) {
 			session.setAttribute("errorMessage", "Upi/Account Detail(s) not available! Please contact to Admin.");
 		}
-		else {
-			session.setAttribute("upiDetails", upiDetails);
-		}
+		session.setAttribute("upiDetails", upiDetails);
+		
 		response.sendRedirect("updatePaymentMethod");
+	}
+	
+	@PostMapping("/updateUpi")
+	public void updateUpiHandler(HttpServletRequest request, HttpServletResponse response, 
+			@RequestParam String displayName, @RequestParam String upiId, @RequestParam String img) throws IOException {
+		UpiDetail upiDetail = new UpiDetail();
+		HttpSession session = request.getSession();
+		
+		upiDetail.setDisplayName(displayName);
+		upiDetail.setImg(img);
+		upiDetail.setUpiId(upiId);
+		
+		upiDetailService.saveUpiDetail(upiDetail);
+		session.setAttribute("message", "Successfully update the UPI link!");
+		response.sendRedirect("fetchAllUpi");
 	}
 }

@@ -19,5 +19,5 @@ public class UpiDetail {
 	private String displayName;
 	private	String upiId;
 	private String img;
-	private LocalDateTime upiAddTimestamp;
+	private LocalDateTime upiAddTimestamp=LocalDateTime.now();
 }

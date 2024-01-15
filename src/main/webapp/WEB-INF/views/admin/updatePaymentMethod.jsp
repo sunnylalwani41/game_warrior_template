@@ -40,7 +40,7 @@
 			    </c:if>
 			</c:if>
 			
-			<c:if test="${empty requestScope.fetchAllUpi}">
+			<c:if test="${empty fetchAllUpi}">
 			    <c:if test="${not pageContext.response.isCommitted()}">
 			        <%
 			            response.sendRedirect("fetchAllUpi");
@@ -96,19 +96,9 @@
 				%>
 			</c:if>
 			<form action="updateUpi" method="post">
-				
-
-
-
-
-
-
-
-
-
-
-
-
+				<input type="text" name="upiId" placeholder="Enter the upiId" />
+				<input type="text" name="img" placeholder="Enter the Image link" />
+				<input type="text" name="displayName" placeholder="Enter the Display Name" />
 				<input type="submit" value="Submit" />
 			</form>
 			
@@ -130,7 +120,7 @@
 							</label>
 							<form action="deleteUpi" method="post">
 								<input type="hidden" name="id" value="${upi.id}"/>
-								<input type="submit" value="Submit"/>
+								<input type="submit" value="Delete"/>
 							</form>
 						</c:forEach>
 					</div>
