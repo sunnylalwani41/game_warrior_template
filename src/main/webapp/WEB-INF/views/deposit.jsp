@@ -34,7 +34,7 @@
 
 		</head>
 
-		<body>
+		<body class="deposit_body">
 			<!-- Page Preloder -->
 			<div id="preloder">
 				<div class="loader"></div>
@@ -49,7 +49,7 @@
 			</c:if>
 
 			<!-- Header section -->
-			<header class="header-section">
+			<header class="header-section" style="padding: 10px;">
 				<div class="container">
 					<!-- logo -->
 					<a class="site-logo" href="/">
@@ -83,7 +83,7 @@
 				<% session.removeAttribute("message"); %>
 			</c:if>
 			<!-- Hero section -->
-			<section class="deposit_entry">
+			<div class="deposit_entry" style="flex: 1; padding: 140px;">
 				<c:choose>
 					<c:when test="${not empty upiDetails}">
 						<div class="table_heading">
@@ -128,11 +128,11 @@
 					</c:otherwise>
 				</c:choose>
 				<% session.removeAttribute("fetchUpiDetails"); %>
-			</section>
+			</div>
 			<!-- Hero section end -->
 
 			<!-- Footer section -->
-			<footer class="footer-section">
+			<footer class="footer-section" style="padding: 10px;">
 				<div class="container">
 					<ul class="footer-menu">
 						<li><a href="/">Home</a></li>
