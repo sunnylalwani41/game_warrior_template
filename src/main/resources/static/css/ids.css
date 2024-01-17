@@ -1,0 +1,75 @@
+#logo_image {
+    width: 30px; /* Set the desired width for the square */
+    height: 30px; /* Set the desired height for the square */
+    object-fit: cover;
+}
+
+.table_heading {
+    display: grid;
+    grid-template-columns: 220px 220px 220px 220px 1fr;
+    padding-left: 5%;
+}
+.table_data {
+	display: grid;
+	grid-template-columns: 220px 220px 220px 220px 1fr;
+	padding-left: 5%;
+}
+
+
+.button-container div {
+   display: inline-block;
+   padding-top: 20px;
+}
+#button1 {
+	margin-left: 5%;
+}
+#button2 {
+	align-items: end;
+	float: right;
+	margin-right: 5%;
+}
+#content2 {
+	display: none;
+}
+.create_id {
+	display: grid;
+	grid-template-columns: 220px 220px;
+}
+#logo_data{
+	white-space: nowrap;
+}
+#logo_image {
+	display: inline;
+	margin: 0;
+}
+#create_button{
+	margin: auto; 
+	justify-content: center; 
+	display: flex; 
+	align-items: center;
+}
+#create_container {
+	text-align: center;
+	padding-top: 4%;
+}
+#logo_image {
+	margin: auto;
+	display: block;
+}
+.text1 {
+	text-align: left;
+	margin-left: 30%;
+ }
+
+.text2 {
+	text-align: right;
+	margin-right: 30%;
+	margin-bottom: -2%;
+}
+.text3 {
+	width: 15%;
+	margin: auto;
+	display: block;
+	margin-top: 2%;
+	margin-bottom: 4%;
+}

@@ -3,6 +3,7 @@
 	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 		<!DOCTYPE html>
 		<html>
+
 		<head>
 			<title>Game Warrior Template</title>
 			<meta charset="UTF-8">
@@ -11,44 +12,59 @@
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
 			<!-- Favicon -->
 			<link href="img/favicon.ico" rel="shortcut icon" />
-	<!-- Google Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
-	
-	<!-- Stylesheets -->
-	<link rel="stylesheet" href="css/bootstrap.min.css"/>
-	<link rel="stylesheet" href="css/font-awesome.min.css"/>
-	<link rel="stylesheet" href="css/owl.carousel.css"/>
-	<link rel="stylesheet" href="css/style.css"/>
-	<link rel="stylesheet" href="css/animate.css"/>
-	<link rel="stylesheet" href="css/login.css"/>
-	<link rel="stylesheet" href="css/error-container.css"/>
-	<!-- livechat style -->
-	<link rel="stylesheet" href="css/livechat.css"/>
-	<!-- Font Awesome kit -->
-	<script src="https://kit.fontawesome.com/e99a9eb445.js" crossorigin="anonymous"></script>
-</head>
+			<!-- Google Fonts -->
+			<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+
+			<!-- Stylesheets -->
+			<link rel="stylesheet" href="css/bootstrap.min.css" />
+			<link rel="stylesheet" href="css/font-awesome.min.css" />
+			<link rel="stylesheet" href="css/owl.carousel.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/animate.css" />
+			<link rel="stylesheet" href="css/login.css" />
+			<link rel="stylesheet" href="css/error-container.css" />
+			<link rel="stylesheet" href="css/profile.css">
+			<link rel="stylesheet" href="css/ids.css">
+			<!-- livechat style -->
+			<link rel="stylesheet" href="css/livechat.css" />
+			<!-- Font Awesome kit -->
+			<script src="https://kit.fontawesome.com/e99a9eb445.js" crossorigin="anonymous"></script>
+
+			<script>
+				// Function to show content for Button 1
+				function showContent1() {
+					document.getElementById('content1').style.display = 'block';
+					document.getElementById('content2').style.display = 'none';
+				}
+
+				// Function to show content for Button 2
+				function showContent2() {
+					document.getElementById('content1').style.display = 'none';
+					document.getElementById('content2').style.display = 'block';
+				}
+			</script>
+
+
+		</head>
+
 		<body>
 			<!-- Page Preloder -->
 			<div id="preloder">
 				<div class="loader"></div>
 			</div>
 			<c:if test="${empty userId}">
-			    <c:if test="${not pageContext.response.isCommitted()}">
-			        <%
-			            response.sendRedirect("login");
-			        %>
-			    </c:if>
+				<c:if test="${not pageContext.response.isCommitted()}">
+					<% response.sendRedirect("login"); %>
+				</c:if>
 			</c:if>
-			
+
 			<c:if test="${empty idDetails}">
-			    <c:if test="${not pageContext.response.isCommitted()}">
-			        <%
-			            response.sendRedirect("fetchIdDetails");
-			        %>
-			    </c:if>
+				<c:if test="${not pageContext.response.isCommitted()}">
+					<% response.sendRedirect("fetchIdDetails"); %>
+				</c:if>
 			</c:if>
 			<!-- Header section -->
-			<header class="header-section">
+			<header class="header-section" style="padding: 10px;">
 				<div class="container">
 					<!-- logo -->
 					<a class="site-logo" href="/">
@@ -110,69 +126,115 @@
 			<div class="livechat_float">
 				<img alt="livechat" src="img/clogo.png">
 			</div>
-			<h1></h1>
-			<section>
-				<c:if test="${not empty errorMessage}">
-					<div class="errorContainer">${errorMessage}</div>
-					<%
-						session.removeAttribute("errorMessage");
-					%>
-				</c:if>
-				<c:if test="${not empty message}">
-					<div class="errorContainer">${message}</div>
-					<%
-						session.removeAttribute("message");
-					%>
-				</c:if>
-				<div class="container-myId">
-					<c:forEach items="${myIds}" var="id">
+
+			<div class="button-container">
+				<div id="button1">
+					<button onclick="showContent1()">Button 1</button>
+				</div>
+				<div id="button2">
+					<button onclick="showContent2()">Button 2</button>
+				</div>
+			</div>
+
+			<section class=ids_data style="flex: 1; padding: 14%;">
+				<div id="content1" class="content">
+					<!-- Add more content as needed for Button 1 -->
+
+					<c:if test="${not empty errorMessage}">
+						<div class="errorContainer">${errorMessage}</div>
+						<% session.removeAttribute("errorMessage"); %>
+					</c:if>
+					<c:if test="${not empty message}">
+						<div class="errorContainer">${message}</div>
+						<% session.removeAttribute("message"); %>
+					</c:if>
+					<div class="container-myId">
+						<div class="table_heading">
+							<p id="ha">Website Name</p>
+							<p id="hb">Username</p>
+							<p id="hc">Password</p>
+							<p id="hc">Status</p>
+							<p id="hc">Link</p>
+
+						</div>
+						<c:forEach items="${myIds}" var="id">
 							<div class="card-myId">
-								<div>
-									<img src="${id.logo}" alt="${id.websiteName}" />
-									<p>${id.websiteName }</p>
-								</div>
-								<a href="${id.website}" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
 								<c:choose>
-								    <c:when test="${id.status}">
-								    	<p> Username: <label>${id.username}</label></p>
-										<p> Password: <label>${id.password}</label></p>
-								        <p>Status: <label>Active</label></p>
-								    </c:when>
-								    <c:otherwise>
-								    	<p> Username: <label>null</label></p>
-										<p> Password: <label>null</label></p>
-								        <p>Status: <label>Pending</label></p>
-								    </c:otherwise>
+									<c:when test="${id.status}">
+
+										<hr style="border: 1px solid rgb(75, 31, 31);">
+
+										<div class="table_data">
+
+											<p><img id="logo_image" src="${id.logo}" alt="${id.websiteName}" />
+												${id.websiteName }</p>
+											<p>${id.username}</p>
+											<p>${id.password}</p>
+											<p>Active</p>
+											<p><a href="${id.website}" target="_blank"><i
+														class="fa-solid fa-arrow-up-right-from-square"></i></a></p>
+										</div>
+									</c:when>
+									<c:otherwise>
+
+										<div class="table_heading">
+											<p id="ha">${id.websiteName }</p>
+											<p id="hb">Username</p>
+											<p id="hc">Password</p>
+											<p id="hc">Status</p>
+											<p id="hc">Link</p>
+
+										</div>
+										<hr style="border: 1px solid rgb(75, 31, 31);">
+
+										<div class="table_data">
+
+											<img id="logo_image" src="${id.logo}" alt="${id.websiteName}" />
+											<p>null</p>
+											<p>null</p>
+											<p>Pending</p>
+											<p><a href="${id.website}" target="_blank"><i
+														class="fa-solid fa-arrow-up-right-from-square"></i></a></p>
+										</div>
+									</c:otherwise>
 								</c:choose>
 							</div>
-					</c:forEach>
+						</c:forEach>
+					</div>
 				</div>
-				<div class="container-createId">
-					<c:forEach items="${games}" var="game">
-						<div class="card-createId">
-							<div><img src="${game.logo}" alt="${game.websiteName}"/></div>
-							<div><p>${game.websiteName}</p><p>${game.website}</p></div>
-							<div>
-								<form action="fetchGame" method="post">
-									<button>Create ID</button>
-									<input type="hidden" name="gameId" value="${game.id}">
-								</form>
-								<div class="arrow-createId"><i class="fa-solid fa-angle-down"></i></div>
+				<div id="content2" class="content">
+					<div class="container-createId">
+						<c:forEach items="${games}" var="game">
+							<div class="card-createId">
+								<div id="create_container">
+									<img id="logo_image" src="${requestScope.game.logo }"
+										alt="${requestScope.game.websiteName}" />
+									<p>${game.websiteName}</p>
+									<p style="margin-top: -1.5%;">${game.website}</p>
+								</div>
+								<div>
+									<form action="fetchGame" method="post" id="create_button">
+										<button>Create ID</button>
+										<input type="hidden" name="gameId" value="${game.id}">
+										<div class="arrow-createId"><i class="fa-solid fa-angle-down"></i></div>
+									</form>
+								</div>
 							</div>
-						</div>
-						<div class="miniCard-createId">
-							<p>Min Bet</p> <p><i class="fa-solid fa-coins"></i></p>
-							<c:forEach items="${game.gameName}" var="gameVarient">
-								<p>${gameVarient}</p><p>100</p>
-							</c:forEach>
-						</div>
-					</c:forEach>
+							<div class="miniCard-createId">
+								<p>Min Bet</p>
+								<p><i class="fa-solid fa-coins"></i></p>
+								<c:forEach items="${game.gameName}" var="gameVarient">
+									<p>${gameVarient}</p>
+									<p>100</p>
+								</c:forEach>
+							</div>
+						</c:forEach>
+					</div>
 				</div>
-				
 			</section>
 
 			<!-- Footer section -->
-			<footer class="footer-section">
+			<footer class="footer-section" style="padding: 10px;">
 				<div class="container">
 					<ul class="footer-menu">
 						<li><a href="/">Home</a></li>
@@ -194,14 +256,14 @@
 			<!-- Footer section end -->
 
 
-				<!--====== Javascripts & Jquery ======-->
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/jquery.marquee.min.js"></script>
-	<script src="js/main.js"></script>
-	<script src="js/login.js"></script>
-	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+			<!--====== Javascripts & Jquery ======-->
+			<script src="js/jquery-3.2.1.min.js"></script>
+			<script src="js/bootstrap.min.js"></script>
+			<script src="js/owl.carousel.min.js"></script>
+			<script src="js/jquery.marquee.min.js"></script>
+			<script src="js/main.js"></script>
+			<script src="js/login.js"></script>
+			<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 		</body>
 

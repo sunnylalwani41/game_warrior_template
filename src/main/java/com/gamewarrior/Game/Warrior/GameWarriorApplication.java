@@ -10,4 +10,3 @@ public class GameWarriorApplication {
 		SpringApplication.run(GameWarriorApplication.class, args);
 	}
 }
-	
