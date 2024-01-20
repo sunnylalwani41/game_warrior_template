@@ -37,11 +37,6 @@
 	<div id="preloder">
 		<div class="loader"></div>
 	</div>
-	<c:if test="${not empty userId }">
-		<%
-			response.sendRedirect("/");
-		%>
-	</c:if>
 	<c:if test="${not empty adminId}">
 		<%
 			response.sendRedirect("adminDashboard");
@@ -51,7 +46,7 @@
 	<header class="header-section">
 		<div class="container">
 			<!-- logo -->
-			<a class="site-logo" href="/">
+			<a class="site-logo" href="adminDashboard">
 				<img src="img/logo.png" alt="">
 			</a>
 			<!-- responsive -->

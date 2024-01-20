@@ -10,6 +10,7 @@ import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -33,7 +34,7 @@ public class Game {
 	private Integer maximumWithrawal;
 	@ElementCollection
 	@CollectionTable(name= "game_names", joinColumns = @JoinColumn(name="game_id"))
-	@Fetch(FetchMode.SUBSELECT)
 	@Column(name= "game_name")
+	@Fetch(FetchMode.JOIN)
 	private List<String> gameName= new ArrayList<>();
 }

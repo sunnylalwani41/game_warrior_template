@@ -32,26 +32,17 @@
 				<div class="loader"></div>
 			</div>
 			<c:if test="${empty adminId}">
-			    <c:if test="${not pageContext.response.isCommitted()}">
-			        <%
-			        	session.setAttribute("errorMessage", "Unauthorized!");
-			            response.sendRedirect("admin-login");
-			        %>
-			    </c:if>
+		        <%
+		        	session.setAttribute("errorMessage", "Unauthorized!");
+		            response.sendRedirect("admin-login");
+		        %>
 			</c:if>
 			
-			<c:if test="${empty requestScope.fetchCreateId}">
-			    <c:if test="${not pageContext.response.isCommitted()}">
-			        <%
-			        	response.sendRedirect("fetchCreateId");
-			        %>
-			    </c:if>
-			</c:if>
 			<!-- Header section -->
 			<header class="header-section">
 				<div class="container">
 					<!-- logo -->
-					<a class="site-logo" href="/">
+					<a class="site-logo" href="adminDashboard">
 						<img src="img/logo.png" alt="">
 					</a>
 
@@ -65,10 +56,10 @@
 							<div class="homedetails" style="float:none;">
 								<ul>
 									<li><a href="adminDashboard">Dashboard</a></li>
-									<li><a href="depositRequest">Deposit Request</a></li>
-									<li><a href="createIdRequest">Create Id Request</a></li>
-									<li><a href="updateGameWesite">Update Game website</a></li>
-									<li><a href="updatePaymentMethod">Payment method updation</a></li>
+									<li><a href="fetchDepositRequest">Deposit Request</a></li>
+									<li><a href="fetchCreateId">Create Id Request</a></li>
+									<li><a href="fetchGames">Update Game website</a></li>
+									<li><a href="fetchAllUpi">Payment method updation</a></li>
 									<li><a href="adminLogout">Logout</a></li>
 								</ul>
 							</div>
@@ -87,7 +78,7 @@
 			</c:if>
 			<!-- Live chat -->
 			<div class="livechat_float">
-				<img alt="livechat" src="img/clogo.png">
+				<a href="https://telegram.im/@digitaladdworld" target="_blank" class="telegramim_button telegramim_shadow" style="font-size:26px;width:219px;background:#27A5E7;box-shadow:1px 1px 5px #27A5E7;color:#FFFFFF;border-radius:37px;" title="Digital Add World"><i></i> Chat with us</a>
 			</div>
 			<c:choose>
 				<c:when test="${not empty createIdRequests}">
@@ -100,20 +91,18 @@
 						<p>Deposit Amount</p>
 						<p>Submit</p>
 						<c:forEach items="${createIdRequests}" var="idRequest">
-							<c:if test="${not idRequest.status}">
-								<a href="${idRequest.website}">
-									<img src="${idRequest.logo }" alt="${idRequest.websiteName }"/>
-									<p>${idRequest.websiteName}</p>
-								</a>
-								<p>${idRequest.expectedUsername}</p>
-								<form action="submitUsernameAndPassword" method="post">
-									<input type="text" placeholder="Enter the username" name="username"/>
-									<input type="text" placeholder="Enter the password" name="password"/>
-									<input type="hidden" value="${idRequest.id}" name="id"/>
-									<p>${idRequest.amount}</p>
-									<input type="submit" value="Submit" />
-								</form>
-							</c:if>
+							<a href="${idRequest.website}">
+								<img src="${idRequest.logo }" alt="${idRequest.websiteName }"/>
+								<p>${idRequest.websiteName}</p>
+							</a>
+							<p>${idRequest.expectedUsername}</p>
+							<form action="submitUsernameAndPassword" method="post">
+								<input type="text" placeholder="Enter the username" name="username"/>
+								<input type="text" placeholder="Enter the password" name="password"/>
+								<input type="hidden" value="${idRequest.id}" name="id"/>
+								<p>${idRequest.amount}</p>
+								<input type="submit" value="Submit" />
+							</form>
 						</c:forEach>
 					</fieldset>
 				</c:when>
@@ -155,7 +144,9 @@
 	<script src="../js/main.js"></script>
 	<script src="../js/login.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
+	<script type="text/javascript">
+		(function() {var script=document.createElement("script");script.type="text/javascript";script.async =true;script.src="//telegram.im/widget-button/index.php?id=@digitaladdworld";document.getElementsByTagName("head")[0].appendChild(script);})();
+	</script>
 		</body>
 
 		</html>

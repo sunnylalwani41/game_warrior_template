@@ -117,6 +117,5 @@ public class GameController {
 			session.setAttribute("errorMessage", exception.getMessage());
 			response.sendRedirect("ids");
 		}
-
 	}
 }
