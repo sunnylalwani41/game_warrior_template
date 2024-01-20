@@ -1,3 +1,45 @@
 .lostAdminPassword{
 	cursor: pointer;
 }
+.updatePaymentMethod {
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+	display: grid;
+	grid-template-columns: 200px 1fr;
+	padding: 30px;
+	padding-left: 80px;
+	height: 50%;
+	margin: 20px auto;
+	width: 45%;
+	border-radius: 20px 20px;
+	
+	/*flex-direction: column;*/
+}
+input{
+	height: 40%;
+	width: 70%;
+}
+#submit {
+	height: 60%;
+	width: 90%;
+	margin-left: 50%;
+	background-color: red;
+	color: white;
+	font-weight: bold;
+	border: none;
+	font-size: larger;
+	border-radius: 6%;
+}
+.center {
+	text-align: center;
+}
+#box-image {
+	width: 40%;
+	height: 40%;
+}
+.deleteUpi {
+	height: 70%;
+	background-color: blue;
+	color: white;
+	border: none;
+	border-radius: 5%;
+}

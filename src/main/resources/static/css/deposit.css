@@ -1,7 +1,7 @@
 .table_heading {
     display: grid;
     grid-template-columns: 220px 500px 1fr;
-    padding-left: 10%   ;
+    padding-left: 10%;
 }
 .upi_image {
     width: 50px;
@@ -45,3 +45,9 @@
     flex: 1%;
     /* Other styles for your content */
 }
+
+.image-container {
+	width: 90px;
+	height: 50px;
+}
+

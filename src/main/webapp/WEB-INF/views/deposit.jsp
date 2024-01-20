@@ -34,7 +34,7 @@
 
 		</head>
 
-		<body class="deposit_body">
+		<body class="body">
 			<!-- Page Preloder -->
 			<div id="preloder">
 				<div class="loader"></div>

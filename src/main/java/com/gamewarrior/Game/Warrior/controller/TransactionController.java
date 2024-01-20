@@ -190,7 +190,7 @@ public class TransactionController {
   
     		depositRequest.setRemark(remark);
     		depositRequest.setStatus(true);
-    		depositRequest.setRemark("Rejected");
+//    		depositRequest.setRemark("Rejected");
     		
     		depositRequestService.takeDepositRequest(depositRequest);
     		session.setAttribute("message", "Successfully updated!");

@@ -62,8 +62,6 @@
 				<ul>
 					<li><a href="/">Home</a></li>
 					<li><a href="review">Games</a></li>
-					<li><a href="categories">Blog</a></li>
-					<li><a href="community">Forums</a></li>
 					<li><a href="contact">Contact</a></li>
 				</ul>
 			</nav>
@@ -436,8 +434,6 @@
 			<ul class="footer-menu">
 				<li><a href="/">Home</a></li>
 				<li><a href="review">Games</a></li>
-				<li><a href="categories">Blog</a></li>
-				<li><a href="community">Forums</a></li>
 				<li><a href="contact">Contact</a></li>
 			</ul>
 			<p class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
