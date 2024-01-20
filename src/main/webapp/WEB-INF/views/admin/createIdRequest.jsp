@@ -67,7 +67,7 @@
 									<li><a href="adminDashboard">Dashboard</a></li>
 									<li><a href="depositRequest">Deposit Request</a></li>
 									<li><a href="createIdRequest">Create Id Request</a></li>
-									<li><a href="updateGameWesite">Update Game website</a></li>
+									<li><a href="updateGameWebsite">Update Game website</a></li>
 									<li><a href="updatePaymentMethod">Payment method updation</a></li>
 									<li><a href="adminLogout">Logout</a></li>
 								</ul>

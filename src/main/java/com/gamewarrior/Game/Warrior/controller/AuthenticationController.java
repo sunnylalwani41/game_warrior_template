@@ -104,4 +104,10 @@ public class AuthenticationController {
 			response.sendRedirect("login");
 		}
     }
+    
+    @GetMapping("/getencriptpassword/{password}")
+    @ResponseBody
+    public String ecriptPassword(@PathVariable String password) throws NoSuchAlgorithmException {
+    	return securityConfig.encryptPassword(password);
+    }
 }

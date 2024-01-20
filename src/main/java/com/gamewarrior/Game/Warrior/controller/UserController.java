@@ -44,7 +44,7 @@ public class UserController {
 		
 		try {
 			userService.forgetPassword(email);
-			
+			System.out.println("hello");
 			session.setAttribute("forgotemail", email);
 			
 			response.sendRedirect("forgot-otp");

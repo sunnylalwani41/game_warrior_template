@@ -84,8 +84,8 @@
                     <h2>Admin Login</h2>
                     <form action="verifyAdmin" method="post">
                       <div class="input-box">
-                        <input type="email" name="adminEmail" required>
-                        <label>Email</label>
+                        <input type="text" name="adminEmail" required>
+                        <label>Username</label>
                       </div>
                       <div class="input-box">
                         <input type="password" name = "adminPassword" required>
