@@ -23,5 +23,4 @@ public class AccountRequest {
 	private String websiteName;
 	private Integer minimumBet;
 	private String logo;
-	private Boolean status= false;
 }

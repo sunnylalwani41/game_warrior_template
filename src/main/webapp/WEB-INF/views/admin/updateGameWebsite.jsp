@@ -32,27 +32,17 @@
 				<div class="loader"></div>
 			</div>
 			<c:if test="${empty adminId}">
-			    <c:if test="${not pageContext.response.isCommitted()}">
-			        <%
-			        	session.setAttribute("errorMessage", "Unauthorized!");
-			            response.sendRedirect("admin-login");
-			        %>
-			    </c:if>
-			</c:if>
-			
-			<c:if test="${empty requestScope.fetchGames}">
-			    <c:if test="${not pageContext.response.isCommitted()}">
-			        <%
-			            response.sendRedirect("fetchGames");
-			        %>
-			    </c:if>
+		        <%
+		        	session.setAttribute("errorMessage", "Unauthorized!");
+		            response.sendRedirect("admin-login");
+		        %>
 			</c:if>
 			
 			<!-- Header section -->
 			<header class="header-section">
 				<div class="container">
 					<!-- logo -->
-					<a class="site-logo" href="/">
+					<a class="site-logo" href="adminDashboard">
 						<img src="img/logo.png" alt="">
 					</a>
 
@@ -66,10 +56,10 @@
 							<div class="homedetails" style="float:none;">
 								<ul>
 									<li><a href="adminDashboard">Dashboard</a></li>
-									<li><a href="depositRequest">Deposit Request</a></li>
-									<li><a href="createIdRequest">Create Id Request</a></li>
-									<li><a href="updateGameWebsite">Update Game website</a></li>
-									<li><a href="updatePaymentMethod">Payment method updation</a></li>
+									<li><a href="fetchDepositRequest">Deposit Request</a></li>
+									<li><a href="fetchCreateId">Create Id Request</a></li>
+									<li><a href="fetchGames">Update Game website</a></li>
+									<li><a href="fetchAllUpi">Payment method updation</a></li>
 									<li><a href="adminLogout">Logout</a></li>
 								</ul>
 							</div>

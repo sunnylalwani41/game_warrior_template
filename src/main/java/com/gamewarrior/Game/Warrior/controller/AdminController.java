@@ -72,11 +72,15 @@ public class AdminController {
 		List<MyId> myIds= myIdService.fetchAllCreateIdRequest(false);
 		
 		for(MyId myId: myIds) {
+			if(myId.getStatus())
+				continue;
 			CreateIdRequestDto createIdRequestDto = new CreateIdRequestDto();
 			createIdRequestDto.setId(myId.getId());
 			createIdRequestDto.setLogo(myId.getLogo());
 			createIdRequestDto.setWebsite(myId.getWebsite());
 			createIdRequestDto.setWebsiteName(myId.getWebsiteName());
+			
+//			System.out.println("Hello: "+myId.getAccountRequestId());
 			
 			AccountRequest accountRequest= accountRequestService.getAccountRequestById(myId.getAccountRequestId());
 			
@@ -85,8 +89,8 @@ public class AdminController {
 			
 			createIdRequestDtos.add(createIdRequestDto);
 		}
-		request.setAttribute("fetchCreateId", "fetchCreateId");
 		session.setAttribute("createIdRequests", createIdRequestDtos);
+		
 		response.sendRedirect("createIdRequest");
 	}
 	
@@ -97,6 +101,7 @@ public class AdminController {
 		
 		myId.setUsername(username);
 		myId.setPassword(password);
+		myId.setStatus(true);
 		
 		myIdService.saveMyId(myId);
 		

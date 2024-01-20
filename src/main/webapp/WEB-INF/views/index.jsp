@@ -98,7 +98,7 @@
 
 			<!-- Live chat -->
 			<div class="livechat_float">
-				<img alt="livechat" src="img/clogo.png">
+				<a href="https://telegram.im/@digitaladdworld" target="_blank" class="telegramim_button telegramim_shadow" style="font-size:26px;width:219px;background:#27A5E7;box-shadow:1px 1px 5px #27A5E7;color:#FFFFFF;border-radius:37px;" title="Digital Add World"><i></i> Chat with us</a>
 			</div>
 
 			<!-- Hero section -->
@@ -143,6 +143,7 @@
 				</div>
 			</section>
 			<!-- Hero section end -->
+			
 			<!-- Latest news section -->
 			<div class="latest-news-section">
 				<div class="ln-title">Latest News</div>
@@ -501,6 +502,9 @@
 	<script src="js/main.js"></script>
 	<script src="js/login.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	<script type="text/javascript">
+		(function() {var script=document.createElement("script");script.type="text/javascript";script.async =true;script.src="//telegram.im/widget-button/index.php?id=@digitaladdworld";document.getElementsByTagName("head")[0].appendChild(script);})();
+	</script>
 
 		</body>
 

@@ -1,11 +1,6 @@
-/* .whatsapp_float>a>img{
-	width: 10%;
-} */
 .livechat_float{
 	position: fixed;
 	z-index: 100;
 	bottom: 15px;
 	right: 10px;
-	width: 5%;
-	cursor: pointer;
 }
