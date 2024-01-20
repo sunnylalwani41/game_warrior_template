@@ -48,7 +48,7 @@
 				<% response.sendRedirect("fetchTransactions"); %>
 			</c:if>
 <!-- Header section -->
-<header class="header-section">
+<header class="header-section" style="padding: 10px;">
     <div class="container">
         <!-- logo -->
         <a class="site-logo" href="/">
@@ -88,11 +88,11 @@
 	%>
 </c:if>
 <!-- Hero section -->
-<section class="upi-section">
+<section class="upi-section" style="flex: 1; padding: 180px;">
 	<c:choose>
 		<c:when test="${not empty transactionDetails}">
-			<table>
-			<caption>Transactions</caption>
+			<p style="text-align: center; font-size: 20px; margin-top: 2px;">Transactions</p>
+			<table style="margin-left: 12%;">
 				<thead>
 					<tr>
 						<th>Id</th>
@@ -153,7 +153,7 @@
 </section>
 <!-- Hero section end -->
 			<!-- Footer section -->
-			<footer class="footer-section">
+			<footer class="footer-section" style="padding: 10px;">
 				<div class="container">
 					<ul class="footer-menu">
 						<li><a href="/">Home</a></li>
@@ -176,3 +176,8 @@
 
 		</body>
 		</html>
+
+
+
+
+		
