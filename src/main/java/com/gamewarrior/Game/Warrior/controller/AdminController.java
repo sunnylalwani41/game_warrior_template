@@ -116,8 +116,8 @@ public class AdminController {
 		String[] games = request.getParameterValues("game");
 		Game game = new Game();
 		HttpSession session = request.getSession();
-		
 		if(games!=null) {
+			System.out.println(games[0]);
 			for(String gameName: games) {
 				game.getGameName().add(gameName);
 			}
