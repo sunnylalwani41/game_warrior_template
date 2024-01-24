@@ -69,11 +69,6 @@
 			</header>
 			<!-- Header section end -->
 
-			<!-- Live chat -->
-			<div class="livechat_float">
-				<img alt="livechat" src="img/clogo.png">
-			</div>
-
 			<!-- Hero section -->
 			<section class="hero-section">
 				<div class="hero-slider owl-carousel">
