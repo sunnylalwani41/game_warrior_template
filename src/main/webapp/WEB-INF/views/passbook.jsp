@@ -22,7 +22,6 @@
 			<link rel="stylesheet" href="css/owl.carousel.css" />
 			<link rel="stylesheet" href="css/style.css" />
 			<link rel="stylesheet" href="css/animate.css" />
-			<link rel="stylesheet" href="css/deposit.css">
 			<link rel="stylesheet" href="css/error-container.css" />
 			<link rel="stylesheet" href="css/empty.css">
 
@@ -45,22 +44,18 @@
 				}
 
 				.card {
-					border-radius: .5rem;
 					margin-top: 10%;
 					height: 10%;
-				}
-
-				.table-scroll {
-					border-radius: .5rem;
-				}
-
-				.table-scroll table thead th {
-					font-size: 1.25rem;
 				}
 
 				thead {
 					top: 0;
 					position: sticky;
+				}
+				.blankpage {
+					height: 800%;
+					width: 70%;
+					padding-left: 19%;
 				}
 			</style>
 		</head>
@@ -114,78 +109,67 @@
 			</c:if>
 			<!-- Hero section -->
 			<section class="intro">
-				<div class="container">
-					<div class="row justify-content-center">
-						<div class="col-12">
-							<div class="card">
-								<div class="card-body p-0">
-									<div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true"
-										style="position: relative; height: 700px">
-										<c:choose>
-											<c:when test="${not empty transactionDetails}">
-												<h2 style="text-align: center; font-size: 20px; margin-top: 2px;">
-													Transactions</h2> <br>
-												<table class="table table-striped mb-0">
-													<thead style="background-color: #002d72;">
-														<tr>
-															<th scope="col">Id</th>
-															<th scope="col">Mobile No</th>
-															<th scope="col">Account No</th>
-															<th scope="col">IFSC</th>
-															<th scope="col">Account Holder Name</th>
-															<th scope="col">Amount</th>
-															<th scope="col">Transaction Id</th>
-															<th scope="col">Order Id</th>
-															<th scope="col">Date and Time</th>
-														</tr>
-													</thead>
-													<tbody>
-														<% int i=1; %>
-															<c:forEach items="${transactionDetails}" var="trans">
-																<tr>
-																	<td>
-																		${trans.id }
-																	</td>
-																	<td>
-																		${trans.mobile }
-																	</td>
-																	<td>
-																		${trans.accountNumber}
-																	</td>
-																	<td>
-																		${trans.ifsc}
-																	</td>
-																	<td>
-																		${trans.accountHolderName}
-																	</td>
-																	<td>
-																		${trans.amount}
-																	</td>
-																	<td>
-																		${trans.transactionId}
-																	</td>
-																	<td>
-																		${trans.contactId}
-																	</td>
-																	<td>
-																		${trans.timestamp}
-																	</td>
-																</tr>
-															</c:forEach>
-													</tbody>
-												</table>
-											</c:when>
-											<c:otherwise>
-												<img src="https://i.pinimg.com/originals/f3/8b/24/f38b24a996391f4a0d78819f028c7926.gif"
-													alt="Not found or something went wrong" class="empty" />
-												<p>Transaction detail(s) not found!.</p>
-											</c:otherwise>
-										</c:choose>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+				<div class="card">
+					<c:choose>
+						<c:when test="${not empty transactionDetails}">
+							<h2 style="text-align: center; font-size: 20px; margin-top: 2px;">
+								Transactions</h2> <br>
+							<table class="table table-striped mb-0">
+								<thead style="background-color: #002d72;">
+									<tr>
+										<th scope="col">Id</th>
+										<th scope="col">Mobile No</th>
+										<th scope="col">Account No</th>
+										<th scope="col">IFSC</th>
+										<th scope="col">Account Holder Name</th>
+										<th scope="col">Amount</th>
+										<th scope="col">Transaction Id</th>
+										<th scope="col">Order Id</th>
+										<th scope="col">Date and Time</th>
+									</tr>
+								</thead>
+								<tbody>
+									<% int i=1; %>
+										<c:forEach items="${transactionDetails}" var="trans">
+											<tr>
+												<td>
+													${trans.id }
+												</td>
+												<td>
+													${trans.mobile }
+												</td>
+												<td>
+													${trans.accountNumber}
+												</td>
+												<td>
+													${trans.ifsc}
+												</td>
+												<td>
+													${trans.accountHolderName}
+												</td>
+												<td>
+													${trans.amount}
+												</td>
+												<td>
+													${trans.transactionId}
+												</td>
+												<td>
+													${trans.contactId}
+												</td>
+												<td>
+													${trans.timestamp}
+												</td>
+											</tr>
+										</c:forEach>
+								</tbody>
+							</table>
+						</c:when>
+						<c:otherwise>
+							<img class="blankpage" src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-2506.jpg?w=740&t=st=1705560867~exp=1705561467~hmac=5dc60af5ded74c5bdc9f93cf0948faa6be2f2aea0070995a7a3867d8ffc515ed"
+								alt="Not found or something went wrong" class="empty" />
+							<p style="text-align: center;">Transaction detail(s) not found!.</p>
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</section>
 			<% session.removeAttribute("passbookDetail"); %>

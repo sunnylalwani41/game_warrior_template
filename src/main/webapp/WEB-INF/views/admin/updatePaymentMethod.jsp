@@ -76,9 +76,7 @@
 			<!-- Header section end -->
 
 			<!-- Live chat -->
-			<div class="livechat_float">
-				<img alt="livechat" src="img/clogo.png">
-			</div>
+
 			<c:if test="${not empty errorMessage}">
 					<div class="errorContainer">${errorMessage}</div>
 					<%
