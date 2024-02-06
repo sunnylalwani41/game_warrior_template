@@ -145,12 +145,4 @@ public class UserController {
 			response.sendRedirect("login");
 		}
 	}
-	
-	@MessageMapping("/message")
-	@SendTo("/topic/return-to")
-	public Message liveChat(@RequestBody Message message) {
-		
-		
-		return message;
-	}
 }

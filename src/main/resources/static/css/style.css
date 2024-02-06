@@ -16,7 +16,9 @@ body {
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
 }
-
+.hideItem{
+	display: none;
+}
 h1,
 h2,
 h3,
@@ -253,6 +255,9 @@ ol {
 	overflow: hidden;
 	padding: 18px 0;
 	border-bottom: 1px solid #ffb320;
+	position: sticky;
+	top: 0px;
+	z-index: 1000;
 }
 
 .site-logo {
@@ -1409,6 +1414,9 @@ ol {
 	}
 	.user-panel {
 		display: none;
+	}
+	.hideItem{
+		display: block;
 	}
 	.hero-slider .hs-item {
 		height: 700px;
