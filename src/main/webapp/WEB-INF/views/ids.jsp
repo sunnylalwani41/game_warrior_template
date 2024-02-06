@@ -123,9 +123,6 @@
 			<!-- Header section end -->
 
 			<!-- Live chat -->
-			<div class="livechat_float">
-				<img alt="livechat" src="img/clogo.png">
-			</div>
 
 			<div class="button-container">
 				<div id="button1">
@@ -177,14 +174,6 @@
 									</c:when>
 									<c:otherwise>
 
-										<div class="table_heading">
-											<p id="ha">${id.websiteName }</p>
-											<p id="hb">Username</p>
-											<p id="hc">Password</p>
-											<p id="hc">Status</p>
-											<p id="hc">Link</p>
-
-										</div>
 										<hr style="border: 1px solid rgb(75, 31, 31);">
 
 										<div class="table_data">
