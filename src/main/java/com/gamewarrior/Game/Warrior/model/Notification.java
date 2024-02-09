@@ -23,7 +23,5 @@ public class Notification {
 	private String subject;
 	private String message;
 	private LocalDateTime timestamp= LocalDateTime.now();
-	@JsonIgnore
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	private User user;
+	private Integer userId;
 }

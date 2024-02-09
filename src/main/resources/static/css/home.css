@@ -1,0 +1,363 @@
+body {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.head-data {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+}
+.header-data {
+    display: flex;
+    justify-content: space-between;
+}
+
+.headerFeature {
+    display: flex;
+}
+
+.headerFeature a {
+    text-decoration: none;
+    color: white;
+    font-size: 19px;
+}
+
+.headerFeature > a:hover {
+    color: yellow;
+  }
+.loginRegisterBox {
+    background-color: rgb(255, 166, 0);
+    padding: 5px 25px 5px 25px;
+    border-radius: 80px;
+    display: flex;
+    width: 15%;
+    height: 30px;
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
+
+.loginRegisterBox a {
+    text-decoration: none;
+    color: black;
+}
+
+
+.lgrBox {
+    background-color: rgb(255, 166, 0);
+    margin-top: 7px;
+    padding: 2px 35px 5px 35px;
+    border-radius: 80px;
+    display: flex;
+    width: 15%;
+    height: 30px;
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
+.lgrBox a {
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+}
+
+header p,
+footer p {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 0 1px;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+#gameLogo {
+    padding-left: 45%;
+    height: 60px;
+    width: 90px;
+}
+
+.pageData img {
+    width: 100%;
+    height: 900px;
+}
+
+.text-overlay1 {
+    position: absolute;
+    top: 60%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    color: white;
+    /* Optional: Add text shadow for better visibility */
+}
+
+a{
+	color: white;
+}
+
+#p1heading {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+#p2heading {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.game-image {
+    margin-top: 70px;
+    margin-left: 55px;
+    margin-bottom: 70px;
+    display: flex;
+    width: 23%;
+}
+
+.text-overlay2 {
+    position: absolute;
+    top: 175%;
+    left: 13%;
+    transform: translate(-50%, -50%);
+    color: white;
+    display: flex;
+    /* Optional: Add text shadow for better visibility */
+}
+
+#game1 {
+    background-color: red;
+    padding: 4%;
+}
+
+#game2 {
+    margin-left: 117%;
+    background-color: yellow;
+    padding: 4%;
+}
+
+#game3 {
+    margin-left: 118%;
+    background-color: blue;
+    padding: 4%;
+}
+
+#game4 {
+    margin-left: 119%;
+    background-color: green;
+    padding: 4%;
+}
+
+#gameheading1 {
+    position: absolute;
+    top: 200%;
+    left: 16%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 20px;
+}
+
+#gameheading2 {
+    position: absolute;
+    top: 200%;
+    left: 37%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 20px;
+}
+
+#gameheading3 {
+    position: absolute;
+    top: 200%;
+    left: 62%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 20px;
+}
+
+#gameheading4 {
+    position: absolute;
+    top: 200%;
+    left: 82%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 20px;
+}
+
+#gamecontent1 {
+    position: absolute;
+    top: 215%;
+    left: 14%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+#gamecontent2 {
+    position: absolute;
+    top: 215%;
+    left: 35.5%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+#gamecontent3 {
+    position: absolute;
+    top: 215%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+#gamecontent4 {
+    position: absolute;
+    top: 215%;
+    left: 80.5%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+#gamecomment1 {
+    position: absolute;
+    top: 225%;
+    left: 9%;
+    transform: translate(-50%, -50%);
+    color: gray;
+}
+
+#gamecomment2 {
+    position: absolute;
+    top: 225%;
+    left: 32%;
+    transform: translate(-50%, -50%);
+    color: gray;
+}
+
+#gamecomment3 {
+    position: absolute;
+    top: 225%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    color: gray;
+}
+
+#gamecomment4 {
+    position: absolute;
+    top: 225%;
+    left: 77.5%;
+    transform: translate(-50%, -50%);
+    color: gray;
+}
+
+#back-image {
+    width: 100%;
+    height: 120%;
+}
+
+.upcoming-head {
+    position: absolute;
+    top: 260%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+    color: white;
+    white-space: nowrap;
+    /* Prevent line breaks */
+    overflow: visible;
+    /* Hide overflow content if needed */
+    text-overflow: ellipsis;
+}
+
+#upcoming-logo {
+    background-color: darkviolet;
+    text-align: center;
+    margin-left: 70%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+#upcoming-heading {
+    margin-left: 35%;
+    font-size: 30px;
+}
+
+.image-container {
+    position: absolute;
+    top: 300%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    height: 30%;
+    width: 30%;
+    border-radius: 20px;
+}
+
+.image-container img {
+    width: 100%;
+    height: 150px;
+    display: block;
+}
+
+.image-container2 {
+
+    position: absolute;
+    top: 300%;
+    left: 49.3%;
+    transform: translate(-50%, -50%);
+    height: 30%;
+    width: 30%;
+    border-radius: 20px;
+}
+
+.image-container2 img {
+    width: 100%;
+    height: 150px;
+    display: block;
+}
+
+.image-container3 {
+
+    position: absolute;
+    top: 300%;
+    left: 79%;
+    transform: translate(-50%, -50%);
+    height: 30%;
+    width: 30%;
+    border-radius: 20px;
+}
+
+.image-container3 img {
+    width: 100%;
+    height: 150px;
+    display: block;
+}
+
+.white-box {
+    position: absolute;
+    top: 75%;
+    left: 0;
+    width: 100%;
+    height: 150%;
+    background-color: white;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.box-content {
+    /* Set text color */
+    font-size: 18px;
+    /* Set font size */
+    line-height: 1.5;
+    /* Set line height */
+    /* Add additional styles as needed */
+}
+
+
+
+.policy {
+    padding-left: 5%;
+}
+
+.footerFeature {
+    padding-left: 40%;
+}
+

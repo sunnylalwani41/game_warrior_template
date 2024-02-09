@@ -25,6 +25,7 @@
 			<link rel="stylesheet" href="css/ids.css" />
 			<!-- livechat style -->
 			<link rel="stylesheet" href="css/livechat.css" />
+			<link rel="stylesheet" href="css/responsive.css"/>
 			<!-- Font Awesome kit -->
 			<script src="https://kit.fontawesome.com/e99a9eb445.js" crossorigin="anonymous"></script>
 
@@ -65,34 +66,74 @@
 								<ul>
 									<li><a href="/">Home</a></li>
 									<li><a href="review">Games</a></li>
-									<li><a href="ids">Create Id and My Ids</a></li>
+									<li><a href="fetchIdDetails">Create Id and My Ids</a></li>
 									<li><a href="contact">Contact</a></li>
+									<div class="hideItem">
+										<c:choose>
+											<c:when test="${not empty userId}">
+												<li>
+													<a href="fetchProfile">
+														<i class="fa-solid fa-user"></i>
+														Profile
+													</a>
+												</li>
+												<li>
+													<i class="fa-solid fa-wallet"> : ${balance}</i>
+												</li>
+												<li>
+													<a href="logout">
+														<i class="fa-solid fa-arrow-right-from-bracket"></i>
+														Logout
+													</a>
+												</li>
+											</c:when>
+											<c:otherwise>
+												<li>
+													<a href="login">Login</a>
+												</li>
+												<li>	
+													<a href="registration">Register</a>
+												</li>
+											</c:otherwise>
+											</c:choose>
+										</div>
 								</ul>
 							</div>
 
 							<div class="personaldetails" style="padding-right: 1px; padding-top: 5px; display: flex;">
 								<ul>
-									<li>
-										<a href="fetchProfile">
-											<i class="fa-solid fa-user"></i>
-											Profile
-										</a>
-									</li>
-									<li>
-										<i class="fa-solid fa-wallet"> : ${balance}</i>
-									</li>
-									<li>
-										<a href="logout">
-											<i class="fa-solid fa-arrow-right-from-bracket"></i>
-											Logout
-										</a>
-									</li>
+									<c:choose>
+
+										<c:when test="${not empty userId}">
+											<li>
+												<a href="fetchProfile">
+													<i class="fa-solid fa-user"></i>
+													Profile
+												</a>
+											</li>
+											<li>
+												<i class="fa-solid fa-wallet"> : ${balance}</i>
+											</li>
+											<li>
+												<a href="logout">
+													<i class="fa-solid fa-arrow-right-from-bracket"></i>
+													Logout
+												</a>
+											</li>
+										</c:when>
+										<c:otherwise>
+											<div class="user-panel" style="color: black;">
+												<a href="login" style="color: black;">Login</a> / <a href="registration" style="color: black;">Register</a>
+											</div>
+										</c:otherwise>
+									</c:choose>
 								</ul>
 							</div>
 						</div>
 					</nav>
 				</div>
 			</header>
+			
 			<div id="create_container">
 				<!-- Header section end -->
 				<img id="logo_image" src="${requestScope.game.logo }" alt="${requestScope.game.websiteName}" />
@@ -151,6 +192,7 @@
 					</p>
 				</div>
 			</footer>
+			
 			<!-- Footer section end -->
 
 

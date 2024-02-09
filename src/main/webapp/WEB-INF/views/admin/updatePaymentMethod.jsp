@@ -27,7 +27,7 @@
 			<link rel="stylesheet" href="css/deposit.css">
 			<link rel="stylesheet" href="css/error-container.css"/>
 			<!-- livechat style -->
-			<link rel="stylesheet" href="css/livechat.css" />
+			<link rel="stylesheet" href="css/responsive.css"/>
 			<!-- Font Awesome kit -->
 			<script src="https://kit.fontawesome.com/e99a9eb445.js" crossorigin="anonymous"></script>
 		</head>
@@ -75,7 +75,7 @@
 			</header>
 			<!-- Header section end -->
 
-			<!-- Live chat -->
+	
 
 			<c:if test="${not empty errorMessage}">
 					<div class="errorContainer">${errorMessage}</div>
@@ -139,20 +139,13 @@
 			<footer class="footer-section">
 				<div class="container">
 					<ul class="footer-menu">
-						<li><a href="/">Home</a></li>
-						<li><a href="review">Games</a></li>
-						<li><a href="contact">Contact</a></li>
+						<li><a href="adminDashboard">Dashboard</a></li>
+						<li><a href="fetchDepositRequest">Deposit Request</a></li>
+						<li><a href="fetchCreateId">Create Id Request</a></li>
+						<li><a href="fetchGames">Update Game website</a></li>
+						<li><a href="fetchAllUpi">Payment method updation</a></li>
+						<li><a href="adminLogout">Logout</a></li>
 					</ul>
-					<a href="termsandcondition">
-						<i class="fa-solid fa-file-invoice"></i>
-						Terms and condition
-					</a>
-					<a href="notification">
-						<i class="fa-solid fa-bell"></i>
-						Notification
-					</a>
-					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-					</p>
 				</div>
 			</footer>
 			<!-- Footer section end -->

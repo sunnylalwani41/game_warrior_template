@@ -25,12 +25,7 @@
 			<link rel="stylesheet" href="css/deposit.css">
 			<link rel="stylesheet" href="css/error-container.css" />
 			<link rel="stylesheet" href="css/empty.css">
-
-
-			<!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+			<link rel="stylesheet" href="css/responsive.css"/>
 
 		</head>
 
@@ -56,27 +51,88 @@
 			</c:if>
 					
 			<!-- Header section -->
-			<header class="header-section" style="padding: 10px;">
+			<header class="header-section">
 				<div class="container">
 					<!-- logo -->
 					<a class="site-logo" href="/">
 						<img src="img/logo.png" alt="">
 					</a>
 
-					<div class="user-panel">
-						<a href="profile">Profile</a>
-					</div>
 					<!-- responsive -->
 					<div class="nav-switch">
 						<i class="fa fa-bars"></i>
 					</div>
 					<!-- site menu -->
 					<nav class="main-menu">
-						<ul>
-							<li><a href="/">Home</a></li>
-							<li><a href="review">Games</a></li>
-							<li><a href="contact">Contact</a></li>
-						</ul>
+						<div class="details" style="display: flex; justify-content: space-between;">
+							<div class="homedetails" style="float:none;">
+								<ul>
+									<li><a href="/">Home</a></li>
+									<li><a href="review">Games</a></li>
+									<li><a href="fetchIdDetails">Create Id and My Ids</a></li>
+									<li><a href="contact">Contact</a></li>
+									<div class="hideItem">
+										<c:choose>
+											<c:when test="${not empty userId}">
+												<li>
+													<a href="fetchProfile">
+														<i class="fa-solid fa-user"></i>
+														Profile
+													</a>
+												</li>
+												<li>
+													<i class="fa-solid fa-wallet"> : ${balance}</i>
+												</li>
+												<li>
+													<a href="logout">
+														<i class="fa-solid fa-arrow-right-from-bracket"></i>
+														Logout
+													</a>
+												</li>
+											</c:when>
+											<c:otherwise>
+												<li>
+													<a href="login">Login</a>
+												</li>
+												<li>	
+													<a href="registration">Register</a>
+												</li>
+											</c:otherwise>
+											</c:choose>
+										</div>
+								</ul>
+							</div>
+
+							<div class="personaldetails" style="padding-right: 1px; padding-top: 5px; display: flex;">
+								<ul>
+									<c:choose>
+
+										<c:when test="${not empty userId}">
+											<li>
+												<a href="fetchProfile">
+													<i class="fa-solid fa-user"></i>
+													Profile
+												</a>
+											</li>
+											<li>
+												<i class="fa-solid fa-wallet"> : ${balance}</i>
+											</li>
+											<li>
+												<a href="logout">
+													<i class="fa-solid fa-arrow-right-from-bracket"></i>
+													Logout
+												</a>
+											</li>
+										</c:when>
+										<c:otherwise>
+											<div class="user-panel" style="color: black;">
+												<a href="login" style="color: black;">Login</a> / <a href="registration" style="color: black;">Register</a>
+											</div>
+										</c:otherwise>
+									</c:choose>
+								</ul>
+							</div>
+						</div>
 					</nav>
 				</div>
 			</header>
@@ -143,13 +199,23 @@
 			<!-- Hero section end -->
 
 			<!-- Footer section -->
-			<footer class="footer-section" style="padding: 10px;">
+			<footer class="footer-section">
 				<div class="container">
 					<ul class="footer-menu">
 						<li><a href="/">Home</a></li>
 						<li><a href="review">Games</a></li>
 						<li><a href="contact">Contact</a></li>
 					</ul>
+					<a href="termsandcondition">
+						<i class="fa-solid fa-file-invoice"></i>
+						Terms and condition
+					</a>
+					<a href="notification">
+						<i class="fa-solid fa-bell"></i>
+						Notification
+					</a>
+					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+					</p>
 				</div>
 			</footer>
 			<!-- Footer section end -->

@@ -62,7 +62,7 @@ public class UserServiceImpl implements UserService{
 		
 		user.setOtp(otp);
 		user.setTimestamp(LocalDateTime.now());
-		notification.setUser(user);
+		notification.setUserId(user.getId());
         notification.setSubject("Validation Otp");
         notification.setMessage("OTP has been sent to email "+user.getEmail());
         

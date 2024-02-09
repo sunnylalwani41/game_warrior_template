@@ -73,7 +73,7 @@ public class EmailServiceImpl implements EmailService{
         
         notification.setMessage(message);
         notification.setSubject(subject);
-        notification.setUser(user);
+        notification.setUserId(user.getId());
         user.getNotifications().add(notification);
         
         sendEmail(user.getEmail(), subject, message);
@@ -88,7 +88,7 @@ public class EmailServiceImpl implements EmailService{
         
         notification.setMessage(message);
         notification.setSubject(subject);
-        notification.setUser(user);
+        notification.setUserId(user.getId());
         user.getNotifications().add(notification);
         
         sendEmail(user.getEmail(), subject, message);

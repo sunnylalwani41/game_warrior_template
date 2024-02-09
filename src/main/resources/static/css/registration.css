@@ -1,0 +1,45 @@
+.register-box {
+    background: rgba(0, 0, 0, 0.7); /* Black background with 70% opacity */
+    color: white; /* White text color */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    width: 400px;
+    margin-top: 8%;
+    margin-left: 30%;
+ }
+ 
+ .register-head {
+   color: white; /* White text color */
+   font-size: 40px;
+   text-align: center;
+ }
+ 
+ input {
+   width: 100%;
+   padding: 10px;
+   margin: 8px 0;
+   box-sizing: border-box;
+ }
+ 
+ button {
+   width: 100%;
+   padding: 10px;
+   background-color: #4caf50; /* Green background color */
+   color: white;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+ }
+ 
+ button:hover {
+   background-color: #45a049; /* Darker green on hover */
+ }
+ 
+ .pageData{
+ 	background-image: url("https://media.istockphoto.com/id/1334436084/photo/top-down-view-of-colorful-illuminated-gaming-accessories-laying-on-table.jpg?s=612x612&w=0&k=20&c=E9xnbAZoBS5LlUX0q-zxT_3m6gEZpyB2k51_U4LLMNs=");
+ 	background-repeat: no-repeat;
+ 	background-size: cover;
+ 	width: 100%;
+ 	height: 100vh;
+ }

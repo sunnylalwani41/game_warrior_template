@@ -38,23 +38,29 @@ public class AuthenticationController {
 
     @PostMapping("/sendAuthentication")
     public void sendEmailForAuthenticationHandler
-            (@RequestParam String firstName, @RequestParam String lastName, @RequestParam String email, @RequestParam String password, HttpSession session, HttpServletRequest
+            (@RequestParam String firstName, @RequestParam String lastName, @RequestParam String email, @RequestParam String mobile, @RequestParam String password, HttpSession session, HttpServletRequest
             	request, HttpServletResponse response) throws MessagingException, UserException, NoSuchAlgorithmException, IOException {
         User user = new User();
         
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setEmail(email);
+        user.setMobile(mobile);
         user.setVerify(false);
         user.setPassword(securityConfig.encryptPassword(password));
 
         try {
-        	authenticationService.saveUserDetail(user, session);
+        	user = authenticationService.saveUserDetail(user, session);
         	
+        	System.out.println("Hello");
+        	session.setAttribute("email", user.getEmail());
+            session.setAttribute("message", "OTP has been sent to email "+user.getEmail());
+            
         	response.sendRedirect("otp");
         }
         catch(Exception exception) {
         	session.setAttribute("errorMessage", exception.getMessage());
+        	
         	response.sendRedirect("login");
         }
     }

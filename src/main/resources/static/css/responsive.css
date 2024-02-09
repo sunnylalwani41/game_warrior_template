@@ -1,0 +1,39 @@
+@media only screen and (max-width: 247px){
+	.site-logo{
+		width: 95px
+	}
+}
+
+@media only screen and (max-width: 411px){
+	.register-box {
+		width: 100%;
+	}
+	.text-overlay1{
+		width:95%;
+	}
+}
+
+@media only screen and (max-width: 768px){
+	.register-box {
+		margin-top: 8%;
+		margin-left: 11%;
+	}
+	
+	.text-overlay1{
+		left: 40%;
+		top: 40%;
+	}
+}
+
+
+@media only screen and (max-width: 820px){
+	.text-overlay1{
+		top: 40%;
+	}
+}
+
+@media only screen and (max-width: 400px){
+    .homedetails{
+        margin-right: 0px;
+    }
+}

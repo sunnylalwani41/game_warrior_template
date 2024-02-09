@@ -255,9 +255,6 @@ ol {
 	overflow: hidden;
 	padding: 18px 0;
 	border-bottom: 1px solid #ffb320;
-	position: sticky;
-	top: 0px;
-	z-index: 1000;
 }
 
 .site-logo {
@@ -272,6 +269,7 @@ ol {
 	background: #ffb320;
 	padding: 8px 28px;
 	border-radius: 30px;
+	display: flex;
 }
 
 .user-panel a {
