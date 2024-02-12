@@ -11,4 +11,6 @@ public interface MyIdService {
 	public List<MyId> fetchAllCreateIdRequest(Boolean status);
 
 	public MyId fetchMyIdById(Integer id) throws MyIdException;
+	
+	public List<MyId> fetchAllMyIdByPerticularUserId(Integer userId);
 }

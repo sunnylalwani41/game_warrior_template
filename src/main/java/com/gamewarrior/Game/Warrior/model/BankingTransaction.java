@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Transaction {
+public class BankingTransaction {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "transactionGenerator")
     @SequenceGenerator(name = "transactionGenerator", sequenceName = "transactionGen", allocationSize = 1, initialValue = 50000)

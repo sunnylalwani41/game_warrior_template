@@ -12,6 +12,7 @@ import com.gamewarrior.Game.Warrior.dao.GameRepo;
 import com.gamewarrior.Game.Warrior.dao.MyIdRepo;
 import com.gamewarrior.Game.Warrior.exception.GameException;
 import com.gamewarrior.Game.Warrior.exception.UserException;
+import com.gamewarrior.Game.Warrior.exception.WalletException;
 import com.gamewarrior.Game.Warrior.model.AccountRequest;
 import com.gamewarrior.Game.Warrior.model.Game;
 import com.gamewarrior.Game.Warrior.model.MyId;
@@ -26,17 +27,15 @@ public class GameServiceImpl implements GameService{
 	@Autowired
 	private GameRepo gameRepo;
 	@Autowired
-	private MyIdRepo myIdRepo;
-	@Autowired
-	private UserService userService;
-	@Autowired
 	private MyIdService myIdService;
-	@Autowired
-	private NotificationService notificationService;
 	@Autowired
 	private AccountRequestService accountRequestService;
 	@Autowired
 	private EmailService emailService;
+	@Autowired
+	private UserService userService;
+	@Autowired
+	private WalletService walletService;
 
 	@Override
 	public List<Game> fetchAllGames() {
@@ -50,8 +49,7 @@ public class GameServiceImpl implements GameService{
 		if(userId==null) {
 			throw new UserException("Invalid User! please login.");
 		}
-		
-		return myIdRepo.findByUserId(userId);
+		return myIdService.fetchAllMyIdByPerticularUserId(userId);
 	}
 
 	@Override
@@ -60,24 +58,15 @@ public class GameServiceImpl implements GameService{
 	}
 
 	@Override
-	public void createIdRequest(Integer userId, Integer gameId, String username, Integer amount, HttpSession session) throws GameException, UserException, MessagingException {
+	public void createIdRequest(Integer userId, Integer gameId, String username, Double amount, HttpSession session) throws GameException, UserException, MessagingException, WalletException {
 		Game game= fetchGameById(gameId);
 		
 		if(userId==null) {
 			throw new UserException("Invalid User!, please login");
 		}
 		else {
-				User user = userService.fetchProfile(userId);
-				Wallet wallet = user.getWallet();
-				Integer balance = wallet.getBalance();
-				
-				if(amount>=game.getMinimumBet() && amount<=balance) {
-					balance = balance-amount;
-					
-					wallet.setBalance(balance);
-					user.setWallet(wallet);
-					session.setAttribute("balance", balance);
-
+			if(amount>=game.getMinimumBet() && amount<=walletService.totalAmountOfWallet(userId)) {
+				if(walletService.walletAmountDeduction(amount, userId, session, "Create Id amount deducted")) {
 					AccountRequest accountRequest = new AccountRequest();
 					MyId myId = new MyId();
 					
@@ -101,18 +90,23 @@ public class GameServiceImpl implements GameService{
 					myId.setAccountRequestId(accountRequest.getId());
 					
 					myIdService.saveMyId(myId);
-					userService.saveUserDetail(user);
 					
 					String subject = "Your service request number is "+ accountRequest.getId();
 					String message = "Your service request number is "+ accountRequest.getId()+".\nIt will be process within 2 days.";
+					
+					User user = userService.fetchProfile(userId);
 					
 					emailService.sendCustomMessage(user.getEmail(), subject, message, user);
 					
 					//send the message to admin
 				}
 				else {
-					throw new GameException("Invalid Amount, Please enter valid amount");
+					throw new GameException("Something went wrong. Please contact to admin.");
 				}
+			}
+			else {
+				throw new GameException("Invalid Amount, Please enter valid amount");
+			}
 		}	
 	}
 

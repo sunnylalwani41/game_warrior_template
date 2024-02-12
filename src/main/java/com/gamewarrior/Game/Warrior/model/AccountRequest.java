@@ -18,7 +18,7 @@ public class AccountRequest {
 	private Integer id;
 	private Integer userId;
 	private String proposalUsername;
-	private Integer amount;
+	private Double amount;
 	private String website;
 	private String websiteName;
 	private Integer minimumBet;

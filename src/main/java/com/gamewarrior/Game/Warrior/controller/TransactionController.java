@@ -18,13 +18,13 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.gamewarrior.Game.Warrior.exception.TransactionException;
 import com.gamewarrior.Game.Warrior.exception.UserException;
 import com.gamewarrior.Game.Warrior.model.DepositRequest;
-import com.gamewarrior.Game.Warrior.model.Transaction;
+import com.gamewarrior.Game.Warrior.model.BankingTransaction;
 import com.gamewarrior.Game.Warrior.model.UpiDetail;
 import com.gamewarrior.Game.Warrior.model.User;
 import com.gamewarrior.Game.Warrior.model.Wallet;
 import com.gamewarrior.Game.Warrior.service.DepositRequestService;
 import com.gamewarrior.Game.Warrior.service.EmailService;
-import com.gamewarrior.Game.Warrior.service.TransactionService;
+import com.gamewarrior.Game.Warrior.service.WithdrawalTransactionService;
 import com.gamewarrior.Game.Warrior.service.UpiDetailService;
 import com.gamewarrior.Game.Warrior.service.UserService;
 import com.gamewarrior.Game.Warrior.service.WalletService;
@@ -40,7 +40,7 @@ public class TransactionController {
 	@Autowired
 	private UpiDetailService upiDetailService;
 	@Autowired
-    private TransactionService transactionService;
+    private WithdrawalTransactionService transactionService;
 	@Autowired
 	private UserService userService;
 	@Autowired 
@@ -72,13 +72,13 @@ public class TransactionController {
     		@RequestParam Integer amount, HttpServletRequest request, HttpServletResponse response) throws IOException, TransactionException, UserException{
     	HttpSession session = request.getSession();
         Integer userId = (Integer) session.getAttribute("userId");
-        Transaction transaction = new Transaction();
+        BankingTransaction bankingTransaction = new BankingTransaction();
         
-        transaction.setMobile(mobile);
-        transaction.setAccountNumber(accountNumber);
-        transaction.setIfsc(ifsc);
-        transaction.setAccountHolderName(accountHolderName);
-        transaction.setAmount(amount);
+        bankingTransaction.setMobile(mobile);
+        bankingTransaction.setAccountNumber(accountNumber);
+        bankingTransaction.setIfsc(ifsc);
+        bankingTransaction.setAccountHolderName(accountHolderName);
+        bankingTransaction.setAmount(amount);
 
         if(userId==null){
             session.setAttribute("errorMessage", "Invalid User!! Please login.");
@@ -90,16 +90,16 @@ public class TransactionController {
         	Integer balance = user.getWallet().getBalance();
         	
         	if(balance !=null && balance>=amount && amount>=150) {
-	        	transaction.setUserId(userId);
-	        	transactionService.moneyTransfer(transaction);
+	        	bankingTransaction.setUserId(userId);
+	        	transactionService.moneyTransfer(bankingTransaction);
 	        	user.getWallet().setBalance(user.getWallet().getBalance()-amount);
 
 	        	userService.saveUserDetail(user);
-	        	transactionService.saveTransaction(transaction);
+	        	transactionService.saveTransaction(bankingTransaction);
 
 	        	session.setAttribute("balance", user.getWallet().getBalance());
-	        	request.setAttribute("transaction", transaction);
-	        	session.setAttribute("message", "Transaction Successfull");
+	        	request.setAttribute("transaction", bankingTransaction);
+	        	session.setAttribute("message", "BankingTransaction Successfull");
 	        	response.sendRedirect("withdraw");
         	}
         	else {
@@ -123,12 +123,12 @@ public class TransactionController {
     	else {
     		session.setAttribute("passbookDetail", "passbookDetail");
         	
-        	List<Transaction> transactions= transactionService.fetchTransactionHistory(session);
+        	List<BankingTransaction> transactions= transactionService.fetchTransactionHistory(session);
         	if(!transactions.isEmpty()) {
         		session.setAttribute("transactionDetails", transactions);
     		}
         	else {
-        		session.setAttribute("errorMessage", "Transaction not found!");
+        		session.setAttribute("errorMessage", "BankingTransaction not found!");
         	}
         	response.sendRedirect("passbook");
     	}    	
@@ -151,7 +151,7 @@ public class TransactionController {
     			DepositRequest depositRequest = new DepositRequest();
     			UpiDetail upiDetail = upiDetailService.fetchUpiDetailById(selectedUpiId);
     					
-    			session.setAttribute("message", "Transaction successfully done! This request will be processed within 2 days.");
+    			session.setAttribute("message", "BankingTransaction successfully done! This request will be processed within 2 days.");
     			
     			depositRequest.setPath(path);
     			depositRequest.setUserId(userId);
@@ -161,7 +161,7 @@ public class TransactionController {
     			depositRequestService.takeDepositRequest(depositRequest);
     			
     			User user= userService.fetchProfile(userId);
-    			emailService.sendCustomMessage(user.getEmail(), "Deposit Request request has been taken", "Transaction successfully done! This request will be processed within 2 days.", user);
+    			emailService.sendCustomMessage(user.getEmail(), "Deposit Request request has been taken", "BankingTransaction successfully done! This request will be processed within 2 days.", user);
     		}
     		catch(Exception exception) {
     			session.setAttribute("errorMessage", exception.getMessage());
@@ -215,13 +215,16 @@ public class TransactionController {
     		Wallet wallet = user.getWallet();
     		
     		wallet.setBalance(wallet.getBalance()+amount);
+    		
     		user.setWallet(wallet);
+    		
     		depositRequest.setAmount(amount);
     		depositRequest.setStatus(true);
     		depositRequest.setRemark("Approved");
     		
     		userService.saveUserDetail(user);
     		depositRequestService.takeDepositRequest(depositRequest);
+    		
     		session.setAttribute("message", "Successfully updated!");
     		emailService.sendCustomMessage(user.getEmail(), "Approve the deposit request", "Approve", user);
     	}
