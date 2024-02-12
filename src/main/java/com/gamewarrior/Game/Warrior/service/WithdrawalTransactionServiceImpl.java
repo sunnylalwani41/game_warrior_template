@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gamewarrior.Game.Warrior.dao.TransactionRepo;
 import com.gamewarrior.Game.Warrior.exception.TransactionException;
 import com.gamewarrior.Game.Warrior.exception.UserException;
-import com.gamewarrior.Game.Warrior.model.Transaction;
+import com.gamewarrior.Game.Warrior.model.BankingTransaction;
 import com.gamewarrior.Game.Warrior.model.User;
 
 import io.github.classgraph.Resource;
@@ -32,7 +32,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 @Service
-public class TransactionServiceImpl implements TransactionService {
+public class WithdrawalTransactionServiceImpl implements WithdrawalTransactionService {
     @Autowired
     private TransactionRepo transactionRepo;
     @Autowired
@@ -51,20 +51,20 @@ public class TransactionServiceImpl implements TransactionService {
     }
     
     @Override
-    public List<Transaction> fetchTransactionHistory(HttpSession session)  throws TransactionException, UserException{
+    public List<BankingTransaction> fetchTransactionHistory(HttpSession session)  throws TransactionException, UserException{
         Integer userId = (Integer) session.getAttribute("userId");
-        List<Transaction> transactions= transactionRepo.findByUserId(userId);
+        List<BankingTransaction> transactions= transactionRepo.findByUserId(userId);
         
         return transactions;
     }
 
     @Override
-    public Transaction saveTransaction(Transaction transactionDetail)  throws TransactionException, UserException{
+    public BankingTransaction saveTransaction(BankingTransaction transactionDetail)  throws TransactionException, UserException{
         return transactionRepo.save(transactionDetail);
     }
 
 	@Override
-	public Transaction moneyTransfer(Transaction transaction) throws TransactionException, UserException, IOException {
+	public BankingTransaction moneyTransfer(BankingTransaction transaction) throws TransactionException, UserException, IOException {
 		User user = userService.fetchProfile(transaction.getUserId());
 
         String mobile = transaction.getMobile();
@@ -173,7 +173,7 @@ public class TransactionServiceImpl implements TransactionService {
         }
         else{
             System.out.println("failed");
-            throw new TransactionException("Transaction failed");
+            throw new TransactionException("BankingTransaction failed");
         }
 		
 	}

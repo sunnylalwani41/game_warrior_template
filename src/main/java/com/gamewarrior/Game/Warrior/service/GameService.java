@@ -6,6 +6,7 @@ import javax.mail.MessagingException;
 
 import com.gamewarrior.Game.Warrior.exception.GameException;
 import com.gamewarrior.Game.Warrior.exception.UserException;
+import com.gamewarrior.Game.Warrior.exception.WalletException;
 import com.gamewarrior.Game.Warrior.model.Game;
 import com.gamewarrior.Game.Warrior.model.MyId;
 
@@ -18,7 +19,7 @@ public interface GameService {
 	
 	public Game fetchGameById(Integer id)throws GameException;
 	
-	public void createIdRequest(Integer userId, Integer gameId, String username, Integer amount, HttpSession session) throws GameException, UserException, MessagingException;
+	public void createIdRequest(Integer userId, Integer gameId, String username, Double amount, HttpSession session) throws GameException, UserException, MessagingException, WalletException;
 	
 	public void saveGame(Game game);
 	

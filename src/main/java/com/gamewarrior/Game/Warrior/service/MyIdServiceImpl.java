@@ -28,4 +28,9 @@ public class MyIdServiceImpl implements MyIdService{
 		return myIdRepo.findById(id).orElseThrow(()-> new MyIdException("Something went wrong"));
 	}
 
+	@Override
+	public List<MyId> fetchAllMyIdByPerticularUserId(Integer userId) {
+		return myIdRepo.findByUserId(userId);
+	}
+
 }
