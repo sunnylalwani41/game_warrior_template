@@ -26,7 +26,53 @@
 			<link rel="stylesheet" href="css/error-container.css" />
 			<link rel="stylesheet" href="css/empty.css">
 			<link rel="stylesheet" href="css/responsive.css"/>
+			
+			
+			<style>
+			.depositBody {
+				font-family: 'Arial', sans-serif;
+				background-color: #f8f8f8;
+				margin: 0;
+				padding: 0;
+				justify-content: center;
+				align-items: center;
+				height: 75vh;
+			}
 
+			.uploadForm {
+				padding-bottom: 20%;
+			}
+
+			table {
+				width: 80%;
+				border-collapse: collapse;
+				margin: 40px 130px;
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+				background-color: #fff;
+				border-radius: 8px;
+				overflow: hidden;
+			}
+
+			th,
+			td {
+				padding: 15px;
+				text-align: left;
+				border-bottom: 1px solid #ddd;
+			}
+
+			th {
+				background-color: #3498db;
+				color: #fff;
+			}
+
+			tr:nth-child(even) {
+				background-color: #f2f2f2;
+			}
+
+			tr:hover {
+				background-color: #e0e0e0;
+			}
+		</style>
 		</head>
 
 		<body class="body">
@@ -146,34 +192,39 @@
 				<% session.removeAttribute("message"); %>
 			</c:if>
 			<!-- Hero section -->
-			<div class="deposit_entry" style="flex: 1; padding: 140px;">
-				<c:choose>
-					<c:when test="${not empty upiDetails}">
-						<div class="table_heading">
-							<p id="ha">Mode</p>
-							<p id="hb">Display Name</p>
-							<p id="hc">Upi Details</p>
-						</div>
-
-						<hr style="border: 1px solid rgb(75, 31, 31);">
-						<div>
+			<div class="depositBody">
+			<c:choose>
+				<c:when test="${not empty upiDetails}">
+					<table>
+						<thead>
+							<tr>
+								<th>Mode</th>
+								<th>Display Name</th>
+								<th>Upi Detail</th>
+							</tr>
+						</thead>
+						<tbody>
 							<c:forEach items="${upiDetails}" var="upi">
-								<label class="data_entry">
-									<input type="radio" class="upi" name="upi" value="${upi.id}"
-										onclick="showFileInput()">
-									<div style="display: flex;">
+								<tr>
+									<td>
+										<input type="radio" class="upi" name="upi" value="${upi.id}"
+											onclick="showFileInput()">
+									</td>
+									<td>
 										<img class="upi_image" src="${upi.img}" alt="Upi Logo" />
-										<p>${upi.displayName}</p>
-									</div>
-									<p>${upi.upiId}</p>
-								</label>
+										${upi.displayName}
+									</td>
+									<td>${upi.upiId}</td>
+								</tr>
 							</c:forEach>
-						</div>
+						</tbody>
+					</table>
+					<div>
 						<form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
 							<input type="file" id="fileInput" name="file" required>
 							<input type="hidden" id="selectedUpiId" name="selectedUpiId" value="">
 							<br>
-							<input type="submit" value="Upload Payment Screenshot" name="upload" id="upload">
+							<input type="submit" value="Upload Payment Screenshot" name="upload" id="upload"> <br> <br>
 							<script>
 								function showFileInput() {
 									var fileInput = document.getElementById('fileInput');
@@ -181,21 +232,20 @@
 
 									var upload = document.getElementById('upload');
 									upload.style.display = 'block';
-									
+
 									var selectedUpiId = document.querySelector('input[name="upi"]:checked').value;
-						            document.getElementById('selectedUpiId').value = selectedUpiId;
+									document.getElementById('selectedUpiId').value = selectedUpiId;
 								}
 							</script>
 						</form>
-
-					</c:when>
-					<c:otherwise>
-						<img src="https://i.pinimg.com/originals/f3/8b/24/f38b24a996391f4a0d78819f028c7926.gif"
-							alt="Not found or something went wrong" class="emptyBox" />
-					</c:otherwise>
-				</c:choose>
-				<% session.removeAttribute("fetchUpiDetails"); %>
-			</div>
+					</div>
+				</c:when>
+				<c:otherwise>
+				<img class="blankpage" src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-2506.jpg?w=740&t=st=1705560867~exp=1705561467~hmac=5dc60af5ded74c5bdc9f93cf0948faa6be2f2aea0070995a7a3867d8ffc515ed"
+					alt="Not found or something went wrong" class="emptyBox" />
+			</c:otherwise>
+			</c:choose>
+		</div>
 			<!-- Hero section end -->
 
 			<!-- Footer section -->

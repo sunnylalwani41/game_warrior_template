@@ -27,6 +27,7 @@
 			<link rel="stylesheet" href="css/animate.css" />
 			<link rel="stylesheet" href="css/login.css" />
 			<link rel="stylesheet" href="css/admin-login.css">
+			<link rel="stylesheet" href="css/error-container.css">
 			<!-- livechat style -->
 			<link rel="stylesheet" href="css/responsive.css"/>
 			<!-- Font Awesome kit -->
@@ -85,40 +86,48 @@
 
 			<form action="updateGame" method="post" class="updateGameWebsite">
 				<label for="webName">Enter Website Name:</label>
-				<input type="text" name="webName" class="updateinput" placeholder="Enter the Website name" required />
+				<input type="text" name="websiteName" class="updateinput" placeholder="Enter the Website name"
+					required />
 				<label for="webLink">Enter Website Link:</label>
-				<input type="text" name="webLink" class="updateinput" placeholder="Enter the Website link" required />
+				<input type="text" name="website" class="updateinput" placeholder="Enter the Website link" required />
 				<label for="webLogo">Enter Website Logo:</label>
-				<input type="text" name="webLogo" class="updateinput" placeholder="Enter the Website logo" required />
+				<input type="text" name="logo" class="updateinput" placeholder="Enter the Website logo" required />
 				<label for="minBet">Enter Minimum Bet:</label>
-				<input type="number" name="minBet" class="updateinput" placeholder="Enter the Minimum Bet" required />
+				<input type="number" name="minimumBet" class="updateinput" placeholder="Enter the Minimum Bet"
+					required />
 				<label for="minWithdraw">Enter Minimum Withdraw:</label>
-				<input type="number" name="minWithdraw" class="updateinput" placeholder="Enter the Minimum Withdrawal" required />
+				<input type="number" name="minimumWithdrawal" class="updateinput"
+					placeholder="Enter the Minimum Withdrawal" required />
 				<label for="minMainBalance">Enter Minimum Maintaining Balance:</label>
-				<input type="number" name="minMainBalance" class="updateinput" placeholder="Enter the Minimum Maintaining Balance" required />
+				<input type="number" name="minimumMaintainingBalance" class="updateinput"
+					placeholder="Enter the Minimum Maintaining Balance" required />
 				<label for="maxWithdraw">Enter Maximum Withdraw:</label>
-				<input type="number" name="maxWithdraw" class="updateinput" placeholder="Enter the Maximum Withrawal" required />
+				<input type="number" name="maximumWithdrawal" class="updateinput"
+					placeholder="Enter the Maximum Withrawal" required />
 				<button id="addgame" onclick="addGame(event)">Add Game name</button>
-				<div id = updateinput class="addGame-container"></div>
-				<input type="submit" value="Submit" />
+				<div id=updateinput class="addGame-container"></div>
+				<input id="submit" type="submit" value="Submit" />
+				<br> <br>
 			</form>
 
 			<div class="container-createId">
-				<c:forEach items="${games}" var="game">
-					<table class="table">
-						<thead>
-							<tr>
-								<th>Website logo</th>
-								<th>Website Name</th>
-								<th>Website</th>
-								<th>Action</th>
-								<th>Minimum Bet</th>
-								<th>Games Name</th>
-							</tr>
-						</thead>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Website logo</th>
+							<th>Website Name</th>
+							<th>Website</th>
+							<th>Action</th>
+							<th>Minimum Bet</th>
+							<th>Games Name</th>
+						</tr>
+					</thead>
+					<c:forEach items="${games}" var="game">
+
 						<tbody>
 							<tr>
-								<td style="width: 10%;"><img class="gamelogo" src="${game.logo}" alt="${game.websiteName}" /></td>
+								<td style="width: 10%;"><img class="gamelogo" src="${game.logo}"
+										alt="${game.websiteName}" /></td>
 								<td>${game.websiteName}</td>
 								<td>${game.website}</td>
 								<td>
@@ -130,13 +139,13 @@
 								<td>${game.minimumBet}</td>
 								<td>
 									<c:forEach items="${game.gameName}" var="gameVarient">
-										<p>${gameVarient}</p>
+										${gameVarient},
 									</c:forEach>
 								</td>
 							</tr>
 						</tbody>
-					</table>
-				</c:forEach>
+					</c:forEach>
+				</table>
 			</div>
 
 

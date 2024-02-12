@@ -52,17 +52,14 @@
 }
 .blankpage {
 	width: 30%;
-	height: 50%;
+	height: 70%;
 	margin-left: 35%;
 	margin-top: 5%;
-	margin-bottom: 1%;
+	margin-bottom: 10%;
 	text-align: center;
 }
 .IdTable {
 	margin-top: 10%;
 	margin-left:10%;
 	margin-bottom: 18%;
-}
-table, thead, tbody, tr, td {
-	border: solid red;
 }

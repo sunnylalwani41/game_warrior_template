@@ -97,6 +97,7 @@ public class AuthenticationServiceImpl implements AuthenticationService{
     @Override
     public User matchUserCrediential(String email, String password, HttpSession session) throws UserException, NoSuchAlgorithmException {
         User user = userRepo.findByEmail(email);
+        System.out.println(user);
         
         if(user==null || !user.isVerify())
             throw new UserException("Invalid User");

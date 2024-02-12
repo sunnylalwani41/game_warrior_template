@@ -1,6 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
 		<!DOCTYPE html>
 		<html>
 
@@ -30,6 +29,74 @@
 			<link rel="stylesheet" href="css/responsive.css"/>
 			<!-- Font Awesome kit -->
 			<script src="https://kit.fontawesome.com/e99a9eb445.js" crossorigin="anonymous"></script>
+
+
+			<style>
+				.mainBox {
+					width: 900px;
+					padding: 20px;
+					background-color: #e0e0e0;
+					transition: height 6.5s ease;
+					/* Smooth transition */
+					overflow: hidden;
+					position: relative;
+				}
+
+				.contain {
+					display: flex;
+					justify-content: space-between;
+				}
+
+				.contains {
+					display: flex;
+				}
+
+				.arrow {
+					bottom: 10px;
+					right: 10px;
+					cursor: pointer;
+				}
+
+				.dataBox {
+					display: none;
+					margin-top: 10px;
+					padding: 10px;
+					background-color: #f5f5f5;
+					transition: height 6.5s ease;
+					/* Smooth transition */
+				}
+
+				.contain-heading {
+					width: 80%;
+					margin: 0 auto;
+					overflow: hidden;
+					/* Clearfix to contain floated elements */
+				}
+
+				.left-align {
+					float: left;
+				}
+
+				.right-align {
+					float: right;
+				}
+
+				.contain-data {
+					display: flex;
+					justify-content: space-between;
+					padding: 2% 10% 0% 10%;
+					margin: 0 auto;
+				}
+
+				.left-paragraph,
+				.right-paragraph {
+					width: 48%;
+				}
+
+				.right-paragraph {
+					text-align: right;
+				}
+			</style>
 
 			<script>
 				// Function to show content for Button 1
@@ -221,35 +288,64 @@
 						</c:forEach>
 					</div>
 				</div>
+				<% int index=0; %>
 				<div id="content2" class="content">
-					<div class="container-createId">
-						<c:forEach items="${games}" var="game">
-							<div class="card-createId">
-								<div id="create_container">
-									<img id="logo_image" src="${requestScope.game.logo }"
-										alt="${requestScope.game.websiteName}" />
-									<p>${game.websiteName}</p>
-									<p style="margin-top: -1.5%;">${game.website}</p>
+					<c:forEach items="${games}" var="game">
+						<div class="mainBox" id="mainBox">
+							<div class="contain">
+								<div class="contains">
+									<img style="height: 50px;" id="logo_image2" src="${game.logo }"
+										alt="${game.websiteName}" />
+									<div style="margin-left: 2%;">
+										${game.websiteName} <br>
+										${game.website}
+									</div>
 								</div>
 								<div>
 									<form action="fetchGame" method="post" id="create_button">
-										<button>Create ID</button>
+										<button style="border-radius: 10%;">Create ID</button>
 										<input type="hidden" name="gameId" value="${game.id}">
-										<div class="arrow-createId"><i class="fa-solid fa-angle-down"></i></div>
+										<div class="arrow" onclick="toggleBox(<%= index %>)"><i class="fa-solid fa-angle-down"></i>
+										</div>
+										<% index++;%>
 									</form>
 								</div>
 							</div>
-							<div class="miniCard-createId">
-								<p>Min Bet</p>
-								<p><i class="fa-solid fa-coins"></i></p>
-								<c:forEach items="${game.gameName}" var="gameVarient">
-									<p>${gameVarient}</p>
-									<p>100</p>
-								</c:forEach>
+							<div class="dataBox" id="dataBox">
+								<div>
+									<div class="contain-heading">
+										<h6 class="left-align">Min Bet</h6>
+										<h6 class="right-align"><i class="fa-solid fa-coins"></i></h6>
+									</div>
+									<c:forEach items="${game.gameName}" var="gameVarient">
+										<div class="contain-data">
+											<p class="left-paragraph">${gameVarient}</p>
+											<p class="right-paragraph">100</p>
+										</div>
+									</c:forEach>
+
+								</div>
 							</div>
-						</c:forEach>
-					</div>
+						</div>
+					</c:forEach>
 				</div>
+
+					<script>
+						function toggleBox(index) {
+							console.log(index);
+							var mainBox = document.getElementsByClassName("mainBox")[index];
+							var dataBox = document.getElementsByClassName("dataBox")[index];
+
+							if (dataBox.style.display === "none" || dataBox.style.display === "") {
+								// mainBox.style.height = "200px"; /* Adjust the height as needed */
+								dataBox.style.display = "block";
+							} else {
+								mainBox.style.height = "auto"; /* Reset to auto height */
+								dataBox.style.display = "none";
+							}
+						}
+
+					</script>
 			</section>
 
 			<!-- Footer section -->
@@ -269,7 +365,7 @@
 						Notification
 					</a>
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-					</p>
+					</>
 				</div>
 			</footer>
 			<!-- Footer section end -->
