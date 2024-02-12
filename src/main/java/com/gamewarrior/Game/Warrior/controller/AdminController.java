@@ -112,7 +112,7 @@ public class AdminController {
 	@PostMapping("/updateGame")
 	public void updateGameLinkHandler(@RequestParam String websiteName, @RequestParam String website, @RequestParam String logo, 
 			@RequestParam Integer minimumBet, @RequestParam Integer minimumWithdrawal, @RequestParam Integer minimumMaintainingBalance,
-			@RequestParam Integer maximumWithrawal, HttpServletRequest request, HttpServletResponse response) throws IOException {
+			@RequestParam Integer maximumWithdrawal, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String[] games = request.getParameterValues("game");
 		Game game = new Game();
 		HttpSession session = request.getSession();
@@ -123,7 +123,7 @@ public class AdminController {
 			}
 		}
 		game.setLogo(logo);
-		game.setMaximumWithrawal(maximumWithrawal);
+		game.setMaximumWithrawal(maximumWithdrawal);
 		game.setMinimumBet(minimumBet);
 		game.setMinimumMaintainingBalance(minimumMaintainingBalance);
 		game.setMinimumWithdrawal(minimumWithdrawal);

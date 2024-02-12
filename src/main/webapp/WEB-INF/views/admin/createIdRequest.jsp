@@ -80,52 +80,53 @@
 
 			<c:choose>
 				<c:when test="${not empty createIdRequests}">
-					<c:forEach items="${createIdRequests}" var="idRequest">
-						<table class="IdTable">
-							<thead>
-								<tr>
-									<td>Website</td>
-									<td>Website Name</td>
-									<td>Require Username</td>
-									<td>Generated username</td>
-									<td>Generated password</td>
-									<td>Deposit Amount</td>
-									<td>Submit</td>
-								</tr>
-							</thead>
+					<table class="IdTable">
+						<thead>
+							<tr>
+								<td>Website</td>
+								<td>Website Name</td>
+								<td>Require Username</td>
+								<td>Generated username</td>
+								<td>Generated password</td>
+								<td>Deposit Amount</td>
+								<td>Submit</td>
+							</tr>
+						</thead>
+						<c:forEach items="${createIdRequests}" var="idRequest">
 							<tbody>
 								<tr>
 									<td>${idRequest.website}</td>
 									<td>
 										<div>
-											<img style="height: 40px; width: 50px;" src="${idRequest.logo }" alt="${idRequest.websiteName }" />
+											<img style="height: 40px; width: 50px;" src="${idRequest.logo }"
+												alt="${idRequest.websiteName }" />
 											${idRequest.websiteName}
 										</div>
 									</td>
 									<td>${idRequest.expectedUsername}</td>
 									<form action="submitUsernameAndPassword" method="post">
 										<td>
-											<input type="text" placeholder="Enter the username" name="username" />
+											<input style="background-color: lightgreen;" type="text" placeholder="Enter the username" name="username" />
 										</td>
 										<td>
-											<input type="text" placeholder="Enter the password" name="password" />
+											<input style="background-color: lightgreen;" type="text" placeholder="Enter the password" name="password" />
 											<input type="hidden" value="${idRequest.id}" name="id" />
 										</td>
 										<td>
 											${idRequest.amount}
 										</td>
 										<td>
-											<input type="submit" value="Submit" />
+											<input style="background-color: red;" type="submit" value="Submit" />
 										</td>
 									</form>
 								</tr>
 							</tbody>
-						</table>
-					</c:forEach>
+						</c:forEach>
+					</table>
 				</c:when>
 				<c:otherwise>
 					<img class="blankpage"
-						src="https://i.pinimg.com/originals/f3/8b/24/f38b24a996391f4a0d78819f028c7926.gif"
+						src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-2506.jpg?w=740&t=st=1705560867~exp=1705561467~hmac=5dc60af5ded74c5bdc9f93cf0948faa6be2f2aea0070995a7a3867d8ffc515ed"
 						alt="Not found or something went wrong" class="empty" />
 					<p style="text-align: center;">Request(s) not found!</p>
 				</c:otherwise>

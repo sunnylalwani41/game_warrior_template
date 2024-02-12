@@ -5,6 +5,7 @@ let addGame =(event)=>{
 
 	let input= document.createElement("input");
 	input.setAttribute("name", "game");
+	input.setAttribute("class", "gameName");
 	input.setAttribute("type", "text");
 	input.setAttribute("placeholder", "Enter the Game");
 	addGame_container.append(input);
