@@ -21,16 +21,6 @@ public class EndPointMappingClass {
 		return "profile";
 	}
 	
-	@GetMapping("/categories")
-	public String categories() {
-		return "categories";
-	}
-	
-	@GetMapping("/community")
-	public String community() {
-		return "community";
-	}
-	
 	@GetMapping("/contact")
 	public String contact() {
 		return "contact";
@@ -39,11 +29,6 @@ public class EndPointMappingClass {
 	@GetMapping("/forgotpswd")
 	public String forgotpswd() {
 		return "forgotpswd";
-	}
-	
-	@GetMapping("/home")
-	public String home() {
-		return "home";
 	}
 	
 	@GetMapping("/otp")

@@ -1,6 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-	<p%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 		<!DOCTYPE html>
 		<html>
 
@@ -27,6 +26,7 @@
 			<link rel="stylesheet" href="css/ids.css">
 			<!-- livechat style -->
 			<link rel="stylesheet" href="css/livechat.css" />
+			<link rel="stylesheet" href="css/responsive.css"/>
 			<!-- Font Awesome kit -->
 			<script src="https://kit.fontawesome.com/e99a9eb445.js" crossorigin="anonymous"></script>
 
@@ -132,7 +132,7 @@
 				</c:if>
 			</c:if>
 			<!-- Header section -->
-			<header class="header-section" style="padding: 10px;">
+			<header class="header-section">
 				<div class="container">
 					<!-- logo -->
 					<a class="site-logo" href="/">
@@ -152,6 +152,35 @@
 									<li><a href="review">Games</a></li>
 									<li><a href="fetchIdDetails">Create Id and My Ids</a></li>
 									<li><a href="contact">Contact</a></li>
+									<div class="hideItem">
+										<c:choose>
+											<c:when test="${not empty userId}">
+												<li>
+													<a href="fetchProfile">
+														<i class="fa-solid fa-user"></i>
+														Profile
+													</a>
+												</li>
+												<li>
+													<i class="fa-solid fa-wallet"> : ${balance}</i>
+												</li>
+												<li>
+													<a href="logout">
+														<i class="fa-solid fa-arrow-right-from-bracket"></i>
+														Logout
+													</a>
+												</li>
+											</c:when>
+											<c:otherwise>
+												<li>
+													<a href="login">Login</a>
+												</li>
+												<li>	
+													<a href="registration">Register</a>
+												</li>
+											</c:otherwise>
+											</c:choose>
+										</div>
 								</ul>
 							</div>
 
@@ -177,8 +206,8 @@
 											</li>
 										</c:when>
 										<c:otherwise>
-											<div class="user-panel">
-												<a href="login">Login</a> / <a href="registration">Register</a>
+											<div class="user-panel" style="color: black;">
+												<a href="login" style="color: black;">Login</a> / <a href="registration" style="color: black;">Register</a>
 											</div>
 										</c:otherwise>
 									</c:choose>
@@ -320,7 +349,7 @@
 			</section>
 
 			<!-- Footer section -->
-			<footer class="footer-section" style="padding: 10px;">
+			<footer class="footer-section">
 				<div class="container">
 					<ul class="footer-menu">
 						<li><a href="/">Home</a></li>
@@ -336,7 +365,7 @@
 						Notification
 					</a>
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-					</p>
+					</>
 				</div>
 			</footer>
 			<!-- Footer section end -->

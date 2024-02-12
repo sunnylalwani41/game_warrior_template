@@ -44,7 +44,6 @@ public class UserController {
 		
 		try {
 			userService.forgetPassword(email);
-			System.out.println("hello");
 			session.setAttribute("forgotemail", email);
 			
 			response.sendRedirect("forgot-otp");
@@ -144,13 +143,5 @@ public class UserController {
 			
 			response.sendRedirect("login");
 		}
-	}
-	
-	@MessageMapping("/message")
-	@SendTo("/topic/return-to")
-	public Message liveChat(@RequestBody Message message) {
-		
-		
-		return message;
 	}
 }

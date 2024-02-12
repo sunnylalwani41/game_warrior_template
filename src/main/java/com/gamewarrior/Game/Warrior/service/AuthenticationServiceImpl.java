@@ -34,33 +34,38 @@ public class AuthenticationServiceImpl implements AuthenticationService{
         if(user1 !=null && user1.isVerify() ){
             throw new UserException("User already registered! You can login or use another email id");
         }
+       
         String otp= this.emailService.sendOtpEmail(user.getEmail());
-
+        
         if(user1!= null){
             user.setId(user1.getId());
             
             user.setNotifications(user1.getNotifications());
             user.setWallet(user1.getWallet());
         }
-        else {
-        	Wallet wallet = new Wallet();
+        user.setOtp(otp);
+        user.setTimestamp(LocalDateTime.now());
+        
+        user= userRepo.save(user);
+        
+    	if(user.getWallet()==null) {
+    		
+    		Wallet wallet = new Wallet();
             Notification notification = new Notification();
             
             wallet.setBalance(0);
-            wallet.setUser(user);
-            notification.setUser(user);
+            wallet.setUserId(user.getId());
+            
             notification.setSubject("Validation Otp");
             notification.setMessage("OTP has been sent to email "+user.getEmail());
+            notification.setUserId(user.getId());
             
             user.getNotifications().add(notification);
             user.setWallet(wallet);
-        }
-        user.setOtp(otp);
-        user.setTimestamp(LocalDateTime.now());
-        session.setAttribute("email", user.getEmail());
-        session.setAttribute("message", "OTP has been sent to email "+user.getEmail());
-        
-        return userRepo.save(user);
+            
+            user = userRepo.save(user);
+    	}
+        return user;
     }
 
     @Override
@@ -92,6 +97,7 @@ public class AuthenticationServiceImpl implements AuthenticationService{
     @Override
     public User matchUserCrediential(String email, String password, HttpSession session) throws UserException, NoSuchAlgorithmException {
         User user = userRepo.findByEmail(email);
+        System.out.println(user);
         
         if(user==null || !user.isVerify())
             throw new UserException("Invalid User");

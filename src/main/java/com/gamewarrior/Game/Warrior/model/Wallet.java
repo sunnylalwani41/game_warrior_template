@@ -19,7 +19,5 @@ public class Wallet {
 	@SequenceGenerator(name = "walletGenerator", sequenceName = "walletGen", allocationSize = 1, initialValue = 10000)
 	private Integer id;
 	private Integer balance;
-	@JsonIgnore
-	@OneToOne(cascade = CascadeType.ALL)
-	private User user;
+	private Integer userId;
 }

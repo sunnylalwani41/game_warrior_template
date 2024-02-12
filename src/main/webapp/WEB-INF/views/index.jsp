@@ -1,6 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 		<!DOCTYPE html>
 		<html>
 		<head>
@@ -23,13 +22,9 @@
 	<link rel="stylesheet" href="css/login.css"/>
 	<!-- livechat style -->
 	<link rel="stylesheet" href="css/livechat.css"/>
+	<link rel="stylesheet" href="css/responsive.css"/>
 	<!-- Font Awesome kit -->
 	<script src="https://kit.fontawesome.com/e99a9eb445.js" crossorigin="anonymous"></script>
-
-			<!--[if lt IE 9]>
-	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
 </head>
 		<body>
 			<!-- Page Preloder -->
@@ -58,6 +53,35 @@
 									<li><a href="review">Games</a></li>
 									<li><a href="fetchIdDetails">Create Id and My Ids</a></li>
 									<li><a href="contact">Contact</a></li>
+									<div class="hideItem">
+										<c:choose>
+											<c:when test="${not empty userId}">
+												<li>
+													<a href="fetchProfile">
+														<i class="fa-solid fa-user"></i>
+														Profile
+													</a>
+												</li>
+												<li>
+													<i class="fa-solid fa-wallet"> : ${balance}</i>
+												</li>
+												<li>
+													<a href="logout">
+														<i class="fa-solid fa-arrow-right-from-bracket"></i>
+														Logout
+													</a>
+												</li>
+											</c:when>
+											<c:otherwise>
+												<li>
+													<a href="login">Login</a>
+												</li>
+												<li>	
+													<a href="registration">Register</a>
+												</li>
+											</c:otherwise>
+											</c:choose>
+										</div>
 								</ul>
 							</div>
 
@@ -83,8 +107,8 @@
 											</li>
 										</c:when>
 										<c:otherwise>
-											<div class="user-panel">
-												<a href="login">Login</a> / <a href="registration">Register</a>
+											<div class="user-panel" style="color: black;">
+												<a href="login" style="color: black;">Login</a> / <a href="registration" style="color: black;">Register</a>
 											</div>
 										</c:otherwise>
 									</c:choose>
@@ -118,7 +142,7 @@
 						<c:if test="${not empty userId }">
 							<div class="transaction">
 								<div class="user-panel" id="deposit">
-									<a href="deposit">
+									<a href="fetchUpiDetails">
 										<i class="fa-solid fa-file-arrow-down" style="color:green"></i>
 										Deposit
 									</a>
@@ -132,7 +156,7 @@
 							</div>
 							<div class="history">
 								<div class="user-panel">
-									<a href="passbook">
+									<a href="fetchTransactions">
 										<i class="fa-solid fa-book"></i>
 										Transaction History
 									</a>

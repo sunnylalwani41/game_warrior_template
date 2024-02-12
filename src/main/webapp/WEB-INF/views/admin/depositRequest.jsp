@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 		<!DOCTYPE html>
 		<html>
@@ -25,7 +25,7 @@
 			<link rel="stylesheet" href="css/admin-login.css">
 			<link rel="stylesheet" href="css/deposit.css">
 			<!-- livechat style -->
-			<link rel="stylesheet" href="css/livechat.css" />
+			<link rel="stylesheet" href="css/responsive.css"/>
 			<link rel="stylesheet"
 				href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
 			<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
@@ -183,20 +183,13 @@
 			<footer class="footer-section">
 				<div class="container">
 					<ul class="footer-menu">
-						<li><a href="/">Home</a></li>
-						<li><a href="review">Games</a></li>
-						<li><a href="contact">Contact</a></li>
+						<li><a href="adminDashboard">Dashboard</a></li>
+						<li><a href="fetchDepositRequest">Deposit Request</a></li>
+						<li><a href="fetchCreateId">Create Id Request</a></li>
+						<li><a href="fetchGames">Update Game website</a></li>
+						<li><a href="fetchAllUpi">Payment method updation</a></li>
+						<li><a href="adminLogout">Logout</a></li>
 					</ul>
-					<a href="termsandcondition">
-						<i class="fa-solid fa-file-invoice"></i>
-						Terms and condition
-					</a>
-					<a href="notification">
-						<i class="fa-solid fa-bell"></i>
-						Notification
-					</a>
-					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-					</p>
 				</div>
 			</footer>
 			<!-- Footer section end -->

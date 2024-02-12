@@ -1,11 +1,15 @@
-.errorContainer{
+.errorContainer, .errorContainerSeconnd{
 	color: red;
 	background-color: rgb(255, 240, 221);
 	border-radius: 15px;
 	padding: 10px 30px;
 	font-weight: bold;
-	width: 50%;
 	margin:auto;
 	text-align: center;
 
+}
+
+
+.errorContainer {
+	width: 50%;
 }
