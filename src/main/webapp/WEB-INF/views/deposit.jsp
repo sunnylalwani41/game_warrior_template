@@ -29,7 +29,7 @@
 			
 			
 			<style>
-			.depositBody {
+			/* .depositBody {
 				font-family: 'Arial', sans-serif;
 				background-color: #f8f8f8;
 				margin: 0;
@@ -37,7 +37,7 @@
 				justify-content: center;
 				align-items: center;
 				height: 75vh;
-			}
+			} */
 
 			.uploadForm {
 				padding-bottom: 20%;

@@ -19,6 +19,7 @@
 	<!-- Stylesheets -->
 	<link rel="stylesheet" href="css/bootstrap.min.css"/>
 	<link rel="stylesheet" href="css/font-awesome.min.css"/>
+
 	<link rel="stylesheet" href="css/style.css"/>
 	<link rel="stylesheet" href="css/error-container.css"/>
 
@@ -131,8 +132,6 @@
 	
 	
 	<div class="pageData">
-        <img src="https://media.istockphoto.com/id/1334436084/photo/top-down-view-of-colorful-illuminated-gaming-accessories-laying-on-table.jpg?s=612x612&w=0&k=20&c=E9xnbAZoBS5LlUX0q-zxT_3m6gEZpyB2k51_U4LLMNs="
-            alt="game image">
         <div class="text-overlay1">
         	<c:if test="${not empty errorMessage}">
 				<div class="errorContainerSeconnd">${errorMessage}</div>
@@ -184,7 +183,6 @@
 				<i class="fa-solid fa-bell"></i>
 				Notification
 			</a>
-			<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 			</p>
 		</div>
 	</footer>

@@ -1000,6 +1000,11 @@ ol {
 	margin-bottom: 42px;
 }
 
+.personaldetails{
+	padding-right: 1px;
+	padding-top: 5px;
+	display: flex;
+}
 /*-----------------
   Single blog page
 --------------------*/
@@ -1415,6 +1420,9 @@ ol {
 	}
 	.hideItem{
 		display: block;
+	}
+	.personaldetails{
+		display: none;
 	}
 	.hero-slider .hs-item {
 		height: 700px;

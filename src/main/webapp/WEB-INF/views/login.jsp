@@ -157,7 +157,7 @@
                     <button id="nextButton" type="submit">Register</button>
                 </form>
                 <p><a href="forgotpswd">Lost your password?</a></p>
-                <p><a href="registration">Register</a></p>
+                <p><a href="registration">Login</a></p>
             </div>
         </div>
         

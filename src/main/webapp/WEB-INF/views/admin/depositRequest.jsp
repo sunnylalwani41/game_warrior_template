@@ -3,7 +3,6 @@
 
 		<!DOCTYPE html>
 		<html>
-
 		<head>
 			<title>Game Warrior Template</title>
 			<meta charset="UTF-8">
@@ -31,11 +30,7 @@
 			<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
 			<!-- Font Awesome kit -->
 			<script src="https://kit.fontawesome.com/e99a9eb445.js" crossorigin="anonymous"></script>
-			<script src="https://code.jquery.com/jquery-3.7.0.js" crossorigin="anonymous"></script>
-			<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"
-				crossorigin="anonymous"></script>
-			<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"
-				crossorigin="anonymous"></script>
+			
 		</head>
 
 		<body>
@@ -81,7 +76,6 @@
 			</header>
 			<!-- Header section end -->
 
-			<!-- Live chat -->
 			<div>
 				<c:if test="${not empty errorMessage}">
 					<div class="errorContainer">${errorMessage}</div>
@@ -95,9 +89,10 @@
 
 			<div class="drequest">
 				<c:if test="${not empty depositRequests}">
-					<fieldset>
-						<table id="example" class="table table-striped" style="width:100%">
-							<thead>
+						<h1 class="text-center text-white p2 bg-dark bg-gradient text-uppercase">Pending Deposit Request</h1>
+						<div class="container">
+						<table id="example" class="table table-striped table-responsive border-dark table-hover text-center text-capitalize">
+							<thead class="table-dark table-active text-uppercase text-whites">
 								<tr>
 									<th>USER ID</th>
 									<th>UPI ID</th>
@@ -135,10 +130,12 @@
 								</c:forEach>
 							</tbody>
 						</table>
-					</fieldset>
-					<fieldset>
-						<table id="example" class="table table-striped" style="width:100%">
-							<thead>
+						</div>
+						
+					<h1 class="text-center text-white p2 bg-dark bg-gradient text-uppercase">Completed Deposit Request</h1>
+						<div class="container">
+						<table id="example" class="table table-striped table-responsive  table-center table-hover text-center text-capitalize" >
+							<thead class="table-dark table-active text-uppercase text-whites">
 								<tr>
 									<th>USER ID</th>
 									<th>UPI ID</th>
@@ -175,7 +172,8 @@
 								</c:forEach>
 							</tbody>
 						</table>
-					</fieldset>
+					
+						</div>
 				</c:if>
 			</div>
 

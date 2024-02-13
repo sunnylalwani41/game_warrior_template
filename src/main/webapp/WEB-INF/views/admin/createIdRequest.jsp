@@ -25,6 +25,9 @@
 			<link rel="stylesheet" href="css/deposit.css">
 			<link rel="stylesheet" href="css/error-container.css">
 			<!-- livechat style -->
+			<link rel="stylesheet"
+				href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+			<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
 			<link rel="stylesheet" href="css/responsive.css"/>
 			<!-- Font Awesome kit -->
 			<script src="https://kit.fontawesome.com/e99a9eb445.js" crossorigin="anonymous"></script>
@@ -80,8 +83,8 @@
 
 			<c:choose>
 				<c:when test="${not empty createIdRequests}">
-					<table class="IdTable">
-						<thead>
+					<table id="example" class="table table-striped table-responsive border-dark table-hover text-center text-capitalize">
+							<thead class="table-dark table-active text-uppercase text-whites">
 							<tr>
 								<td>Website</td>
 								<td>Website Name</td>
@@ -106,10 +109,10 @@
 									<td>${idRequest.expectedUsername}</td>
 									<form action="submitUsernameAndPassword" method="post">
 										<td>
-											<input style="background-color: lightgreen;" type="text" placeholder="Enter the username" name="username" />
+											<input style="background-color: lightgreen;" type="text" placeholder="Enter the username" name="username" required/>
 										</td>
 										<td>
-											<input style="background-color: lightgreen;" type="text" placeholder="Enter the password" name="password" />
+											<input style="background-color: lightgreen;" type="text" placeholder="Enter the password" name="password" required/>
 											<input type="hidden" value="${idRequest.id}" name="id" />
 										</td>
 										<td>

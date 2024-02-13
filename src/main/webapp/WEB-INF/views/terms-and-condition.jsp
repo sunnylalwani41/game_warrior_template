@@ -1,3 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -20,7 +23,7 @@
 	<link rel="stylesheet" href="css/animate.css"/>
 	<link rel="stylesheet" href="css/login.css"/>
 	<link rel="stylesheet" href="css/responsive.css"/>
-
+	<script src="https://kit.fontawesome.com/e99a9eb445.js" crossorigin="anonymous"></script>
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -59,7 +62,7 @@
 													</a>
 												</li>
 												<li>
-													<i class="fa-solid fa-wallet"> : ${balance}</i>
+													<a href="#"><i class="fa-solid fa-wallet" style="color: black"> : </i>${balance}</a>
 												</li>
 												<li>
 													<a href="logout">
@@ -81,7 +84,7 @@
 								</ul>
 							</div>
 
-							<div class="personaldetails" style="padding-right: 1px; padding-top: 5px; display: flex;">
+							<div class="personaldetails">
 								<ul>
 									<c:choose>
 
@@ -93,13 +96,15 @@
 												</a>
 											</li>
 											<li>
-												<i class="fa-solid fa-wallet"> : ${balance}</i>
+													<i class="fa-solid fa-wallet"> : ${balance}</i> 
+												
 											</li>
 											<li>
 												<a href="logout">
 													<i class="fa-solid fa-arrow-right-from-bracket"></i>
 													Logout
 												</a>
+
 											</li>
 										</c:when>
 										<c:otherwise>

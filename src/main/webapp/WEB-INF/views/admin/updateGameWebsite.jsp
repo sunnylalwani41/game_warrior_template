@@ -14,10 +14,13 @@
 			<link href="img/favicon.ico" rel="shortcut icon" />
 			<!-- Google Fonts -->
 			<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
-			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-				integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-				crossorigin="anonymous"></script>
-
+			
+			<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link
+      href="https://getbootstrap.com/docs/5.3/assets/css/docs.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 			<!-- Stylesheets -->
 			<link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -84,28 +87,97 @@
 				<% session.removeAttribute("message"); %>
 			</c:if>
 
-			<form action="updateGame" method="post" class="updateGameWebsite">
-				<label for="webName">Enter Website Name:</label>
-				<input type="text" name="websiteName" class="updateinput" placeholder="Enter the Website name"
-					required />
-				<label for="webLink">Enter Website Link:</label>
-				<input type="text" name="website" class="updateinput" placeholder="Enter the Website link" required />
-				<label for="webLogo">Enter Website Logo:</label>
-				<input type="text" name="logo" class="updateinput" placeholder="Enter the Website logo" required />
-				<label for="minBet">Enter Minimum Bet:</label>
-				<input type="number" name="minimumBet" class="updateinput" placeholder="Enter the Minimum Bet"
-					required />
-				<label for="minWithdraw">Enter Minimum Withdraw:</label>
-				<input type="number" name="minimumWithdrawal" class="updateinput"
-					placeholder="Enter the Minimum Withdrawal" required />
-				<label for="minMainBalance">Enter Minimum Maintaining Balance:</label>
-				<input type="number" name="minimumMaintainingBalance" class="updateinput"
-					placeholder="Enter the Minimum Maintaining Balance" required />
-				<label for="maxWithdraw">Enter Maximum Withdraw:</label>
-				<input type="number" name="maximumWithdrawal" class="updateinput"
-					placeholder="Enter the Maximum Withrawal" required />
-				<button id="addgame" onclick="addGame(event)">Add Game name</button>
-				<div id=updateinput class="addGame-container"></div>
+			<form action="updateGame" method="post" >
+				<div class="mb-3">
+        <label for="websiteName" class="form-label">Website name</label>
+        <input
+          type="text"
+          name="websiteName"
+          id="websiteName"
+          placeholder="Enter the Website name"
+          class="form-control"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="websiteLink" class="form-label">Enter Website Link</label>
+        <input
+          type="text"
+          name="website"
+          id="websiteLink"
+          class="form-control"
+          placeholder="Enter the Website link"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="webLogo" class="form-label">Enter Website Logo</label>
+        <input
+          type="text"
+          name="logo"
+          id="webLogo"
+          class="form-control"
+          placeholder="Enter the Website logo"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="minBet" class="form-label">Enter Minimum Bet</label>
+        <input
+          type="number"
+          name="minimumBet"
+          class="form-control"
+          id="minBet"
+          placeholder="Enter the Minimum Bet"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="minWithdraw" class="form-label"
+          >Enter Minimum Withdraw</label
+        >
+        <input
+          type="number"
+          name="minimumWithdrawal"
+          class="form-control"
+          id="minWithdraw"
+          placeholder="Enter the Minimum Withdrawal"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="minimumMaintainingBalance" class="form-label"
+          >Enter Minimum Maintaining Balance</label
+        >
+        <input
+          type="number"
+          name="minimumMaintainingBalance"
+          id="minimumMaintainingBalance"
+          class="form-control"
+          placeholder="Enter the Minimum Maintaining Balance"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="maximumWithdrawal" class="form-label"
+          >Enter Maximum Withdraw</label
+        >
+        <input
+          type="number"
+          name="maximumWithdrawal"
+          id="maximumWithdrawal"
+          class="form-control"
+          placeholder="Enter the Maximum Withrawal"
+          required
+        />
+      </div>
+        <div class="mb-3">
+        <button id="addgame" class="btn btn-primary" onclick="addGame(event)">
+          Add Game name
+        </button>
+        <div class="mb-3">
+        <div id="updateinput" class="addGame-container"></div>
+        </div>
 				<input id="submit" type="submit" value="Submit" />
 				<br> <br>
 			</form>
