@@ -2,6 +2,7 @@ package com.gamewarrior.Game.Warrior.service;
 
 import com.gamewarrior.Game.Warrior.exception.OtpException;
 import com.gamewarrior.Game.Warrior.exception.UserException;
+import com.gamewarrior.Game.Warrior.exception.WalletException;
 import com.gamewarrior.Game.Warrior.model.User;
 import jakarta.servlet.http.HttpSession;
 
@@ -16,5 +17,5 @@ public interface AuthenticationService {
     
     public String verifyForgetOtpValue(String otp, HttpSession session) throws OtpException, UserException, MessagingException;
     
-    public User matchUserCrediential(String email, String password, HttpSession session) throws UserException, NoSuchAlgorithmException;
+    public User matchUserCrediential(String email, String password, HttpSession session) throws UserException, NoSuchAlgorithmException, WalletException;
 }

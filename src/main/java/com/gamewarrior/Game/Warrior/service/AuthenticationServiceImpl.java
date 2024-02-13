@@ -5,6 +5,7 @@ import com.gamewarrior.Game.Warrior.dao.UserRepo;
 import com.gamewarrior.Game.Warrior.dao.WalletRepo;
 import com.gamewarrior.Game.Warrior.exception.OtpException;
 import com.gamewarrior.Game.Warrior.exception.UserException;
+import com.gamewarrior.Game.Warrior.exception.WalletException;
 import com.gamewarrior.Game.Warrior.model.Notification;
 import com.gamewarrior.Game.Warrior.model.User;
 import com.gamewarrior.Game.Warrior.model.Wallet;
@@ -26,6 +27,8 @@ public class AuthenticationServiceImpl implements AuthenticationService{
     private SecurityConfig securityConfig;
     @Autowired
     private EmailService emailService;
+    @Autowired
+    private WalletService walletService;
 
     @Override
     public User saveUserDetail(User user, HttpSession session) throws UserException, MessagingException {
@@ -53,7 +56,8 @@ public class AuthenticationServiceImpl implements AuthenticationService{
     		Wallet wallet = new Wallet();
             Notification notification = new Notification();
             
-            wallet.setBalance(0);
+            wallet.setGeneralWallet(0.0);
+            wallet.setWithdrawableWallet(0.0);
             wallet.setUserId(user.getId());
             
             notification.setSubject("Validation Otp");
@@ -95,7 +99,7 @@ public class AuthenticationServiceImpl implements AuthenticationService{
     }
 
     @Override
-    public User matchUserCrediential(String email, String password, HttpSession session) throws UserException, NoSuchAlgorithmException {
+    public User matchUserCrediential(String email, String password, HttpSession session) throws UserException, NoSuchAlgorithmException, WalletException {
         User user = userRepo.findByEmail(email);
         System.out.println(user);
         
@@ -104,7 +108,7 @@ public class AuthenticationServiceImpl implements AuthenticationService{
         
         if(securityConfig.checkPassword(password, user.getPassword())){
             session.setAttribute("userId", user.getId());
-            session.setAttribute("balance", user.getWallet().getBalance());
+            walletService.setSessionOfTheWallet(user.getWallet(), session);
             return user;
         }
 

@@ -71,7 +71,7 @@ public class WithdrawalTransactionServiceImpl implements WithdrawalTransactionSe
         String ifsc = transaction.getIfsc();
         String accountHolder = transaction.getAccountHolderName();
         String accountNumber = transaction.getAccountNumber();
-        int amount = transaction.getAmount();
+        double amount = transaction.getAmount();
 
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         MediaType mediaType = MediaType.parse("application/json");

@@ -25,4 +25,6 @@ public interface WalletService {
 	public void addTransactionDetailInWallet(Wallet wallet, Double amount, Status status, String remark);
 	
 	public Double totalAmountOfWallet(Integer userId) throws WalletException, UserException;
+	
+	public boolean withdrawableWalletAmountAddition(Double amount, Integer userId, HttpSession session, String remark) throws WalletException, UserException;
 }

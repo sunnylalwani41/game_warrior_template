@@ -10,5 +10,5 @@ public class CreateIdRequestDto {
 	private String websiteName;
 	private String logo;
 	private String expectedUsername;
-	private Integer amount;
+	private Double amount;
 }

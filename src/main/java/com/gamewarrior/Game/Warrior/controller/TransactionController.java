@@ -17,6 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.gamewarrior.Game.Warrior.exception.TransactionException;
 import com.gamewarrior.Game.Warrior.exception.UserException;
+import com.gamewarrior.Game.Warrior.exception.WalletException;
 import com.gamewarrior.Game.Warrior.model.DepositRequest;
 import com.gamewarrior.Game.Warrior.model.BankingTransaction;
 import com.gamewarrior.Game.Warrior.model.UpiDetail;
@@ -67,9 +68,9 @@ public class TransactionController {
 	}
 	
     @PostMapping("/transaction")
-    public void saveTransactionDetail(
+    public void moneyWithdrawalHandler(
     		@RequestParam String mobile, @RequestParam String accountNumber, @RequestParam String ifsc, @RequestParam String accountHolderName,
-    		@RequestParam Integer amount, HttpServletRequest request, HttpServletResponse response) throws IOException, TransactionException, UserException{
+    		@RequestParam Double amount, HttpServletRequest request, HttpServletResponse response) throws IOException, TransactionException, UserException, WalletException{
     	HttpSession session = request.getSession();
         Integer userId = (Integer) session.getAttribute("userId");
         BankingTransaction bankingTransaction = new BankingTransaction();
@@ -79,6 +80,7 @@ public class TransactionController {
         bankingTransaction.setIfsc(ifsc);
         bankingTransaction.setAccountHolderName(accountHolderName);
         bankingTransaction.setAmount(amount);
+        bankingTransaction.setUserId(userId);
 
         if(userId==null){
             session.setAttribute("errorMessage", "Invalid User!! Please login.");
@@ -86,24 +88,22 @@ public class TransactionController {
             response.sendRedirect("login");
         }
         else {
-        	User user = userService.fetchProfile(userId);
-        	Integer balance = user.getWallet().getBalance();
-        	
-        	if(balance !=null && balance>=amount && amount>=150) {
-	        	bankingTransaction.setUserId(userId);
-	        	transactionService.moneyTransfer(bankingTransaction);
-	        	user.getWallet().setBalance(user.getWallet().getBalance()-amount);
-
-	        	userService.saveUserDetail(user);
-	        	transactionService.saveTransaction(bankingTransaction);
-
-	        	session.setAttribute("balance", user.getWallet().getBalance());
-	        	request.setAttribute("transaction", bankingTransaction);
-	        	session.setAttribute("message", "BankingTransaction Successfull");
-	        	response.sendRedirect("withdraw");
+        	if(walletService.withdrawableWalletAmountDeduction(amount, userId, session, "Direct money transfer to Bank Account")) {
+	        	try {
+	        		transactionService.moneyTransfer(bankingTransaction);
+		        	
+		        	transactionService.saveTransaction(bankingTransaction);
+	
+		        	request.setAttribute("transaction", bankingTransaction);
+		        	session.setAttribute("message", "BankingTransaction Successfull");
+		        	response.sendRedirect("withdraw");
+	        	}
+	        	catch(Exception exception) {
+	        		walletService.withdrawableWalletAmountAddition(amount, userId, session, "Refund of money transfer");
+	        	}
         	}
         	else {
-        		session.setAttribute("errorMessage", "Minimum withdraw 150 rupees");
+        		session.setAttribute("errorMessage", "Insufficient amount in withdrawable wallet");
         		response.sendRedirect("withdraw");
         	}
         }
@@ -206,23 +206,19 @@ public class TransactionController {
     }
     
     @PostMapping("/approveTheDepositRequest")
-    public void approveTheDepositRequestHandler(@RequestParam Integer id, @RequestParam Integer amount, HttpServletRequest request, HttpServletResponse response) throws IOException, MessagingException {
+    public void approveTheDepositRequestHandler(@RequestParam Integer id, @RequestParam Double amount, HttpServletRequest request, HttpServletResponse response) throws IOException, MessagingException, WalletException {
     	HttpSession session = request.getSession();
     	
     	try {
     		DepositRequest depositRequest= depositRequestService.fetchById(id);
     		User user = userService.fetchProfile(depositRequest.getUserId());
-    		Wallet wallet = user.getWallet();
-    		
-    		wallet.setBalance(wallet.getBalance()+amount);
-    		
-    		user.setWallet(wallet);
+
+    		walletService.walletAmountAddition(amount, depositRequest.getUserId(), session, "Approved the request "+depositRequest.getId());
     		
     		depositRequest.setAmount(amount);
     		depositRequest.setStatus(true);
     		depositRequest.setRemark("Approved");
     		
-    		userService.saveUserDetail(user);
     		depositRequestService.takeDepositRequest(depositRequest);
     		
     		session.setAttribute("message", "Successfully updated!");

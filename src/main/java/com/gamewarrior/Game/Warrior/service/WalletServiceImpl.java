@@ -142,4 +142,20 @@ public class WalletServiceImpl implements WalletService{
 		return wallet.getGeneralWallet()+wallet.getWithdrawableWallet();
 	}
 
+	@Override
+	public boolean withdrawableWalletAmountAddition(Double amount, Integer userId, HttpSession session, String remark) throws WalletException, UserException {
+		Wallet wallet = getWalletByUserId(userId);
+		
+		Double withdrawableAmount = amount;
+		
+		wallet.setWithdrawableWallet(wallet.getWithdrawableWallet() + withdrawableAmount);
+		
+		addTransactionDetailInWallet(wallet, amount, Status.CR, remark);
+		
+		updateWallet(wallet);
+		setSessionOfTheWallet(wallet, session);
+		
+		return true;
+	}
+
 }

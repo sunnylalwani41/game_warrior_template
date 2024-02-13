@@ -18,7 +18,7 @@ public class DepositRequest {
 	private String upiId;
 	private String upiName;
 	private String path;
-	private Integer amount;
+	private Double amount;
 	private Boolean status=false;
 	private String remark;
 }

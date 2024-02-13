@@ -16,7 +16,7 @@ public class BankingTransaction {
     private String accountNumber;
     private String ifsc;
     private String accountHolderName;
-    private Integer amount;
+    private Double amount;
     private String transactionId;
     private Integer userId;
     private String contactId;
