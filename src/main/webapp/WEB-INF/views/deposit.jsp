@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-	<p%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 		<!DOCTYPE html>
 		<html lang="zxx">
 
@@ -17,16 +17,20 @@
 			<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
 
 			<!-- Stylesheets -->
-			<link rel="stylesheet" href="css/bootstrap.min.css" />
-			<link rel="stylesheet" href="css/font-awesome.min.css" />
+			<!-- <link rel="stylesheet" href="css/bootstrap.min.css" />
+			 --><link rel="stylesheet" href="css/font-awesome.min.css" />
 			<link rel="stylesheet" href="css/owl.carousel.css" />
 			<link rel="stylesheet" href="css/style.css" />
-			<link rel="stylesheet" href="css/animate.css" />
+			<link rel="stylesheet" href="css/animate.css" /> 
 			<link rel="stylesheet" href="css/deposit.css">
 			<link rel="stylesheet" href="css/error-container.css" />
 			<link rel="stylesheet" href="css/empty.css">
 			<link rel="stylesheet" href="css/responsive.css"/>
-			
+			<script src="https://kit.fontawesome.com/e99a9eb445.js" crossorigin="anonymous"></script>
+			<link rel="stylesheet"
+				href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+			<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+			<link rel="stylesheet" href="css/responsive.css"/>
 			
 			<style>
 			/* .depositBody {
@@ -39,7 +43,7 @@
 				height: 75vh;
 			} */
 
-			.uploadForm {
+			/* .uploadForm {
 				padding-bottom: 20%;
 			}
 
@@ -71,7 +75,8 @@
 
 			tr:hover {
 				background-color: #e0e0e0;
-			}
+			} */
+		
 		</style>
 		</head>
 
@@ -127,7 +132,7 @@
 													</a>
 												</li>
 												<li>
-													<i class="fa-solid fa-wallet"> : ${balance}</i>
+													<a href="#"><i class="fa-solid fa-wallet" style="color: black"> : </i>${balance}</a>
 												</li>
 												<li>
 													<a href="logout">
@@ -149,7 +154,7 @@
 								</ul>
 							</div>
 
-							<div class="personaldetails" style="padding-right: 1px; padding-top: 5px; display: flex;">
+							<div class="personaldetails">
 								<ul>
 									<c:choose>
 
@@ -161,13 +166,15 @@
 												</a>
 											</li>
 											<li>
-												<i class="fa-solid fa-wallet"> : ${balance}</i>
+													<i class="fa-solid fa-wallet"> : ${balance}</i> 
+												
 											</li>
 											<li>
 												<a href="logout">
 													<i class="fa-solid fa-arrow-right-from-bracket"></i>
 													Logout
 												</a>
+
 											</li>
 										</c:when>
 										<c:otherwise>
@@ -182,6 +189,7 @@
 					</nav>
 				</div>
 			</header>
+	
 			<!-- Header section end -->
 			<c:if test="${not empty errorMessage}">
 				<div class="errorContainer">${errorMessage}</div>
@@ -192,11 +200,12 @@
 				<% session.removeAttribute("message"); %>
 			</c:if>
 			<!-- Hero section -->
-			<div class="depositBody">
 			<c:choose>
 				<c:when test="${not empty upiDetails}">
-					<table>
-						<thead>
+				<h1 class="text-center text-white p2 bg-dark bg-gradient text-uppercase">Upi Details</h1>
+					<div class="container">
+						<table id="example" class="table table-responsive table-striped border-dark table-hover text-center text-capitalize">
+							<thead class="table-dark text-uppercase text-whites">
 							<tr>
 								<th>Mode</th>
 								<th>Display Name</th>
@@ -219,6 +228,7 @@
 							</c:forEach>
 						</tbody>
 					</table>
+					</div>
 					<div>
 						<form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
 							<input type="file" id="fileInput" name="file" required>

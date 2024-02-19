@@ -27,7 +27,8 @@
             <link rel="stylesheet" href="css/login.css"/>
         	<link rel="stylesheet" href="css/error-container.css"/>
         	<link rel="stylesheet" href="css/responsive.css"/>
-        
+        	
+	<script src="https://kit.fontawesome.com/e99a9eb445.js" crossorigin="anonymous"></script>
         </head>
 <body>
     <div id="preloder">
@@ -52,9 +53,6 @@
 			<a class="site-logo" href="/">
 				<img src="img/logo.png" alt="">
 			</a>
-			<div class="user-panel">
-				<a href="login">Login</a>  /  <a href="registration">Register</a>
-			</div>
 			<!-- responsive -->
 			<div class="nav-switch">
 				<i class="fa fa-bars"></i>

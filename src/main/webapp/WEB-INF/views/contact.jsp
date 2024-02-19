@@ -63,7 +63,7 @@
 													</a>
 												</li>
 												<li>
-													<i class="fa-solid fa-wallet"> : ${balance}</i>
+													<a href="#"><i class="fa-solid fa-wallet" style="color: black"> : </i>${balance}</a>
 												</li>
 												<li>
 													<a href="logout">
@@ -85,7 +85,7 @@
 								</ul>
 							</div>
 
-							<div class="personaldetails" style="padding-right: 1px; padding-top: 5px; display: flex;">
+							<div class="personaldetails">
 								<ul>
 									<c:choose>
 
@@ -97,13 +97,15 @@
 												</a>
 											</li>
 											<li>
-												<i class="fa-solid fa-wallet"> : ${balance}</i>
+													<i class="fa-solid fa-wallet"> : ${balance}</i> 
+												
 											</li>
 											<li>
 												<a href="logout">
 													<i class="fa-solid fa-arrow-right-from-bracket"></i>
 													Logout
 												</a>
+
 											</li>
 										</c:when>
 										<c:otherwise>

@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 		<!DOCTYPE html>
 		<html>
@@ -30,6 +30,24 @@
 			<link rel="stylesheet" href="css/responsive.css"/>
 			<!-- Font Awesome kit -->
 			<script src="https://kit.fontawesome.com/e99a9eb445.js" crossorigin="anonymous"></script>
+			<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link
+      href="https://getbootstrap.com/docs/5.3/assets/css/docs.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+			<style type="text/css">
+				#upiUpdate {
+					box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+					padding: 12px;
+					margin: 15px 0px;
+					border-radius: 15px;
+				}
+				
+				h3{
+					text-align: center;
+				}
+			</style>
 		</head>
 
 		<body>
@@ -89,41 +107,90 @@
 						session.removeAttribute("message");
 					%>
 				</c:if>
-			<form action="updateUpi" method="post" class="updatePaymentMethod">
+				<div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+			<form action="updateUpi" method="post" id="upiUpdate">
+				<h3>Add Upi Link for payment</h3>
+                <div class="mb-3">
+			        <label for="upiId" class="form-label">Enter UPI ID</label>
+			        <input
+			          type="text"
+			          name="upiId" placeholder="Enter the UPI Id" 
+			          id="upiId"
+			          class="form-control"
+			          required
+			        />
+			      </div>
+			      <div class="mb-3">
+			        <label for="img" class="form-label">Enter Image Link</label>
+			        <input
+			          type="text"
+			          name="img"
+			          id="img"
+			          class="form-control"
+			          placeholder="Enter the image link"
+			          required
+			        />
+			      </div>
+			      <div class="mb-3">
+			        <label for="displayName" class="form-label">Enter Display Name</label>
+			        <input
+			          type="text"
+			          name="displayName" placeholder="Enter the Display Name"
+			          id="displayName"
+			          class="form-control"
+			          required
+			        />
+			      </div>
+			      <div class="form-group d-flex justify-content-center">
+                        <button type="submit" id="submit" class="btn btn-primary btn-lg">Submit</button>
+                   </div>
 				
-				<label for="upiId">Enter UPI ID:</label>
-				<input type="text" name="upiId" placeholder="Enter the upiId" required/> 
-				<label for="img">Enter Image Link:</label>
-				<input type="text" name="img" placeholder="Enter the Image link" required/> 
-				<label for="displayName">Enter Display Name:</label>
-				<input type="text" name="displayName" placeholder="Enter the Display Name" required/>
-				<input id="submit" type="submit" value="Submit" />
+				
+				
+				
 			</form>
-
-			<div class="deposit_entry" style="flex: 1; padding: 140px;">
-				<c:choose>
+			</div>
+        </div>
+    </div>
+    <h1 class="text-center text-white p2 bg-dark bg-gradient text-uppercase">Upi Details</h1>
+<c:choose>
 					<c:when test="${not empty upiDetails}">
-						<div class="table_heading">
-							<p id="ha"></p>
-							<p id="hb">Display Name</p>
-							<p id="hc">Upi Details</p>
+						<div class="container">
+						<table id="example" class="table table-striped table-responsive border-dark table-hover text-center text-capitalize">
+							<thead class="table-dark table-active text-uppercase text-whites">
+									<tr>
+										<th>Action</th>
+										<th>Display Name</th>
+										<th>Upi Details</th>
+									</tr>
+								</thead>
+								<c:forEach items="${upiDetails}" var="upi">
+			
+									<tbody>
+										<tr>
+											<td style="width: 10%;">
+												<form action="deleteUpi" method="post">
+													<input type="hidden" name="id" value="${upi.id}" />
+													<button class="btn btn-primary" >Delete</button>
+												</form>
+											</td>
+											<td>
+												<div class="upiDisplay">
+													<img class="upi_image" src="${upi.img}" alt="Upi Logo" />
+													<p>${upi.displayName}</p>
+												</div>
+											</td>
+											<td>${upi.upiId}</td>
+										</tr>
+									</tbody>
+								</c:forEach>
+							</table>
 						</div>
-						<hr style="border: 1px solid rgb(75, 31, 31);">
-						<div>
-							<c:forEach items="${upiDetails}" var="upi">
-								<label class="data_entry">
-									<form action="deleteUpi" method="post">
-										<input type="hidden" name="id" value="${upi.id}" />
-										<input class="deleteUpi" type="submit" value="Delete" />
-									</form>
-									<div style="display: flex;">
-										<img class="upi_image" src="${upi.img}" alt="Upi Logo" />
-										<p>${upi.displayName}</p>
-									</div>
-									<p>${upi.upiId}</p>
-								</label>
-							</c:forEach>
-						</div>
+					
+					
+						
 					</c:when>
 					<c:otherwise>
 						<div class="center">
@@ -133,7 +200,7 @@
 						</div>
 					</c:otherwise>
 				</c:choose>
-			</div>
+			
 
 			<!-- Footer section -->
 			<footer class="footer-section">

@@ -541,6 +541,11 @@ ol {
   Recent Game Section
 ------------------------*/
 
+.upiDisplay{
+	display: flex;
+	justify-content: center;
+}
+
 .recent-game-section {
 	background-color: #eef2f6;
 	border-top: 1px solid #d6dee7;

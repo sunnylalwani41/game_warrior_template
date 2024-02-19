@@ -26,7 +26,7 @@
 	<link rel="stylesheet" href="./css/home.css">
     <link rel="stylesheet" href="./css/registration.css">
 	<link rel="stylesheet" href="css/responsive.css"/>
-
+	<script src="https://kit.fontawesome.com/e99a9eb445.js" crossorigin="anonymous"></script>
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -41,90 +41,92 @@
 	</c:if>
 	<!-- Header section -->
 	<header class="header-section">
-		<div class="container">
-			<!-- logo -->
-			<a class="site-logo" href="/">
-				<img src="img/logo.png" alt="">
-			</a>
+				<div class="container">
+					<!-- logo -->
+					<a class="site-logo" href="/">
+						<img src="img/logo.png" alt="">
+					</a>
 
-			<!-- responsive -->
-			<div class="nav-switch">
-				<i class="fa fa-bars"></i>
-			</div>
-			<!-- site menu -->
-			<nav class="main-menu">
-				<div class="details" style="display: flex; justify-content: space-between;">
-					<div class="homedetails" style="float:none;">
-						<ul>
-							<li><a href="/">Home</a></li>
-							<li><a href="review">Games</a></li>
-							<li><a href="fetchIdDetails">Create Id and My Ids</a></li>
-							<li><a href="contact">Contact</a></li>
-							<div class="hideItem">
-								<c:choose>
-									<c:when test="${not empty userId}">
-										<li>
-											<a href="fetchProfile">
-												<i class="fa-solid fa-user"></i>
-												Profile
-											</a>
-										</li>
-										<li>
-											<i class="fa-solid fa-wallet"> : ${balance}</i>
-										</li>
-										<li>
-											<a href="logout">
-												<i class="fa-solid fa-arrow-right-from-bracket"></i>
-												Logout
-											</a>
-										</li>
-									</c:when>
-									<c:otherwise>
-										<li>
-											<a href="login">Login</a>
-										</li>
-										<li>	
-											<a href="registration">Register</a>
-										</li>
-									</c:otherwise>
+					<!-- responsive -->
+					<div class="nav-switch">
+						<i class="fa fa-bars"></i>
+					</div>
+					<!-- site menu -->
+					<nav class="main-menu">
+						<div class="details" style="display: flex; justify-content: space-between;">
+							<div class="homedetails" style="float:none;">
+								<ul>
+									<li><a href="/">Home</a></li>
+									<li><a href="review">Games</a></li>
+									<li><a href="fetchIdDetails">Create Id and My Ids</a></li>
+									<li><a href="contact">Contact</a></li>
+									<div class="hideItem">
+										<c:choose>
+											<c:when test="${not empty userId}">
+												<li>
+													<a href="fetchProfile">
+														<i class="fa-solid fa-user"></i>
+														Profile
+													</a>
+												</li>
+												<li>
+													<a href="#"><i class="fa-solid fa-wallet" style="color: black"> : </i>${balance}</a>
+												</li>
+												<li>
+													<a href="logout">
+														<i class="fa-solid fa-arrow-right-from-bracket"></i>
+														Logout
+													</a>
+												</li>
+											</c:when>
+											<c:otherwise>
+												<li>
+													<a href="login">Login</a>
+												</li>
+												<li>	
+													<a href="registration">Register</a>
+												</li>
+											</c:otherwise>
+											</c:choose>
+										</div>
+								</ul>
+							</div>
+
+							<div class="personaldetails">
+								<ul>
+									<c:choose>
+
+										<c:when test="${not empty userId}">
+											<li>
+												<a href="fetchProfile">
+													<i class="fa-solid fa-user"></i>
+													Profile
+												</a>
+											</li>
+											<li>
+													<i class="fa-solid fa-wallet"> : ${balance}</i> 
+												
+											</li>
+											<li>
+												<a href="logout">
+													<i class="fa-solid fa-arrow-right-from-bracket"></i>
+													Logout
+												</a>
+
+											</li>
+										</c:when>
+										<c:otherwise>
+											<div class="user-panel" style="color: black;">
+												<a href="login" style="color: black;">Login</a> / <a href="registration" style="color: black;">Register</a>
+											</div>
+										</c:otherwise>
 									</c:choose>
-								</div>
-						</ul>
-					</div>
-
-					<div class="personaldetails" style="padding-right: 1px; padding-top: 5px; display: flex;">
-						<ul>
-							<c:choose>
-
-								<c:when test="${not empty userId}">
-									<li>
-										<a href="fetchProfile">
-											<i class="fa-solid fa-user"></i>
-											Profile
-										</a>
-									</li>
-									<li>
-										<i class="fa-solid fa-wallet"> : ${balance}</i>
-									</li>
-									<li>
-										<a href="logout">
-											<i class="fa-solid fa-arrow-right-from-bracket"></i>
-											Logout
-										</a>
-									</li>
-								</c:when>
-								<c:otherwise>
-									<div class="user-panel" style="color: black;">
-										<a href="login" style="color: black;">Login</a> / <a href="registration" style="color: black;">Register</a>
-									</div>
-								</c:otherwise>
-							</c:choose>
-						</ul>
-					</div>
+								</ul>
+							</div>
+						</div>
+					</nav>
 				</div>
-			</nav>
-		</div>
-	</header>
+			</header>
 	
 	<!-- Header section end -->
 	

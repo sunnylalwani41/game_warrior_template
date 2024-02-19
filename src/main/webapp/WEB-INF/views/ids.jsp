@@ -33,12 +33,14 @@
 
 			<style>
 				.mainBox {
-					width: 900px;
+					width: 80vw;
 					padding: 20px;
 					background-color: #e0e0e0;
 					transition: height 6.5s ease;
 					/* Smooth transition */
 					overflow: hidden;
+					overflow-x: auto;
+					margin-top: 15px;
 					position: relative;
 				}
 
@@ -103,12 +105,18 @@
 				function showContent1() {
 					document.getElementById('content1').style.display = 'block';
 					document.getElementById('content2').style.display = 'none';
+					document.querySelector("#button1>button").style.backgroundColor = 'red';
+					document.querySelector("#button2>button").style.backgroundColor = 'blue';
 				}
 
 				// Function to show content for Button 2
 				function showContent2() {
 					document.getElementById('content1').style.display = 'none';
-					document.getElementById('content2').style.display = 'block';
+					document.getElementById('content2').style.display = 'flex';
+					document.getElementById('content2').style.flexDirection = 'column';
+					document.getElementById('content2').style.alignItems = 'center';
+					document.querySelector("#button1 > button").style.backgroundColor = 'blue';
+					document.querySelector("#button2 > button").style.backgroundColor = 'red';
 				}
 			</script>
 
@@ -131,6 +139,7 @@
 					<% response.sendRedirect("fetchIdDetails"); %>
 				</c:if>
 			</c:if>
+			
 			<!-- Header section -->
 			<header class="header-section">
 				<div class="container">
@@ -162,7 +171,7 @@
 													</a>
 												</li>
 												<li>
-													<i class="fa-solid fa-wallet"> : ${balance}</i>
+													<a href="#"><i class="fa-solid fa-wallet" style="color: black"> : </i>${balance}</a>
 												</li>
 												<li>
 													<a href="logout">
@@ -184,7 +193,7 @@
 								</ul>
 							</div>
 
-							<div class="personaldetails" style="padding-right: 1px; padding-top: 5px; display: flex;">
+							<div class="personaldetails">
 								<ul>
 									<c:choose>
 
@@ -196,13 +205,15 @@
 												</a>
 											</li>
 											<li>
-												<i class="fa-solid fa-wallet"> : ${balance}</i>
+													<i class="fa-solid fa-wallet"> : ${balance}</i> 
+												
 											</li>
 											<li>
 												<a href="logout">
 													<i class="fa-solid fa-arrow-right-from-bracket"></i>
 													Logout
 												</a>
+
 											</li>
 										</c:when>
 										<c:otherwise>
@@ -223,14 +234,14 @@
 
 			<div class="button-container">
 				<div id="button1">
-					<button onclick="showContent1()">Button 1</button>
+					<button class="btn btn-primary" onclick="showContent1()">My Id</button>
 				</div>
 				<div id="button2">
-					<button onclick="showContent2()">Button 2</button>
+					<button class="btn btn-primary" onclick="showContent2()">Create Id for games</button>
 				</div>
 			</div>
 
-			<section class=ids_data style="flex: 1; padding: 14%;">
+			<section class=ids_data style="flex: 1; padding: 4%; justify-content: center;">
 				<div id="content1" class="content">
 					<!-- Add more content as needed for Button 1 -->
 
@@ -243,49 +254,54 @@
 						<% session.removeAttribute("message"); %>
 					</c:if>
 					<div class="container-myId">
-						<div class="table_heading">
-							<p id="ha">Website Name</p>
-							<p id="hb">Username</p>
-							<p id="hc">Password</p>
-							<p id="hc">Status</p>
-							<p id="hc">Link</p>
-
-						</div>
-						<c:forEach items="${myIds}" var="id">
-							<div class="card-myId">
-								<c:choose>
-									<c:when test="${id.status}">
-
-										<hr style="border: 1px solid rgb(75, 31, 31);">
-
-										<div class="table_data">
-
-											<p><img id="logo_image" src="${id.logo}" alt="${id.websiteName}" />
-												${id.websiteName }</p>
-											<p>${id.username}</p>
-											<p>${id.password}</p>
-											<p>Active</p>
-											<p><a href="${id.website}" target="_blank"><i
-														class="fa-solid fa-arrow-up-right-from-square"></i></a></p>
-										</div>
-									</c:when>
-									<c:otherwise>
-
-										<hr style="border: 1px solid rgb(75, 31, 31);">
-
-										<div class="table_data">
-
-											<img id="logo_image" src="${id.logo}" alt="${id.websiteName}" />
-											<p>null</p>
-											<p>null</p>
-											<p>Pending</p>
-											<p><a href="${id.website}" target="_blank"><i
-														class="fa-solid fa-arrow-up-right-from-square"></i></a></p>
-										</div>
-									</c:otherwise>
-								</c:choose>
-							</div>
-						</c:forEach>
+						<div class="container-createId">
+				<table class="table table-responsive">
+					<thead>
+						<tr>
+							<th>Website Name</th>
+							<th>Username</th>
+							<th>Password</th>
+							<th>Status</th>
+							<th>Links</th>
+						</tr>
+					</thead>
+					<c:forEach items="${myIds}" var="id">
+						<tbody>
+							<c:choose>
+								<c:when test="${id.status}">
+							<tr>
+								<td style="width: 10%;"><img id="logo_image" src="${id.logo}" alt="${id.websiteName}" /> ${id.websiteName }</td>
+								<td>${id.username}</td>
+								<td>${id.password}</td>
+								<td>
+									Active
+								</td>
+								<td><a href="${id.website}" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
+							</tr>
+							</c:when>
+							<c:otherwise>
+							<tr>
+								<td style="width: 10%;"><img id="logo_image" src="${id.logo}" alt="${id.websiteName}" /> ${id.websiteName }</td>
+								<td>null</td>
+								<td>null</td>
+								<td>	
+									Pending
+								</td>
+								<td>
+								<a href="${id.website}" target="_blank"><i
+class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
+							</tr>
+							</c:otherwise>
+							</c:choose>
+						</tbody>
+					</c:forEach>
+				</table>
+			</div>
+					
+					
+					
+					
+						
 					</div>
 				</div>
 				<% int index=0; %>
@@ -340,7 +356,8 @@
 								// mainBox.style.height = "200px"; /* Adjust the height as needed */
 								dataBox.style.display = "block";
 							} else {
-								mainBox.style.height = "auto"; /* Reset to auto height */
+								mainBox.style.height = "auto";
+								mainBox.style.justifyContent="center"/* Reset to auto height */
 								dataBox.style.display = "none";
 							}
 						}

@@ -23,16 +23,37 @@
 
 .button-container div {
    display: inline-block;
-   padding-top: 20px;
+  	
 }
+
+.button-container{
+	display: flex;
+	justify-content: center;
+}
+
 #button1 {
-	margin-left: 5%;
+	width: 40%;
 }
+
+#button1>button{
+	width: 100%;
+	font-weight: bold;
+	padding: 10px;
+	background-color: red;
+}
+
 #button2 {
 	align-items: end;
 	float: right;
-	margin-right: 5%;
+	width: 40%;
 }
+
+#button2>button{
+	width: 100%;
+	font-weight: bold;
+	padding: 10px;
+}
+
 #content2 {
 	display: none;
 }

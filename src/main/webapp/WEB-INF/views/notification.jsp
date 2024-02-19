@@ -25,7 +25,10 @@
     <link rel="stylesheet" href="css/deposit.css">
 	<link rel="stylesheet" href="css/error-container.css"/>
 	<link rel="stylesheet" href="css/responsive.css"/>
-	
+	<link rel="stylesheet"
+				href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+			<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+	<script src="https://kit.fontawesome.com/e99a9eb445.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <!-- Page Preloder -->
@@ -47,90 +50,92 @@
 
 <!-- Header section -->
 <header class="header-section">
-	<div class="container">
-		<!-- logo -->
-		<a class="site-logo" href="/">
-			<img src="img/logo.png" alt="">
-		</a>
+				<div class="container">
+					<!-- logo -->
+					<a class="site-logo" href="/">
+						<img src="img/logo.png" alt="">
+					</a>
 
-		<!-- responsive -->
-		<div class="nav-switch">
-			<i class="fa fa-bars"></i>
-		</div>
-		<!-- site menu -->
-		<nav class="main-menu">
-			<div class="details" style="display: flex; justify-content: space-between;">
-				<div class="homedetails" style="float:none;">
-					<ul>
-						<li><a href="/">Home</a></li>
-						<li><a href="review">Games</a></li>
-						<li><a href="fetchIdDetails">Create Id and My Ids</a></li>
-						<li><a href="contact">Contact</a></li>
-						<div class="hideItem">
-							<c:choose>
-								<c:when test="${not empty userId}">
-									<li>
-										<a href="fetchProfile">
-											<i class="fa-solid fa-user"></i>
-											Profile
-										</a>
-									</li>
-									<li>
-										<i class="fa-solid fa-wallet"> : ${balance}</i>
-									</li>
-									<li>
-										<a href="logout">
-											<i class="fa-solid fa-arrow-right-from-bracket"></i>
-											Logout
-										</a>
-									</li>
-								</c:when>
-								<c:otherwise>
-									<li>
-										<a href="login">Login</a>
-									</li>
-									<li>	
-										<a href="registration">Register</a>
-									</li>
-								</c:otherwise>
-								</c:choose>
+					<!-- responsive -->
+					<div class="nav-switch">
+						<i class="fa fa-bars"></i>
+					</div>
+					<!-- site menu -->
+					<nav class="main-menu">
+						<div class="details" style="display: flex; justify-content: space-between;">
+							<div class="homedetails" style="float:none;">
+								<ul>
+									<li><a href="/">Home</a></li>
+									<li><a href="review">Games</a></li>
+									<li><a href="fetchIdDetails">Create Id and My Ids</a></li>
+									<li><a href="contact">Contact</a></li>
+									<div class="hideItem">
+										<c:choose>
+											<c:when test="${not empty userId}">
+												<li>
+													<a href="fetchProfile">
+														<i class="fa-solid fa-user"></i>
+														Profile
+													</a>
+												</li>
+												<li>
+													<a href="#"><i class="fa-solid fa-wallet" style="color: black"> : </i>${balance}</a>
+												</li>
+												<li>
+													<a href="logout">
+														<i class="fa-solid fa-arrow-right-from-bracket"></i>
+														Logout
+													</a>
+												</li>
+											</c:when>
+											<c:otherwise>
+												<li>
+													<a href="login">Login</a>
+												</li>
+												<li>	
+													<a href="registration">Register</a>
+												</li>
+											</c:otherwise>
+											</c:choose>
+										</div>
+								</ul>
 							</div>
-					</ul>
-				</div>
 
-				<div class="personaldetails" style="padding-right: 1px; padding-top: 5px; display: flex;">
-					<ul>
-						<c:choose>
+							<div class="personaldetails">
+								<ul>
+									<c:choose>
 
-							<c:when test="${not empty userId}">
-								<li>
-									<a href="fetchProfile">
-										<i class="fa-solid fa-user"></i>
-										Profile
-									</a>
-								</li>
-								<li>
-									<i class="fa-solid fa-wallet"> : ${balance}</i>
-								</li>
-								<li>
-									<a href="logout">
-										<i class="fa-solid fa-arrow-right-from-bracket"></i>
-										Logout
-									</a>
-								</li>
-							</c:when>
-							<c:otherwise>
-								<div class="user-panel" style="color: black;">
-									<a href="login" style="color: black;">Login</a> / <a href="registration" style="color: black;">Register</a>
-								</div>
-							</c:otherwise>
-						</c:choose>
-					</ul>
+										<c:when test="${not empty userId}">
+											<li>
+												<a href="fetchProfile">
+													<i class="fa-solid fa-user"></i>
+													Profile
+												</a>
+											</li>
+											<li>
+													<i class="fa-solid fa-wallet"> : ${balance}</i> 
+												
+											</li>
+											<li>
+												<a href="logout">
+													<i class="fa-solid fa-arrow-right-from-bracket"></i>
+													Logout
+												</a>
+
+											</li>
+										</c:when>
+										<c:otherwise>
+											<div class="user-panel" style="color: black;">
+												<a href="login" style="color: black;">Login</a> / <a href="registration" style="color: black;">Register</a>
+											</div>
+										</c:otherwise>
+									</c:choose>
+								</ul>
+							</div>
+						</div>
+					</nav>
 				</div>
-			</div>
-		</nav>
-	</div>
-</header>
+			</header>
 			
 <!-- Header section end -->
 <c:if test="${not empty errorMessage}">
@@ -149,9 +154,10 @@
 <section class="upi-section">
 	<c:choose>
 		<c:when test="${not empty notificationDetails}">
-			<table>
-			<caption>Notification Details</caption>
-				<thead>
+			<h1 class="text-center text-white p2 bg-dark bg-gradient text-uppercase">Pending Deposit Request</h1>
+						<div class="container">
+						<table id="example" class="table table-striped table-responsive border-dark table-hover text-capitalize">
+							<thead class="table-dark table-active text-uppercase text-whites">
 					<tr>
 						<td>S.No.</td>
 						<td>Subject</td>
@@ -180,6 +186,7 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			</div>
 		</c:when>
 		<c:otherwise>
 			<img src="https://i.pinimg.com/originals/f3/8b/24/f38b24a996391f4a0d78819f028c7926.gif" alt="Not found or something went wrong" class="empty"/>

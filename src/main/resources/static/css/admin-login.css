@@ -45,15 +45,15 @@ input{
 	padding-right: -10%;
 }
 #submit {
-	height: 60%;
+	/* height: 60%;
 	width: 90%;
-	margin-left: 50%;
+	margin-left: 50%; */
 	background-color: red;
 	color: white;
 	font-weight: bold;
 	border: none;
 	font-size: larger;
-	border-radius: 6%;
+	/* border-radius: 6%; */
 }
 .center {
 	text-align: center;
@@ -81,7 +81,4 @@ input{
 #addgame {
 	width: 90%;
 	height: 35px;
-}
-#submit {
-	margin-top: 10%;
 }

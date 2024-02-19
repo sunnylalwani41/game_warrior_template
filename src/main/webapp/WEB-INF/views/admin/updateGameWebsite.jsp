@@ -35,6 +35,19 @@
 			<link rel="stylesheet" href="css/responsive.css"/>
 			<!-- Font Awesome kit -->
 			<script src="https://kit.fontawesome.com/e99a9eb445.js" crossorigin="anonymous"></script>
+			
+			<style type="text/css">
+				#gameUpdate {
+					box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+					padding: 12px;
+					margin: 15px 0px;
+					border-radius: 15px;
+				}
+				
+				h3{
+					text-align: center;
+				}
+			</style>
 		</head>
 
 		<body>
@@ -86,9 +99,12 @@
 				<div class="errorContainer">${message}</div>
 				<% session.removeAttribute("message"); %>
 			</c:if>
-
-			<form action="updateGame" method="post" >
-				<div class="mb-3">
+		<div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+            	<form action="updateGame" method="post" id="gameUpdate">
+                	<h3>Add game website</h3>
+                    <div class="mb-3">
         <label for="websiteName" class="form-label">Website name</label>
         <input
           type="text"
@@ -171,19 +187,22 @@
           required
         />
       </div>
-        <div class="mb-3">
-        <button id="addgame" class="btn btn-primary" onclick="addGame(event)">
+        <!-- <div class="mb-3"> -->
+        <button class="btn btn-primary" onclick="addGame(event)">
           Add Game name
         </button>
         <div class="mb-3">
         <div id="updateinput" class="addGame-container"></div>
         </div>
-				<input id="submit" type="submit" value="Submit" />
-				<br> <br>
-			</form>
-
+                    <div class="form-group d-flex justify-content-center">
+                        <button type="submit" id="submit" class="btn btn-primary btn-lg">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 			<div class="container-createId">
-				<table class="table">
+				<table class="table table-responsive">
 					<thead>
 						<tr>
 							<th>Website logo</th>

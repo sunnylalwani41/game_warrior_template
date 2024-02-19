@@ -27,7 +27,8 @@
 	<link rel="stylesheet" href="./css/home.css">
     <link rel="stylesheet" href="./css/registration.css">
 	<link rel="stylesheet" href="css/responsive.css"/>
-
+	
+	<script src="https://kit.fontawesome.com/e99a9eb445.js" crossorigin="anonymous"></script>
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -45,7 +46,7 @@
 				<div class="container">
 					<!-- logo -->
 					<a class="site-logo" href="/">
-						<img src="img/logo.png" alt="logo" class="logo">
+						<img src="img/logo.png" alt="">
 					</a>
 
 					<!-- responsive -->
@@ -71,7 +72,7 @@
 													</a>
 												</li>
 												<li>
-													<i class="fa-solid fa-wallet"> : ${balance}</i>
+													<a href="#"><i class="fa-solid fa-wallet" style="color: black"> : </i>${balance}</a>
 												</li>
 												<li>
 													<a href="logout">
@@ -93,7 +94,7 @@
 								</ul>
 							</div>
 
-							<div class="personaldetails" style="padding-right: 1px; padding-top: 5px; display: flex;">
+							<div class="personaldetails">
 								<ul>
 									<c:choose>
 
@@ -105,18 +106,20 @@
 												</a>
 											</li>
 											<li>
-												<i class="fa-solid fa-wallet"> : ${balance}</i>
+													<i class="fa-solid fa-wallet"> : ${balance}</i> 
+												
 											</li>
 											<li>
 												<a href="logout">
 													<i class="fa-solid fa-arrow-right-from-bracket"></i>
 													Logout
 												</a>
+
 											</li>
 										</c:when>
 										<c:otherwise>
 											<div class="user-panel" style="color: black;">
-												<a href="login" style="color: black;">Login</a>/ <a href="registration" style="color: black;">Register</a>
+												<a href="login" style="color: black;">Login</a> / <a href="registration" style="color: black;">Register</a>
 											</div>
 										</c:otherwise>
 									</c:choose>
@@ -126,6 +129,7 @@
 					</nav>
 				</div>
 			</header>
+		
 	<!-- Header section end -->
 	
 	<div class="pageData">
