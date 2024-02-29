@@ -10,22 +10,22 @@
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
 			<!-- Favicon -->
 			<link href="img/favicon.png" rel="shortcut icon" />
-<!-- Google Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
-	
-	<!-- Stylesheets -->
-	<link rel="stylesheet" href="css/bootstrap.min.css"/>
-	<link rel="stylesheet" href="css/font-awesome.min.css"/>
-	<link rel="stylesheet" href="css/owl.carousel.css"/>
-	<link rel="stylesheet" href="css/style.css"/>
-	<link rel="stylesheet" href="css/animate.css"/>
-	<link rel="stylesheet" href="css/login.css"/>
-	<!-- livechat style -->
-	<link rel="stylesheet" href="css/livechat.css"/>
-	<link rel="stylesheet" href="css/responsive.css"/>
-	<!-- Font Awesome kit -->
-	<script src="https://kit.fontawesome.com/e99a9eb445.js" crossorigin="anonymous"></script>
-</head>
+			<!-- Google Fonts -->
+			<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+			
+			<!-- Stylesheets -->
+			<link rel="stylesheet" href="css/bootstrap.min.css"/>
+			<link rel="stylesheet" href="css/font-awesome.min.css"/>
+			<link rel="stylesheet" href="css/owl.carousel.css"/>
+			<link rel="stylesheet" href="css/style.css"/>
+			<link rel="stylesheet" href="css/animate.css"/>
+			<link rel="stylesheet" href="css/login.css"/>
+			<!-- livechat style -->
+			<link rel="stylesheet" href="css/livechat.css"/>
+			<link rel="stylesheet" href="css/responsive.css"/>
+			<!-- Font Awesome kit -->
+			<script src="https://kit.fontawesome.com/e99a9eb445.js" crossorigin="anonymous"></script>
+		</head>
 		<body>
 			<!-- Page Preloder -->
 			<div id="preloder">
@@ -426,7 +426,72 @@
 				</div>
 			</section>
 			<!-- Review section end -->
+			
+			<section class="spad">
+				<div class="container">
+					<div class="section-title">
+						<h2>Game API</h2>
+					</div>
+					<div class="owl-carousel owl-theme">
+						<div class="item api">
+							<img src="img/Gaming Api/1.png" alt="Ezugi" style="width: auto; height: 80px;"/>
+						</div>
+						<div class="item api" >
+							<img src="img/Gaming Api/2.png" alt="" style="width: auto; height: 80px;" />
+						</div>
+						<div class="item api" >
+							<img src="img/Gaming Api/3.jpg" alt="" style="width: auto; height: 80px;"/>
+						</div>
+						<div class="item api">
+							<img src="img/Gaming Api/4.png" alt="" style="width: auto; height: 80px; "/>
+						</div>
+						<div class="item api">
+							<img src="img/Gaming Api/5.png" alt="" style="width: auto; height: 80px;"/>
+						</div>
+						<div class="item api">
+							<img src="img/Gaming Api/6.png" alt="" style="width: auto; height: 80px;"/>
+						</div>
+						<div class="item api">
+							<img src="img/Gaming Api/7.png" alt="" style="width: auto; height: 80px;"/>
+						</div>
+						<div class="item api">
+							<img src="img/Gaming Api/8.png" alt="" style="width: auto; height: 80px;"/>
+						</div>
+					</div>
+				</div>
+			</section>
+			
+			<section class="spad">
+				<div class="container">
+					<div class="section-title">
+						<h2>Game(s)</h2>
+					</div>
+					<div class="owl-carousel owl-theme">
+						<div class="item api">
+							<img src="img/game/1.jpg" alt="" style="width: auto; height: 80px;"/>
+						</div>
 
+					</div>
+				</div>
+			</section>
+			<section class="spad">
+				<div class="container">
+					<div class="section-title">
+						<h2>Licence(s)</h2>
+					</div>
+					<div class="owl-carousel owl-theme">
+						<div class="item api">
+							<img src="img/licence/1.png" alt="" style="width: auto; height: 80px;"/>
+						</div>
+						<div class="item api">
+							<img src="img/licence/2.jpg" alt="" style="width: auto; height: 80px;"/>
+						</div>
+						<div class="item api">
+							<img src="img/licence/3.png" alt="" style="width: auto; height: 80px;"/>
+						</div>
+					</div>
+				</div>
+			</section>
 
 			<!-- Footer top section -->
 			<section class="footer-top-section">
@@ -525,21 +590,54 @@
 						<li><a href="review">Games</a></li>
 						<li><a href="contact">Contact</a></li>
 					</ul>
-					<a href="termsandcondition">
-						<i class="fa-solid fa-file-invoice"></i>
-						Terms and condition
-					</a>
-					<a href="notification">
-						<i class="fa-solid fa-bell"></i>
-						Notification
-					</a>
-					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-					</p>
+					<div class="payment-symbol">
+						<div>
+							<img src="img/payment/1.png" alt="" />
+						</div>
+						<div>
+							<img src="img/payment/2.png" alt="" />
+						</div>
+						<div>
+							<img src="img/payment/3.png" alt="" />
+						</div>
+						<div>
+							<img src="img/payment/4.png" alt="" />
+						</div>
+						<div>
+							<img src="img/payment/5.png" alt="" />
+						</div>
+						<div>
+							<img src="img/payment/6.png" alt="" />
+						</div>
+						<div>
+							<img src="img/payment/7.png" alt="" />
+						</div>
+						<div>
+							<img src="img/payment/8.png" alt="" />
+						</div>
+						<div>
+							<img src="img/payment/9.png" alt="" />
+						</div>
+					</div>
+					<ul class="footer-menu">
+						<li>
+							<a href="termsandcondition">
+								<i class="fa-solid fa-file-invoice"></i>
+								Terms and condition
+							</a>
+						</li>
+						<li>
+							<a href="notification">
+								<i class="fa-solid fa-bell"></i>
+								Notification
+							</a>
+						</li>
+					</ul>
+					
 				</div>
 			</footer>
 			<!-- Footer section end -->
-
-
+		
 				<!--====== Javascripts & Jquery ======-->
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
@@ -551,6 +649,32 @@
 	<script type="text/javascript">
 		(function() {var script=document.createElement("script");script.type="text/javascript";script.async =true;script.src="//telegram.im/widget-button/index.php?id=@digitaladdworld";document.getElementsByTagName("head")[0].appendChild(script);})();
 	</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script>
+			$('.owl-carousel').owlCarousel({
+				loop:true,
+				margin:20,
+				autoplay: true,
+				autoplayTimeout: 2000,
+				nav:false,
+				dots: false,
+				responsive:{
+					0:{
+						items:1
+					},
+					300:{
+						items:2
+					},
+					700:{
+						items:3
+					},
+					1000:{
+						items:5
+					}
+				}
+			})
+		</script>
 
 		</body>
 

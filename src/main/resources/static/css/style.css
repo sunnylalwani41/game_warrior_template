@@ -1564,3 +1564,29 @@ ol {
 	flex-direction: column;
 	min-height: 100vh; 
 }
+
+.item{
+	display: flex;
+	justify-content: center;
+}
+
+.payment-symbol{
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-gap: 20px;
+	width: 30%;
+	padding: 0px 20px;
+}
+.payment-symbol > div{
+	background-color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 3px;
+}
+
+.footer-section > .container{
+	display: flex;
+	justify-content: space-between;
+}
+

@@ -42,4 +42,30 @@
 	.upiDisplay{
 		flex-direction: column;
 	}
+}
+
+
+@media only screen and (max-width: 1005px){
+    .payment-symbol{
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 10px;
+    }
+}
+
+@media only screen and (max-width: 770px){
+    .payment-symbol{
+        grid-template-columns: repeat(2, 1fr);
+    }
+} 
+
+@media only screen and (max-width: 480px){
+    .payment-symbol{
+        width: auto;
+    }
+} 
+
+@media only screen and (max-width: 327px){
+    .payment-symbol{
+        grid-template-columns: repeat(1, 1fr);
+    }
 } 
