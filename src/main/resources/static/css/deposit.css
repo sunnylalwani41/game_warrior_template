@@ -20,16 +20,58 @@
 }
 
 #fileInput {
-    display: none;
     padding-top: 130px;
     margin-left: 40%;
 }
 
 #upload {
-    display: none;
     padding-top: 10px;
     margin-left: 40%;
 }
+
+.uploadDiv{
+	display: flex;
+	width: 60vw;
+	margin: auto;
+	justify-content: center;
+	padding: 25px;
+	position: relative;
+	background-color: white;
+	border-radius: 5px;
+}
+
+.formDiv{
+	width: 70vw;
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	padding: 15px;
+	border: 1px solid black;
+	background-color: white;
+	border-radius: 5px;
+}
+
+.loadingImage, #uploadModel, #formModel{
+ 	display: none;
+    position: fixed;
+     z-index: 100;
+     right: 0;
+     top: 0;
+     width: 100%;
+     height: 100%;
+     overflow: auto;
+     justify-content: center;
+     align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+ }
+ 
+ .loadingImage > img{
+ 	width: 10%;
+ 	margin: auto;
+    display: block;
+    
+ }
 
 .deposit_body {
     margin: 0;

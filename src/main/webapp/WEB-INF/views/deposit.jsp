@@ -31,53 +31,6 @@
 				href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
 			<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
 			<link rel="stylesheet" href="css/responsive.css"/>
-			
-			<style>
-			/* .depositBody {
-				font-family: 'Arial', sans-serif;
-				background-color: #f8f8f8;
-				margin: 0;
-				padding: 0;
-				justify-content: center;
-				align-items: center;
-				height: 75vh;
-			} */
-
-			/* .uploadForm {
-				padding-bottom: 20%;
-			}
-
-			table {
-				width: 80%;
-				border-collapse: collapse;
-				margin: 40px 130px;
-				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-				background-color: #fff;
-				border-radius: 8px;
-				overflow: hidden;
-			}
-
-			th,
-			td {
-				padding: 15px;
-				text-align: left;
-				border-bottom: 1px solid #ddd;
-			}
-
-			th {
-				background-color: #3498db;
-				color: #fff;
-			}
-
-			tr:nth-child(even) {
-				background-color: #f2f2f2;
-			}
-
-			tr:hover {
-				background-color: #e0e0e0;
-			} */
-		
-		</style>
 		</head>
 
 		<body class="body">
@@ -229,25 +182,51 @@
 						</tbody>
 					</table>
 					</div>
-					<div>
-						<form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
-							<input type="file" id="fileInput" name="file" required>
-							<input type="hidden" id="selectedUpiId" name="selectedUpiId" value="">
-							<br>
-							<input type="submit" value="Upload Payment Screenshot" name="upload" id="upload"> <br> <br>
-							<script>
-								function showFileInput() {
-									var fileInput = document.getElementById('fileInput');
-									fileInput.style.display = 'block';
-
-									var upload = document.getElementById('upload');
-									upload.style.display = 'block';
-
-									var selectedUpiId = document.querySelector('input[name="upi"]:checked').value;
-									document.getElementById('selectedUpiId').value = selectedUpiId;
-								}
-							</script>
-						</form>
+					<div id="uploadModel">
+						<div class="uploadDiv">
+							<button id="uploadButton" class="btn btn-success ml-6"
+	                            onclick="openImageInput()">
+	                            <i class="fa-solid fa-camera">
+	                            </i>
+	                            | Upload Payment Screenshot
+	                        </button>
+						</div>
+					</div>
+					
+					<div id="formModel">
+						<div class="formDiv">
+							<div class="col-12">
+							
+			                  <button class="btn btn-success ml-6" onclick="backAndShowFileInput()"><i class="fa-solid fa-arrow-left"></i> back</button>
+						  </div>
+							<form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data" class="row g-3">
+							  <div class="col-md-12">
+							   <input type="file" id="fileInput" name="file" style="display:none;"  required>
+							  </div>
+							  <div class="col-md-12">
+							    <div class="row justify-content-center">
+							         <div class="col-auto">
+							             <img id="uploadedImage" src="" alt="Uploaded Image">
+							         </div>
+							  	</div>
+							  </div>
+							  <div class="col-12">
+							  	<label for="utr" class="form-label">UTR Number : </label>
+								<input type="text" class="form-control" name="utr" id="utr" placeholder="Enter the utr number" required/>
+							  </div>
+							  
+							  <div class="col-12">
+							    <input type="hidden" id="selectedUpiId" name="selectedUpiId" value="" required>
+							  </div>
+							  
+							  <div class="col-12">
+				                   <button id="uploadButton" class="btn btn-success ml-6" type="submit">Submit</button>
+							  </div>
+							</form>
+							<div class="loadingImage">
+		                      	<img src="img/loading/loading in circle.gif" alt="loading"/>
+		                    </div>
+						</div>
 					</div>
 				</c:when>
 				<c:otherwise>
@@ -279,9 +258,7 @@
 				</div>
 			</footer>
 			<!-- Footer section end -->
-
-
-			<!--====== Javascripts & Jquery ======-->
+			<script src="js/deposit.js"></script>
 			<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 			<script src="js/jquery-3.2.1.min.js"></script>
 			<script src="js/bootstrap.min.js"></script>

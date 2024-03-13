@@ -135,10 +135,10 @@ public class TransactionController {
     }
     
     @PostMapping("/upload")
-    public void uploadTheFile(@RequestParam MultipartFile file, @RequestParam Integer selectedUpiId, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public void uploadTheFile(@RequestParam MultipartFile file, @RequestParam Integer selectedUpiId, @RequestParam String utr, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
     	HttpSession session = request.getSession();
     	Integer userId= (Integer)session.getAttribute("userId");
-    	
+    	System.out.println("Hey");
     	if(userId==null) {
     		session.setAttribute("errorMessage", "Invalid user! please login");
     		response.sendRedirect("login");
@@ -147,7 +147,7 @@ public class TransactionController {
     		try {
     			transactionService.uploadFile(file, selectedUpiId, userId);
     			
-    			String path = ServletUriComponentsBuilder.fromCurrentContextPath().path("/deposit/").path(file.getOriginalFilename()).toUriString();
+    			String path = ServletUriComponentsBuilder.fromCurrentContextPath().path("/deposit/"+userId).path(file.getOriginalFilename()).toUriString();
     			DepositRequest depositRequest = new DepositRequest();
     			UpiDetail upiDetail = upiDetailService.fetchUpiDetailById(selectedUpiId);
     					

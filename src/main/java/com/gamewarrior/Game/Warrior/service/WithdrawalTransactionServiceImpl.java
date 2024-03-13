@@ -186,8 +186,18 @@ public class WithdrawalTransactionServiceImpl implements WithdrawalTransactionSe
 
 	@Override
 	public void uploadFile(MultipartFile file, Integer upiId, Integer userId) throws IOException {
-		String uploadDir = new ClassPathResource("static/deposit").getFile().getAbsolutePath();
+		String uploadDir = new ClassPathResource("static").getFile().getAbsolutePath();
 		
+		uploadDir = createTheFolder(uploadDir+"\\deposit\\"+userId);
+		change original file name
 		Files.copy(file.getInputStream(), Paths.get(uploadDir+File.separator+file.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
+	}
+	
+	private String createTheFolder(String location) {
+		File file= new File(location);
+		
+		System.out.println(file.mkdirs());
+		
+		return location;
 	}
 }

@@ -161,29 +161,7 @@
         
         </div>
     </div>
-
-	<footer class="footer-section">
-		<div class="container">
-			<ul class="footer-menu">
-				<li><a href="/">Home</a></li>
-				<li><a href="review">Games</a></li>
-				<li><a href="contact">Contact</a></li>
-			</ul>
-			<a href="termsandcondition">
-				<i class="fa-solid fa-file-invoice"></i>
-				Terms and condition
-			</a>
-			<a href="notification">
-				<i class="fa-solid fa-bell"></i>
-				Notification
-			</a>
-			<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-			</p>
-		</div>
-	</footer>
-			
-
-
+    
 	<!--====== Javascripts & Jquery ======-->
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<!-- <script src="js/registration.js"></script> -->

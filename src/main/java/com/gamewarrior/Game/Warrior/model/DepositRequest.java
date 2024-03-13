@@ -1,5 +1,6 @@
 package com.gamewarrior.Game.Warrior.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,6 +19,8 @@ public class DepositRequest {
 	private String upiId;
 	private String upiName;
 	private String path;
+	@Column(unique = true)
+	private String utr;
 	private Double amount;
 	private Boolean status=false;
 	private String remark;

@@ -99,8 +99,8 @@
 													<a href="registration">Register</a>
 												</li>
 											</c:otherwise>
-											</c:choose>
-										</div>
+										</c:choose>
+									</div>
 								</ul>
 							</div>
 
@@ -149,8 +149,8 @@
 
 			<!-- Hero section -->
 			<section class="hero-section">
-				<div class="hero-slider owl-carousel">
-					<div class="hs-item set-bg" data-setbg="img/maxresdefault.jpg">
+				<div class="hero-slider owl-carousel" id="hero">
+					<div class="hs-item set-bg w-40"  data-setbg="img/maxresdefault.jpg" >
 
 						<div class="hs-text">
 							<div class="container">
@@ -187,7 +187,7 @@
 						</c:if>
 					</div>
 					
-					<div class="hs-item set-bg" data-setbg="https://images.unsplash.com/photo-1709626011483-5bb4b5470ac9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0fHx8ZW58MHx8fHx8">
+					<div class="hs-item set-bg" data-setbg="img/slider-1.jpg">
 
 						<div class="hs-text">
 							<div class="container">
@@ -223,6 +223,155 @@
 							</div>
 						</c:if>
 					</div>
+					
+					<div class="hs-item set-bg" data-setbg="img/slider-2.jpg">
+
+						<div class="hs-text">
+							<div class="container">
+								<h2>The Best <span>Games</span> Out There</h2>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada <br> lorem
+									maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien.
+									<br>Suspendisse cursus faucibus finibus.</p>
+								<a href="#" class="site-btn">Read More</a>
+							</div>
+						</div>
+						<c:if test="${not empty userId }">
+							<div class="transaction">
+								<div class="user-panel" id="deposit">
+									<a href="fetchUpiDetails">
+										<i class="fa-solid fa-file-arrow-down" style="color:green"></i>
+										Deposit
+									</a>
+								</div>
+								<div class="user-panel" id="withdraw">
+									<a href="withdraw">
+										<i class="fa-solid fa-file-arrow-up" style="color:red"></i>
+										Withdraw
+									</a>
+								</div>
+							</div>
+							<div class="history">
+								<div class="user-panel">
+									<a href="fetchTransactions">
+										<i class="fa-solid fa-book"></i>
+										Transaction History
+									</a>
+								</div>
+							</div>
+						</c:if>
+					</div>
+					
+					<div class="hs-item set-bg" data-setbg="img/slider-3.jpg">
+
+						<div class="hs-text">
+							<div class="container">
+								<h2>The Best <span>Games</span> Out There</h2>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada <br> lorem
+									maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien.
+									<br>Suspendisse cursus faucibus finibus.</p>
+								<a href="#" class="site-btn">Read More</a>
+							</div>
+						</div>
+						<c:if test="${not empty userId }">
+							<div class="transaction">
+								<div class="user-panel" id="deposit">
+									<a href="fetchUpiDetails">
+										<i class="fa-solid fa-file-arrow-down" style="color:green"></i>
+										Deposit
+									</a>
+								</div>
+								<div class="user-panel" id="withdraw">
+									<a href="withdraw">
+										<i class="fa-solid fa-file-arrow-up" style="color:red"></i>
+										Withdraw
+									</a>
+								</div>
+							</div>
+							<div class="history">
+								<div class="user-panel">
+									<a href="fetchTransactions">
+										<i class="fa-solid fa-book"></i>
+										Transaction History
+									</a>
+								</div>
+							</div>
+						</c:if>
+					</div>
+					
+					<div class="hs-item set-bg" data-setbg="img/slider-4.jpg">
+
+						<div class="hs-text">
+							<div class="container">
+								<h2>The Best <span>Games</span> Out There</h2>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada <br> lorem
+									maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien.
+									<br>Suspendisse cursus faucibus finibus.</p>
+								<a href="#" class="site-btn">Read More</a>
+							</div>
+						</div>
+						<c:if test="${not empty userId }">
+							<div class="transaction">
+								<div class="user-panel" id="deposit">
+									<a href="fetchUpiDetails">
+										<i class="fa-solid fa-file-arrow-down" style="color:green"></i>
+										Deposit
+									</a>
+								</div>
+								<div class="user-panel" id="withdraw">
+									<a href="withdraw">
+										<i class="fa-solid fa-file-arrow-up" style="color:red"></i>
+										Withdraw
+									</a>
+								</div>
+							</div>
+							<div class="history">
+								<div class="user-panel">
+									<a href="fetchTransactions">
+										<i class="fa-solid fa-book"></i>
+										Transaction History
+									</a>
+								</div>
+							</div>
+						</c:if>
+					</div>
+					
+					<div class="hs-item set-bg" data-setbg="img/slider-5.jpg">
+
+						<div class="hs-text">
+							<div class="container">
+								<h2>The Best <span>Games</span> Out There</h2>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada <br> lorem
+									maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien.
+									<br>Suspendisse cursus faucibus finibus.</p>
+								<a href="#" class="site-btn">Read More</a>
+							</div>
+						</div>
+						<c:if test="${not empty userId }">
+							<div class="transaction">
+								<div class="user-panel" id="deposit">
+									<a href="fetchUpiDetails">
+										<i class="fa-solid fa-file-arrow-down" style="color:green"></i>
+										Deposit
+									</a>
+								</div>
+								<div class="user-panel" id="withdraw">
+									<a href="withdraw">
+										<i class="fa-solid fa-file-arrow-up" style="color:red"></i>
+										Withdraw
+									</a>
+								</div>
+							</div>
+							<div class="history">
+								<div class="user-panel">
+									<a href="fetchTransactions">
+										<i class="fa-solid fa-book"></i>
+										Transaction History
+									</a>
+								</div>
+							</div>
+						</c:if>
+					</div>
+					
 				</div>
 			</section>
 			<!-- Hero section end -->
@@ -538,7 +687,7 @@
                           <img class="d-block w-50" src="img/licence/1.png" alt="...">
                            </div>
                          <div class="carousel-item">
-                         <img class="d-block w-40" src="img/licence/2.jpg"" alt="...">
+                         <img class="d-block w-40" src="img/licence/2.jpg" alt="...">
                          </div>
                           <div class="carousel-item">
                           <img class="d-block w-40" src="img/licence/3.png" alt="...">
@@ -708,9 +857,9 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<script>
-			$('.hero-slider')({
+			$('#hero') ({
 				loop:false,
-				margin:20,
+				margin:0,
 				autoplay: true,
 				autoplayTimeout: 2000,
 				nav:true,
@@ -720,33 +869,12 @@
 						items:1
 					},
 					300:{
-						items:2
+						items:1
 					},
 					
 				}
 			})
-			$('.owl-theme').owlCarousel({
-				loop:true,
-				margin:20,
-				autoplay: true,
-				autoplayTimeout: 2000,
-				nav:false,
-				dots: false,
-				responsive:{
-					0:{
-						items:1
-					},
-					300:{
-						items:2
-					},
-					700:{
-						items:3
-					},
-					1000:{
-						items:5
-					}
-				}
-			})
+			
 		</script>
 
 		</body>

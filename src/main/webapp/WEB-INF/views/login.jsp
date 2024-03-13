@@ -158,10 +158,10 @@
                     <input type="password" id="password" name = "password" placeholder="Password" required>
                     <div class="error-message" id="password-error"></div>
                     <br>
-                    <button id="nextButton" type="submit">Register</button>
+                    <button id="nextButton" type="submit">Login</button>
                 </form>
                 <p><a href="forgotpswd">Lost your password?</a></p>
-                <p><a href="registration">Login</a></p>
+                <p><a href="registration">Register</a></p>
             </div>
         </div>
         
