@@ -105,3 +105,16 @@
 	margin-left:10%;
 	margin-bottom: 18%;
 }
+
+.upiID{
+	cursor: pointer;	
+}
+
+.copyButton {
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.fa-copy, .fa-circle-check{
+	font-size: 20px;
+}

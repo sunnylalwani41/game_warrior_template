@@ -153,11 +153,12 @@
 				<% session.removeAttribute("message"); %>
 			</c:if>
 			<!-- Hero section -->
+			<% int index = 0; %>
 			<c:choose>
 				<c:when test="${not empty upiDetails}">
 				<h1 class="text-center text-white p2 bg-dark bg-gradient text-uppercase">Upi Details</h1>
 					<div class="container">
-						<table id="example" class="table table-responsive table-striped border-dark table-hover text-center text-capitalize">
+						<table id="example" class="table table-responsive table-striped border-dark table-hover text-center ">
 							<thead class="table-dark text-uppercase text-whites">
 							<tr>
 								<th>Mode</th>
@@ -176,7 +177,14 @@
 										<img class="upi_image" src="${upi.img}" alt="Upi Logo" />
 										${upi.displayName}
 									</td>
-									<td>${upi.upiId}</td>
+									<td>
+										<span class="upiID" onclick="copyTheUpi('<%= index %>')">
+											${upi.upiId}
+										</span>
+										<i class="fa-regular fa-copy copyButton" onclick="copyTheUpi('<%= index %>')"></i>
+										<i class="fa-solid fa-circle-check copyComplete" style="display: none;"></i>
+										<% index++; %>
+									</td>
 								</tr>
 							</c:forEach>
 						</tbody>

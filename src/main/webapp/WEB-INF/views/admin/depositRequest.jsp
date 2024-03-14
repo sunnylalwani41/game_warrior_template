@@ -86,7 +86,8 @@
 					<% session.removeAttribute("message"); %>
 				</c:if>
 			</div>
-
+			<% int index = 0; %>
+			
 			<div class="drequest">
 				<c:if test="${not empty depositRequests}">
 						<h1 class="text-center text-white p2 bg-dark bg-gradient text-uppercase">Pending Deposit Request</h1>
@@ -112,7 +113,14 @@
 											<td>${pendingRequest.upiName}</td>
 											<c:choose>
 												<c:when test="${not empty pendingRequest.utr }">
-													<td>${pendingRequest.utr}</td>
+													<td>
+														<span class="upiID" onclick="copyTheUpi('<%= index %>')">
+															${pendingRequest.utr}
+														</span>
+														<i class="fa-regular fa-copy copyButton" onclick="copyTheUpi('<%= index %>')"></i>
+														<i class="fa-solid fa-circle-check copyComplete" style="display: none;"></i>
+														<% index++; %>
+													</td>
 												</c:when>
 												<c:otherwise>
 													<td>Not Available</td>
@@ -175,7 +183,15 @@
 											<td>${completeRequest.upiName}</td>
 											<c:choose>
 												<c:when test="${not empty completeRequest.utr }">
-													<td>${completeRequest.utr}</td>
+													<td>
+														<span class="upiID" onclick="copyTheUpi('<%= index %>')">
+															${completeRequest.utr}
+														</span>
+														<i class="fa-regular fa-copy copyButton" onclick="copyTheUpi('<%= index %>')"></i>
+														<i class="fa-solid fa-circle-check copyComplete" style="display: none;"></i>
+														<% index++; %>
+													</td>
+													
 												</c:when>
 												<c:otherwise>
 													<td>Not Available</td>
@@ -230,6 +246,7 @@
 
 
 			<!--====== Javascripts & Jquery ======-->
+			<script src="js/depositRequest.js"></script>
 			<script src="js/jquery-3.2.1.min.js"></script>
 			<script src="js/bootstrap.min.js"></script>
 			<script src="js/owl.carousel.min.js"></script>

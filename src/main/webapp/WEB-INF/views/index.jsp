@@ -862,8 +862,8 @@
 				margin:0,
 				autoplay: true,
 				autoplayTimeout: 2000,
-				nav:true,
-				dots: true,
+				nav:false,
+				dots: false,
 				responsive:{
 					0:{
 						items:1
