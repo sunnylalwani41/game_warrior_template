@@ -91,12 +91,13 @@
 				<c:if test="${not empty depositRequests}">
 						<h1 class="text-center text-white p2 bg-dark bg-gradient text-uppercase">Pending Deposit Request</h1>
 						<div class="container">
-						<table id="example" class="table table-striped table-responsive border-dark table-hover text-center text-capitalize">
+						<table id="example" class="table table-striped table-responsive border-dark table-hover text-center">
 							<thead class="table-dark table-active text-uppercase text-whites">
 								<tr>
 									<th>USER ID</th>
 									<th>UPI ID</th>
 									<th>Display Name</th>
+									<th>UTR Number </th>
 									<th>Payment Screenshot</th>
 									<th>Approve</th>
 									<th>Reject</th>
@@ -109,19 +110,36 @@
 											<td>${pendingRequest.userId }</td>
 											<td>${pendingRequest.upiId }</td>
 											<td>${pendingRequest.upiName}</td>
-											<td><img class="image-container" src="${pendingRequest.path}"
-													alt="${pendingRequest.userId }"></td>
+											<c:choose>
+												<c:when test="${not empty pendingRequest.utr }">
+													<td>${pendingRequest.utr}</td>
+												</c:when>
+												<c:otherwise>
+													<td>Not Available</td>
+												</c:otherwise>
+											</c:choose>
+											<td>
+												<div style="display: flex; flex-direction:column;">
+													<a href="${pendingRequest.path}" target="_blank" style="margin-bottom:7px">
+														<img class="image-container" src="${pendingRequest.path}"
+															alt="${pendingRequest.userId }">
+													</a>
+													<a href="${pendingRequest.path}" target="_blank">
+														<button class="btn btn-success">Click to view</button>
+													</a>
+												</div>
+											</td>
 											<td>
 												<form action="approveTheDepositRequest" method="post">
 													<input type="hidden" name="id" value="${pendingRequest.id }" />
-													<input type=number name="amount" placeholder="Amount" require>
+													<input type=number name="amount" placeholder="Amount" required>
 													<input type="submit" value="Approve">
 												</form>
 											</td>
 											<td>
 												<form action="rejectTheDepositRequest" method="post">
 													<input type="hidden" name="id" value="${pendingRequest.id }" />
-													<input type=text name="remark" placeholder="Reject Reason" require>
+													<input type=text name="remark" placeholder="Reject Reason" required>
 													<input type="submit" value="Reject">
 												</form>
 											</td>
@@ -134,12 +152,13 @@
 						
 					<h1 class="text-center text-white p2 bg-dark bg-gradient text-uppercase">Completed Deposit Request</h1>
 						<div class="container">
-						<table id="example" class="table table-striped table-responsive  table-center table-hover text-center text-capitalize" >
+						<table id="example" class="table table-striped table-responsive  table-center table-hover text-center" >
 							<thead class="table-dark table-active text-uppercase text-whites">
 								<tr>
 									<th>USER ID</th>
 									<th>UPI ID</th>
 									<th>Display Name</th>
+									<th>UTR Number</th>
 									<th>Payment Screenshot</th>
 									<th>Remark</th>
 									<th>Amount</th>
@@ -154,8 +173,25 @@
 											<td>${completeRequest.userId }</td>
 											<td>${completeRequest.upiId }</td>
 											<td>${completeRequest.upiName}</td>
-											<td><img class="image-container" src="${completeRequest.path}"
-													alt="${completeRequest.userId }"></td>
+											<c:choose>
+												<c:when test="${not empty completeRequest.utr }">
+													<td>${completeRequest.utr}</td>
+												</c:when>
+												<c:otherwise>
+													<td>Not Available</td>
+												</c:otherwise>
+											</c:choose>
+											<td>
+												<div style="display: flex; flex-direction:column;">
+													<a href="${completeRequest.path}" target="_blank" style="margin-bottom:7px">
+														<img class="image-container" src="${completeRequest.path}"
+															alt="${completeRequest.userId }">
+													</a>
+													<a href="${completeRequest.path}" target="_blank">
+														<button class="btn btn-success">Click to view</button>
+													</a>
+												</div>
+											</td>
 											<td>${completeRequest.remark}</td>
 											<c:choose>
 												<c:when test="${not empty completeRequest.amount }">

@@ -138,7 +138,7 @@ public class TransactionController {
     public void uploadTheFile(@RequestParam MultipartFile file, @RequestParam Integer selectedUpiId, @RequestParam String utr, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
     	HttpSession session = request.getSession();
     	Integer userId= (Integer)session.getAttribute("userId");
-    	System.out.println("Hey");
+    	
     	if(userId==null) {
     		session.setAttribute("errorMessage", "Invalid user! please login");
     		response.sendRedirect("login");
@@ -157,6 +157,7 @@ public class TransactionController {
     			depositRequest.setUserId(userId);
     			depositRequest.setUpiId(upiDetail.getUpiId());
     			depositRequest.setUpiName(upiDetail.getDisplayName());
+    			depositRequest.setUtr(utr);
     			
     			depositRequestService.takeDepositRequest(depositRequest);
     			
@@ -174,9 +175,10 @@ public class TransactionController {
     public void fetchDepositRequestHandler(HttpServletRequest request, HttpServletResponse response) throws IOException {
     	HttpSession session = request.getSession();
     	List<DepositRequest> depositRequests= depositRequestService.fetchAllDepositRequest();
-    	System.out.println("Hello");
+    	
     	session.setAttribute("fetchDepositRequest", "fetchDepositRequest");
     	session.setAttribute("depositRequests", depositRequests);
+    	
     	response.sendRedirect("depositRequest");
     }
     
