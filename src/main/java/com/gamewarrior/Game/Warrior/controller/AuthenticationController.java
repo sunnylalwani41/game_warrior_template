@@ -114,6 +114,7 @@ public class AuthenticationController {
     @GetMapping("/getencriptpassword/{password}")
     @ResponseBody
     public String ecriptPassword(@PathVariable String password) throws NoSuchAlgorithmException {
+    	System.out.println(password);
     	return securityConfig.encryptPassword(password);
     }
 }

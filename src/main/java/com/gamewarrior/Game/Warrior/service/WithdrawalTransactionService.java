@@ -17,7 +17,7 @@ public interface WithdrawalTransactionService {
 
 	public BankingTransaction saveTransaction(BankingTransaction transactionDetail) throws TransactionException, UserException;
 	
-	public void uploadFile(MultipartFile file,Integer upiId, Integer userId) throws IOException;
+	public String uploadFile(MultipartFile file,Integer upiId, Integer userId) throws IOException;
 	
 	public BankingTransaction moneyTransfer(BankingTransaction transaction) throws TransactionException, UserException, JsonProcessingException, IOException;
 }

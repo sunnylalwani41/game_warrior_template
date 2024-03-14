@@ -145,9 +145,9 @@ public class TransactionController {
     	}
     	else {
     		try {
-    			transactionService.uploadFile(file, selectedUpiId, userId);
+    			String filename = transactionService.uploadFile(file, selectedUpiId, userId);
     			
-    			String path = ServletUriComponentsBuilder.fromCurrentContextPath().path("/deposit/"+userId).path(file.getOriginalFilename()).toUriString();
+    			String path = ServletUriComponentsBuilder.fromCurrentContextPath().path("/deposit/"+userId+"/").path(filename).toUriString();
     			DepositRequest depositRequest = new DepositRequest();
     			UpiDetail upiDetail = upiDetailService.fetchUpiDetailById(selectedUpiId);
     					

@@ -25,6 +25,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
@@ -185,12 +187,15 @@ public class WithdrawalTransactionServiceImpl implements WithdrawalTransactionSe
     }
 
 	@Override
-	public void uploadFile(MultipartFile file, Integer upiId, Integer userId) throws IOException {
+	public String uploadFile(MultipartFile file, Integer upiId, Integer userId) throws IOException {
 		String uploadDir = new ClassPathResource("static").getFile().getAbsolutePath();
 		
 		uploadDir = createTheFolder(uploadDir+"\\deposit\\"+userId);
-		change original file name
-		Files.copy(file.getInputStream(), Paths.get(uploadDir+File.separator+file.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
+		String uniqueFilename = generateUniqueFilename(file.getOriginalFilename());
+		
+		Files.copy(file.getInputStream(), Paths.get(uploadDir+File.separator+uniqueFilename), StandardCopyOption.REPLACE_EXISTING);
+		
+		return uniqueFilename;
 	}
 	
 	private String createTheFolder(String location) {
@@ -200,4 +205,35 @@ public class WithdrawalTransactionServiceImpl implements WithdrawalTransactionSe
 		
 		return location;
 	}
+	
+	private String generateUniqueFilename(String originalFilename) {
+        // Get current date and time
+        LocalDateTime now = LocalDateTime.now();
+        
+        // Format the date and time
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS");
+        String formattedDateTime = now.format(formatter);
+        
+        // Get file extension
+        String extension = "";
+        int lastIndex = originalFilename.lastIndexOf('.');
+        if (lastIndex >= 0) {
+            extension = originalFilename.substring(lastIndex);
+        }
+        
+        // Concatenate formatted date/time with a unique identifier
+        String uniqueFilename = formattedDateTime + "_" + generateRandomString(6) + extension;
+        return uniqueFilename;
+    }
+
+    private String generateRandomString(int length) {
+        // Generate a random string (you can replace this with any other logic)
+        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            int index = (int) (Math.random() * chars.length());
+            sb.append(chars.charAt(index));
+        }
+        return sb.toString();
+    }
 }
