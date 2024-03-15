@@ -4,7 +4,7 @@
 		<!DOCTYPE html>
 		<html>
 		<head>
-			<title>Game Warrior Template</title>
+			<title>Khelo Exchanges</title>
 			<meta charset="UTF-8">
 			<meta name="description" content="Game Warrior Template">
 			<meta name="keywords" content="warrior, game, creative, html">

@@ -20,4 +20,6 @@ public interface WithdrawalTransactionService {
 	public String uploadFile(MultipartFile file,Integer upiId, Integer userId) throws IOException;
 	
 	public BankingTransaction moneyTransfer(BankingTransaction transaction) throws TransactionException, UserException, JsonProcessingException, IOException;
+	
+	public boolean isUniqueUTR(String utr);
 }

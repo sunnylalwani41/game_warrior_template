@@ -7,5 +7,5 @@ import com.gamewarrior.Game.Warrior.model.DepositRequest;
 
 @Repository
 public interface DepositRequestRepo extends JpaRepository<DepositRequest, Integer>{
-
+	public DepositRequest findByUtr(String utr); 
 }

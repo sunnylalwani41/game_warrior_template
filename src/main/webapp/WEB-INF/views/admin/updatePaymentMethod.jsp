@@ -5,7 +5,7 @@
 		<html>
 
 		<head>
-			<title>Game Warrior Template</title>
+			<title>Khelo Exchanges</title>
 			<meta charset="UTF-8">
 			<meta name="description" content="Game Warrior Template">
 			<meta name="keywords" content="warrior, game, creative, html">
@@ -158,7 +158,7 @@
 <c:choose>
 					<c:when test="${not empty upiDetails}">
 						<div class="container">
-						<table id="example" class="table table-striped table-responsive border-dark table-hover text-center text-capitalize">
+						<table id="example" class="table table-striped table-responsive border-dark table-hover text-center">
 							<thead class="table-dark table-active text-uppercase text-whites">
 									<tr>
 										<th>Action</th>

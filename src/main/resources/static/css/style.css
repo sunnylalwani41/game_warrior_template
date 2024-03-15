@@ -314,7 +314,11 @@ ol {
 }
 
 .transaction {
-	padding: 40px;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-gap: 15px;
+	padding: 10px;
+	margin: 15px 15px 0px 0px; 
 }
 .history {
 	padding: 40px;

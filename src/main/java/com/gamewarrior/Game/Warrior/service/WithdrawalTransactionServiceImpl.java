@@ -11,10 +11,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gamewarrior.Game.Warrior.dao.DepositRequestRepo;
 import com.gamewarrior.Game.Warrior.dao.TransactionRepo;
 import com.gamewarrior.Game.Warrior.exception.TransactionException;
 import com.gamewarrior.Game.Warrior.exception.UserException;
 import com.gamewarrior.Game.Warrior.model.BankingTransaction;
+import com.gamewarrior.Game.Warrior.model.DepositRequest;
 import com.gamewarrior.Game.Warrior.model.User;
 
 import io.github.classgraph.Resource;
@@ -39,6 +41,8 @@ public class WithdrawalTransactionServiceImpl implements WithdrawalTransactionSe
     private TransactionRepo transactionRepo;
     @Autowired
     private UserService userService;
+    @Autowired
+    private DepositRequestRepo depositRequestRepo;
     
     private final String KEYX_ID;
     private final String SECRETX_KEY;
@@ -236,4 +240,14 @@ public class WithdrawalTransactionServiceImpl implements WithdrawalTransactionSe
         }
         return sb.toString();
     }
+
+	@Override
+	public boolean isUniqueUTR(String utr) {
+		DepositRequest depositRequest= depositRequestRepo.findByUtr(utr);
+		
+		if(depositRequest==null)
+			return true;
+		
+		return false;
+	}
 }

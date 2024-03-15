@@ -144,28 +144,33 @@ public class TransactionController {
     		response.sendRedirect("login");
     	}
     	else {
-    		try {
-    			String filename = transactionService.uploadFile(file, selectedUpiId, userId);
-    			
-    			String path = ServletUriComponentsBuilder.fromCurrentContextPath().path("/deposit/"+userId+"/").path(filename).toUriString();
-    			DepositRequest depositRequest = new DepositRequest();
-    			UpiDetail upiDetail = upiDetailService.fetchUpiDetailById(selectedUpiId);
-    					
-    			session.setAttribute("message", "BankingTransaction successfully done! This request will be processed within 2 days.");
-    			
-    			depositRequest.setPath(path);
-    			depositRequest.setUserId(userId);
-    			depositRequest.setUpiId(upiDetail.getUpiId());
-    			depositRequest.setUpiName(upiDetail.getDisplayName());
-    			depositRequest.setUtr(utr);
-    			
-    			depositRequestService.takeDepositRequest(depositRequest);
-    			
-    			User user= userService.fetchProfile(userId);
-    			emailService.sendCustomMessage(user.getEmail(), "Deposit Request request has been taken", "BankingTransaction successfully done! This request will be processed within 2 days.", user);
+    		if(transactionService.isUniqueUTR(utr)) {
+    			try {
+	    			String filename = transactionService.uploadFile(file, selectedUpiId, userId);
+	    			
+	    			String path = ServletUriComponentsBuilder.fromCurrentContextPath().path("/deposit/"+userId+"/").path(filename).toUriString();
+	    			DepositRequest depositRequest = new DepositRequest();
+	    			UpiDetail upiDetail = upiDetailService.fetchUpiDetailById(selectedUpiId);
+	    					
+	    			session.setAttribute("message", "BankingTransaction successfully done! This request will be processed within 2 days.");
+	    			
+	    			depositRequest.setPath(path);
+	    			depositRequest.setUserId(userId);
+	    			depositRequest.setUpiId(upiDetail.getUpiId());
+	    			depositRequest.setUpiName(upiDetail.getDisplayName());
+	    			depositRequest.setUtr(utr);
+	    			
+	    			depositRequestService.takeDepositRequest(depositRequest);
+	    			
+	    			User user= userService.fetchProfile(userId);
+	    			emailService.sendCustomMessage(user.getEmail(), "Deposit Request request has been taken", "This request will be processed within 2 days.", user);
+	    		}
+	    		catch(Exception exception) {
+	    			session.setAttribute("errorMessage", exception.getMessage());
+	    		}
     		}
-    		catch(Exception exception) {
-    			session.setAttribute("errorMessage", exception.getMessage());
+    		else {
+    			session.setAttribute("errorMessage", "Transaction UTR number is duplication. Please enter correct UTR number.");
     		}
     		response.sendRedirect("fetchUpiDetails");
     	}

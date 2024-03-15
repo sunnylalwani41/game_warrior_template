@@ -1,10 +1,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-	<title>Game Warrior Template</title>
+	<title>Khelo Exchanges</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="Game Warrior Template">
 	<meta name="keywords" content="warrior, game, creative, html">
@@ -18,11 +20,14 @@
 	<!-- Stylesheets -->
 	<link rel="stylesheet" href="css/bootstrap.min.css"/>
 	<link rel="stylesheet" href="css/font-awesome.min.css"/>
-	<link rel="stylesheet" href="css/owl.carousel.css"/>
+
 	<link rel="stylesheet" href="css/style.css"/>
-	<link rel="stylesheet" href="css/animate.css"/>
-	<link rel="stylesheet" href="css/login.css"/>
+	<link rel="stylesheet" href="css/error-container.css"/>
+
+	<link rel="stylesheet" href="./css/home.css">
+    <link rel="stylesheet" href="./css/registration.css">
 	<link rel="stylesheet" href="css/responsive.css"/>
+	
 	<script src="https://kit.fontawesome.com/e99a9eb445.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -30,7 +35,12 @@
 	<div id="preloder">
 		<div class="loader"></div>
 	</div>
-
+	
+	<c:if test="${not empty userId }">
+		<%
+			response.sendRedirect("/");
+		%>
+	</c:if>
 	<!-- Header section -->
 	<header class="header-section">
 				<div class="container">
@@ -119,26 +129,37 @@
 					</nav>
 				</div>
 			</header>
-			
+		
 	<!-- Header section end -->
-
-
-	<!-- Hero section -->
-	<section class="hero-section">
-		<div class="hero-slider owl-carousel">
-			<div class="hs-item set-bg" data-setbg="img/slider-1.jpg">
-				<div class="box">
-                    <h2>Terms and Condition</h2>
-					<p>Terms and Conditions agreements act as a legal contract between Khelo exchange and the user who access your website and mobile app.</p>
-					<p>If you provide any information that is untrue, inaccurate, not current, or incomplete, we have the right to suspend or terminate your account and refuse any and all current or future use of the Site</p>
-                  </div>
-                  </div>
-			</div>
-		</div>
-	</section>
-	<!-- Hero section end -->
-
-	<!-- Footer section -->
+	
+	<div class="pageData">
+        <!-- <img src="https://media.istockphoto.com/id/1334436084/photo/top-down-view-of-colorful-illuminated-gaming-accessories-laying-on-table.jpg?s=612x612&w=0&k=20&c=E9xnbAZoBS5LlUX0q-zxT_3m6gEZpyB2k51_U4LLMNs="
+            alt="game image"> -->
+        <div class="text-overlay1">
+        	<c:if test="${not empty errorMessage}">
+				<div class="errorContainerSeconnd">${errorMessage}</div>
+				<%
+					session.removeAttribute("errorMessage");
+					session.invalidate();
+				%>
+			</c:if>
+			<c:if test="${not empty message}">
+				<div class="errorContainerSeconnd">${message}</div>
+				<%
+					session.removeAttribute("message");
+					session.invalidate();
+				%>
+			</c:if>
+            <div class="register-box">
+                <p class="register-head">Terms and Condition</p>
+				<p>Terms and Conditions agreements act as a legal contract between Khelo exchange and the user who access your website and mobile app.</p>
+				<p>If you provide any information that is untrue, inaccurate, not current, or incomplete, we have the right to suspend or terminate your account and refuse any and all current or future use of the Site</p>
+            </div>
+        </div>
+        
+        </div>
+    </div>
+    
 	<footer class="footer-section">
 				<div class="container">
 					<ul class="footer-menu">
@@ -158,13 +179,12 @@
 					</p>
 				</div>
 			</footer>
-	<!-- Footer section end -->
+	
 
 
 	<!--====== Javascripts & Jquery ======-->
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script src="js/registration.js"></script>
-	<script src="js/jquery-3.2.1.min.js"></script>
+	<!-- <script src="js/registration.js"></script> -->
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/jquery.marquee.min.js"></script>

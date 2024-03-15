@@ -3,7 +3,7 @@
 		<!DOCTYPE html>
 		<html>
 		<head>
-			<title>Game Warrior Template</title>
+			<title>Khelo Exchanges</title>
 			<meta charset="UTF-8">
 			<meta name="description" content="Game Warrior Template">
 			<meta name="keywords" content="warrior, game, creative, html">
@@ -149,19 +149,24 @@
 
 			<!-- Hero section -->
 			<section class="hero-section">
-				<div class="hero-slider owl-carousel" id="hero">
-					<div class="hs-item set-bg w-40"  data-setbg="img/maxresdefault.jpg" >
-
-						<div class="hs-text">
-							<div class="container">
-								<h2>The Best <span>Games</span> Out There</h2>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada <br> lorem
+			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100 img-fluid" src="img/maxresdefault.jpg" alt="First slide">
+  <div class="carousel-caption d-none d-md-block">
+    <h2 class="display-4">The Best <span>Games</span> Out There</h2>
+    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada <br> lorem
 									maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien.
 									<br>Suspendisse cursus faucibus finibus.</p>
-								<a href="#" class="site-btn">Read More</a>
-							</div>
-						</div>
-						<c:if test="${not empty userId }">
+								<a href="#" class="btn btn-primary btn-lg">Read More</a>
+								<c:if test="${not empty userId }">
 							<div class="transaction">
 								<div class="user-panel" id="deposit">
 									<a href="fetchUpiDetails">
@@ -176,29 +181,32 @@
 									</a>
 								</div>
 							</div>
-							<div class="history">
+							<div class="transaction">
 								<div class="user-panel">
 									<a href="fetchTransactions">
 										<i class="fa-solid fa-book"></i>
 										Transaction History
 									</a>
 								</div>
+								<div class="user-panel" id="withdraw">
+									<a href="fetchPendingRequest">
+										<i class="fa-regular fa-hourglass-half"></i>
+										Pending Request
+									</a>
+								</div>
 							</div>
 						</c:if>
-					</div>
-					
-					<div class="hs-item set-bg" data-setbg="img/slider-1.jpg">
-
-						<div class="hs-text">
-							<div class="container">
-								<h2>The Best <span>Games</span> Out There</h2>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada <br> lorem
+  </div>    
+  </div>
+    <div class="carousel-item">
+      <img class="d-block w-100 img-fluid" src="img/slider-1.jpg" alt="First slide">
+  <div class="carousel-caption d-none d-md-block">
+    <h2 class="display-4">The Best <span>Games</span> Out There</h2>
+    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada <br> lorem
 									maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien.
 									<br>Suspendisse cursus faucibus finibus.</p>
-								<a href="#" class="site-btn">Read More</a>
-							</div>
-						</div>
-						<c:if test="${not empty userId }">
+								<a href="#" class="btn btn-primary btn-lg">Read More</a>
+								<c:if test="${not empty userId }">
 							<div class="transaction">
 								<div class="user-panel" id="deposit">
 									<a href="fetchUpiDetails">
@@ -213,29 +221,33 @@
 									</a>
 								</div>
 							</div>
-							<div class="history">
+							<div class="transaction">
 								<div class="user-panel">
 									<a href="fetchTransactions">
 										<i class="fa-solid fa-book"></i>
 										Transaction History
 									</a>
 								</div>
+								<div class="user-panel" id="withdraw">
+									<a href="fetchPendingRequest">
+										<i class="fa-regular fa-hourglass-half"></i>
+										Pending Request
+									</a>
+								</div>
 							</div>
 						</c:if>
-					</div>
-					
-					<div class="hs-item set-bg" data-setbg="img/slider-2.jpg">
-
-						<div class="hs-text">
-							<div class="container">
-								<h2>The Best <span>Games</span> Out There</h2>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada <br> lorem
+								
+  </div>
+    </div>
+    <div class="carousel-item">
+     <img class="d-block w-100 img-fluid" src="img/slider-2.jpg" alt="...">
+  <div class="carousel-caption d-none d-md-block">
+   <h2 class="display-4">The Best <span>Games</span> Out There</h2>
+    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada <br> lorem
 									maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien.
 									<br>Suspendisse cursus faucibus finibus.</p>
-								<a href="#" class="site-btn">Read More</a>
-							</div>
-						</div>
-						<c:if test="${not empty userId }">
+								<a href="#" class="btn btn-primary btn-lg">Read More</a>
+								<c:if test="${not empty userId }">
 							<div class="transaction">
 								<div class="user-panel" id="deposit">
 									<a href="fetchUpiDetails">
@@ -250,29 +262,34 @@
 									</a>
 								</div>
 							</div>
-							<div class="history">
+							<div class="transaction">
 								<div class="user-panel">
 									<a href="fetchTransactions">
 										<i class="fa-solid fa-book"></i>
 										Transaction History
 									</a>
 								</div>
+								<div class="user-panel" id="withdraw">
+									<a href="fetchPendingRequest">
+										<i class="fa-regular fa-hourglass-half"></i>
+										Pending Request
+									</a>
+								</div>
 							</div>
 						</c:if>
-					</div>
-					
-					<div class="hs-item set-bg" data-setbg="img/slider-3.jpg">
-
-						<div class="hs-text">
-							<div class="container">
-								<h2>The Best <span>Games</span> Out There</h2>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada <br> lorem
+								
+								
+  </div>
+    </div>
+    <div class="carousel-item">
+     <img class="d-block w-100 img-fluid" src="img/slider-3.jpg" alt="...">
+  <div class="carousel-caption d-none d-md-block">
+   <h2 class="display-4">The Best <span>Games</span> Out There</h2>
+    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada <br> lorem
 									maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien.
 									<br>Suspendisse cursus faucibus finibus.</p>
-								<a href="#" class="site-btn">Read More</a>
-							</div>
-						</div>
-						<c:if test="${not empty userId }">
+								<a href="#" class="btn btn-primary btn-lg">Read More</a>
+								<c:if test="${not empty userId }">
 							<div class="transaction">
 								<div class="user-panel" id="deposit">
 									<a href="fetchUpiDetails">
@@ -287,29 +304,34 @@
 									</a>
 								</div>
 							</div>
-							<div class="history">
+							<div class="transaction">
 								<div class="user-panel">
 									<a href="fetchTransactions">
 										<i class="fa-solid fa-book"></i>
 										Transaction History
 									</a>
 								</div>
+								<div class="user-panel" id="withdraw">
+									<a href="fetchPendingRequest">
+										<i class="fa-regular fa-hourglass-half"></i>
+										Pending Request
+									</a>
+								</div>
 							</div>
 						</c:if>
-					</div>
-					
-					<div class="hs-item set-bg" data-setbg="img/slider-4.jpg">
-
-						<div class="hs-text">
-							<div class="container">
-								<h2>The Best <span>Games</span> Out There</h2>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada <br> lorem
+								
+								
+  </div>
+    </div>
+    <div class="carousel-item">
+     <img class="d-block w-100 img-fluid" src="img/slider-4.jpg" alt="...">
+  <div class="carousel-caption d-none d-md-block">
+   <h2 class="display-4">The Best <span>Games</span> Out There</h2>
+    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada <br> lorem
 									maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien.
 									<br>Suspendisse cursus faucibus finibus.</p>
-								<a href="#" class="site-btn">Read More</a>
-							</div>
-						</div>
-						<c:if test="${not empty userId }">
+								<a href="#" class="btn btn-primary btn-lg">Read More</a>
+								<c:if test="${not empty userId }">
 							<div class="transaction">
 								<div class="user-panel" id="deposit">
 									<a href="fetchUpiDetails">
@@ -324,55 +346,35 @@
 									</a>
 								</div>
 							</div>
-							<div class="history">
+							<div class="transaction">
 								<div class="user-panel">
 									<a href="fetchTransactions">
 										<i class="fa-solid fa-book"></i>
 										Transaction History
-									</a>
-								</div>
-							</div>
-						</c:if>
-					</div>
-					
-					<div class="hs-item set-bg" data-setbg="img/slider-5.jpg">
-
-						<div class="hs-text">
-							<div class="container">
-								<h2>The Best <span>Games</span> Out There</h2>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada <br> lorem
-									maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien.
-									<br>Suspendisse cursus faucibus finibus.</p>
-								<a href="#" class="site-btn">Read More</a>
-							</div>
-						</div>
-						<c:if test="${not empty userId }">
-							<div class="transaction">
-								<div class="user-panel" id="deposit">
-									<a href="fetchUpiDetails">
-										<i class="fa-solid fa-file-arrow-down" style="color:green"></i>
-										Deposit
 									</a>
 								</div>
 								<div class="user-panel" id="withdraw">
-									<a href="withdraw">
-										<i class="fa-solid fa-file-arrow-up" style="color:red"></i>
-										Withdraw
-									</a>
-								</div>
-							</div>
-							<div class="history">
-								<div class="user-panel">
-									<a href="fetchTransactions">
-										<i class="fa-solid fa-book"></i>
-										Transaction History
+									<a href="fetchPendingRequest">
+										<i class="fa-regular fa-hourglass-half"></i>
+										Pending Request
 									</a>
 								</div>
 							</div>
 						</c:if>
-					</div>
-					
-				</div>
+								
+  </div>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+			
 			</section>
 			<!-- Hero section end -->
 			
@@ -850,32 +852,16 @@
 	<script src="js/jquery.marquee.min.js"></script>
 	<script src="js/main.js"></script>
 	<script src="js/login.js"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<script type="text/javascript">
 		(function() {var script=document.createElement("script");script.type="text/javascript";script.async =true;script.src="//telegram.im/widget-button/index.php?id=@digitaladdworld";document.getElementsByTagName("head")[0].appendChild(script);})();
 	</script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		<script>
-			$('#hero') ({
-				loop:false,
-				margin:0,
-				autoplay: true,
-				autoplayTimeout: 2000,
-				nav:false,
-				dots: false,
-				responsive:{
-					0:{
-						items:1
-					},
-					300:{
-						items:1
-					},
-					
-				}
-			})
-			
-		</script>
+		
 
 		</body>
 

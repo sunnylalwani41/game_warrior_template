@@ -7,7 +7,7 @@
 		<html lang="zxx">
 
 		<head>
-			<title>Game Warrior Enter OTP</title>
+			<title>Khelo Exchanges | Enter OTP</title>
 			<meta charset="UTF-8">
 			<meta name="description" content="Game Warrior Template">
 			<meta name="keywords" content="warrior, game, creative, html">
