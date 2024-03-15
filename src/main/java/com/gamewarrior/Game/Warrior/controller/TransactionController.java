@@ -253,4 +253,10 @@ public class TransactionController {
     	
     	response.sendRedirect("fetchAllUpi");
     }
+    
+    @PostMapping("/withdrawRequest")
+    public void withdrawRequestHandling(@RequestParam String bank, @RequestParam String accountNumber, @RequestParam String ifsc, @RequestParam String accountHolderName, @RequestParam Double amount) {
+    	
+    	
+    }
 }

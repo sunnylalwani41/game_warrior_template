@@ -147,13 +147,13 @@
             </c:if>
             <div class="box">
               <h2>Money Withdraw</h2>
-              <form action="transaction" method="post">
+              <form action="withdrawRequest" method="post">
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group row" style="margin-bottom: 5px;">
-                      <label class="col-sm-12 col-form-label" style="padding-bottom: 0px;">Mobile</label>
+                      <label class="col-sm-12 col-form-label" style="padding-bottom: 0px;">Bank Name</label>
                       <div class="col-sm-12">
-                        <input type="tel" class="form-control" id="mobile" name="mobile" required />
+                        <input type="text" class="form-control" id="bank" name="bank" required />
                       </div>
                     </div>
                   </div>
