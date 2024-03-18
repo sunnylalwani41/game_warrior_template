@@ -91,7 +91,7 @@
             <div class="register-box">
                 <p class="register-head">Admin Login</p>
                 <form action="verifyAdmin" method="post">
-                    <input type="email" id="email" name="adminEmail" placeholder="Email Address" required>
+                    <input type="text" id="email" name="adminEmail" placeholder="Email Address" required>
                     <br>
                     <input type="password" id="password" name = "adminPassword" placeholder="Password" required>
                     <div class="error-message" id="password-error"></div>

@@ -255,8 +255,35 @@ public class TransactionController {
     }
     
     @PostMapping("/withdrawRequest")
-    public void withdrawRequestHandling(@RequestParam String bank, @RequestParam String accountNumber, @RequestParam String ifsc, @RequestParam String accountHolderName, @RequestParam Double amount) {
-    	
-    	
+    public void withdrawRequestHandling(@RequestParam String bank, @RequestParam String accountNumber, @RequestParam String ifsc, @RequestParam String accountHolderName, @RequestParam Double amount, HttpServletRequest request, HttpServletResponse response) {
+    	HttpSession session = request.getSession();
+        Integer userId = (Integer) session.getAttribute("userId");
+        User user = userService.fetchProfile(userId);
+
+        if(user==null){
+            session.setAttribute("errorMessage", "Invalid User!! Please login.");
+            
+            response.sendRedirect("login");
+        }
+        else {
+        	if(walletService.withdrawableWalletAmountDeduction(amount, userId, session, "Direct money transfer to Bank Account")) {
+	        	try {
+	        		transactionService.moneyTransfer(bankingTransaction);
+		        	
+	        		<i class="fa-solid fa-spinner"></i>    	transactionService.saveTransaction(bankingTransaction);
+	
+		        	request.setAttribute("transaction", bankingTransaction);
+		        	session.setAttribute("message", "BankingTransaction Successfull");
+		        	response.sendRedirect("withdraw");
+	        	}
+	        	catch(Exception exception) {
+	        		walletService.withdrawableWalletAmountAddition(amount, userId, session, "Refund of money transfer");
+	        	}
+        	}
+        	else {
+        		session.setAttribute("errorMessage", "Insufficient amount in withdrawable wallet");
+        		response.sendRedirect("withdraw");
+        	}
+        }
     }
 }
