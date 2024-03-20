@@ -15,20 +15,25 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.gamewarrior.Game.Warrior.dto.Status;
 import com.gamewarrior.Game.Warrior.exception.TransactionException;
 import com.gamewarrior.Game.Warrior.exception.UserException;
 import com.gamewarrior.Game.Warrior.exception.WalletException;
 import com.gamewarrior.Game.Warrior.model.DepositRequest;
+import com.gamewarrior.Game.Warrior.model.Notification;
 import com.gamewarrior.Game.Warrior.model.BankingTransaction;
 import com.gamewarrior.Game.Warrior.model.UpiDetail;
 import com.gamewarrior.Game.Warrior.model.User;
 import com.gamewarrior.Game.Warrior.model.Wallet;
+import com.gamewarrior.Game.Warrior.model.WithdrawRequest;
 import com.gamewarrior.Game.Warrior.service.DepositRequestService;
 import com.gamewarrior.Game.Warrior.service.EmailService;
+import com.gamewarrior.Game.Warrior.service.NotificationService;
 import com.gamewarrior.Game.Warrior.service.WithdrawalTransactionService;
 import com.gamewarrior.Game.Warrior.service.UpiDetailService;
 import com.gamewarrior.Game.Warrior.service.UserService;
 import com.gamewarrior.Game.Warrior.service.WalletService;
+import com.gamewarrior.Game.Warrior.service.WithdrawRequestService;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -50,6 +55,10 @@ public class TransactionController {
 	private EmailService emailService;
 	@Autowired
 	private DepositRequestService depositRequestService;
+	@Autowired
+	private WithdrawRequestService withdrawRequestService;
+	@Autowired
+	private NotificationService notificationService;
 	
 	@GetMapping("/fetchUpiDetails")
 	public void fetchUpiDetailHandler(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -255,35 +264,48 @@ public class TransactionController {
     }
     
     @PostMapping("/withdrawRequest")
-    public void withdrawRequestHandling(@RequestParam String bank, @RequestParam String accountNumber, @RequestParam String ifsc, @RequestParam String accountHolderName, @RequestParam Double amount, HttpServletRequest request, HttpServletResponse response) {
+    public void withdrawRequestHandling(@RequestParam String bank, @RequestParam String accountNumber, @RequestParam String ifsc, @RequestParam String accountHolderName, @RequestParam Double amount, HttpServletRequest request, HttpServletResponse response) throws IOException, UserException, WalletException, MessagingException {
     	HttpSession session = request.getSession();
         Integer userId = (Integer) session.getAttribute("userId");
         User user = userService.fetchProfile(userId);
-
+        WithdrawRequest withdrawRequest = new WithdrawRequest();
+        
         if(user==null){
             session.setAttribute("errorMessage", "Invalid User!! Please login.");
             
             response.sendRedirect("login");
         }
         else {
-        	if(walletService.withdrawableWalletAmountDeduction(amount, userId, session, "Direct money transfer to Bank Account")) {
-	        	try {
-	        		transactionService.moneyTransfer(bankingTransaction);
-		        	
-	        		<i class="fa-solid fa-spinner"></i>    	transactionService.saveTransaction(bankingTransaction);
-	
-		        	request.setAttribute("transaction", bankingTransaction);
-		        	session.setAttribute("message", "BankingTransaction Successfull");
+			if(walletService.withdrawableWalletAmountDeduction(amount, userId, session, "Direct money transfer to Bank Account")) {
+				try {
+					withdrawRequest.setBankName(bank);
+			        withdrawRequest.setAccountNumber(accountNumber);
+			        withdrawRequest.setAccountHolderName(accountHolderName);
+			        withdrawRequest.setIfsc(ifsc);
+			        withdrawRequest.setAmount(amount);
+			        withdrawRequest.setMobile(user.getMobile());
+			        withdrawRequest.setStatus(Status.PENDING);
+		        
+		        	withdrawRequest = withdrawRequestService.saveWithdrawRequest(withdrawRequest);
+		        }
+		        catch(Exception exception) {
+		        	withdrawRequest.setStatus(Status.FAILED);
+		        	withdrawRequest = withdrawRequestService.saveWithdrawRequest(withdrawRequest);
+		        	session.setAttribute("message", exception.getMessage());
 		        	response.sendRedirect("withdraw");
-	        	}
-	        	catch(Exception exception) {
-	        		walletService.withdrawableWalletAmountAddition(amount, userId, session, "Refund of money transfer");
-	        	}
-        	}
-        	else {
-        		session.setAttribute("errorMessage", "Insufficient amount in withdrawable wallet");
-        		response.sendRedirect("withdraw");
-        	}
+		        }
+				String subject = "Money Transfer";
+				String message = "Direct money transfer to Bank Account.\nIt will proceed within 2 days";
+				
+				emailService.sendCustomMessage(user.getEmail(), subject, message, user);
+				
+		    	session.setAttribute("message", "BankingTransaction Successful. It will proceed within 2 days");
+		    	response.sendRedirect("withdraw");
+			}
+			else {
+				session.setAttribute("errorMessage", "Insufficient amount in withdrawable wallet");
+				response.sendRedirect("withdraw");
+			}
         }
     }
 }

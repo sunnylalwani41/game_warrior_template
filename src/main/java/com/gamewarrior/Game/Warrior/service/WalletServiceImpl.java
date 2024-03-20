@@ -19,7 +19,7 @@ public class WalletServiceImpl implements WalletService{
 	private WalletRepo walletRepo;
 	@Autowired
 	private UserService userService;
-	private final Integer DIVISION_PERCENTAGE =1; 
+	private final Double DIVISION_PERCENTAGE =1.0; 
 
 
 	@Override
@@ -62,6 +62,7 @@ public class WalletServiceImpl implements WalletService{
 		Wallet wallet = getWalletByUserId(userId);
 		
 		Double withdrawableAmount = amount*(DIVISION_PERCENTAGE/100);
+		System.out.println(withdrawableAmount);
 		Double generalAmount = amount - withdrawableAmount;
 		
 		wallet.setGeneralWallet(wallet.getGeneralWallet()+generalAmount);
