@@ -60,6 +60,7 @@
 									<li><a href="fetchCreateId">Create Id Request</a></li>
 									<li><a href="fetchGames">Update Game website</a></li>
 									<li><a href="fetchAllUpi">Payment method updation</a></li>
+									<li><a href="fetchAllWithdrawRequest">Withdraw Request</a></li>
 									<li><a href="adminLogout">Logout</a></li>
 								</ul>
 							</div>
@@ -435,7 +436,6 @@
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/jquery.marquee.min.js"></script>
 	<script src="js/main.js"></script>
-	<script src="js/login.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 		</body>

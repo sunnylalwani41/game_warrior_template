@@ -20,9 +20,9 @@ public class WithdrawRequest {
     private String ifsc;
     private String accountHolderName;
     private Double amount;
-    private String utr;
+    private String referenceNumber;
     private Integer userId;
     @Enumerated(EnumType.STRING)
     private Status status;
-    private LocalDateTime timestamp;
+    private LocalDateTime timestamp= LocalDateTime.now();
 }

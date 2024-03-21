@@ -25,6 +25,7 @@
 			<link rel="stylesheet" href="css/deposit.css">
 			<!-- livechat style -->
 			<link rel="stylesheet" href="css/responsive.css"/>
+			<link rel="stylesheet" href="css/error-container.css"/>
 			<link rel="stylesheet"
 				href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
 			<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
@@ -67,6 +68,7 @@
 									<li><a href="fetchCreateId">Create Id Request</a></li>
 									<li><a href="fetchGames">Update Game website</a></li>
 									<li><a href="fetchAllUpi">Payment method updation</a></li>
+									<li><a href="fetchAllWithdrawRequest">Withdraw Request</a></li>
 									<li><a href="adminLogout">Logout</a></li>
 								</ul>
 							</div>

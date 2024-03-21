@@ -148,8 +148,7 @@
 				<div class="row">
 					<div class="col-xl-5 col-lg-6 text-white">
 						<h2>Game reviews</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris
-							scelerisque, at rutrum nulla dictum.</p>
+						<p>"Discover what players are saying about our game and join the excitement today!"</p>
 					</div>
 				</div>
 			</div>
@@ -176,8 +175,8 @@
 								<i class="fa fa-star"></i>
 								<i class="fa fa-star is-fade"></i>
 							</div>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame. Lorem ipsum
-								dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
+							<p>"Experience spooky thrills and chilling excitement in Overwatch's Halloween event!"
+</p>
 						</div>
 					</div>
 				</div>
@@ -195,8 +194,7 @@
 								<i class="fa fa-star"></i>
 								<i class="fa fa-star is-fade"></i>
 							</div>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame. Lorem ipsum
-								dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
+							<p>"Dive into the criminal underworld and explore a sprawling, immersive open world in Grand Theft Auto. Experience intense action, thrilling missions, and endless possibilities as you rise to the top or fall from grace in this iconic gaming masterpiece."</p>
 						</div>
 					</div>
 				</div>
@@ -214,8 +212,14 @@
 								<i class="fa fa-star"></i>
 								<i class="fa fa-star is-fade"></i>
 							</div>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame. Lorem ipsum
-								dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
+							<p>"Embark on an epic journey through mystical realms and breathtaking landscapes as you create your own destiny in Avatar. Choose your path, master powerful abilities, and become the hero the world needs in this immersive adventure of a lifetime."
+
+
+
+
+
+
+</p>
 						</div>
 					</div>
 				</div>
@@ -233,8 +237,8 @@
 								<i class="fa fa-star"></i>
 								<i class="fa fa-star is-fade"></i>
 							</div>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame. Lorem ipsum
-								dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
+							<p>
+"Unleash your Javelin exosuit and soar through the skies in Anthem, an action-packed adventure set in a stunning, ever-changing world."</p>
 						</div>
 					</div>
 				</div>
@@ -252,8 +256,8 @@
 								<i class="fa fa-star"></i>
 								<i class="fa fa-star is-fade"></i>
 							</div>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame. Lorem ipsum
-								dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
+							<p>
+"Dive into the dystopian future of Cyberpunk and immerse yourself in a world of high-tech chaos, where every choice shapes the fate of the city."</p>
 						</div>
 					</div>
 				</div>
@@ -271,8 +275,8 @@
 								<i class="fa fa-star"></i>
 								<i class="fa fa-star is-fade"></i>
 							</div>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame. Lorem ipsum
-								dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
+							<p>
+"Swing through the iconic streets of New York City as Spider-Man and unleash your web-slinging abilities to protect the city from chaos and villains."</p>
 						</div>
 					</div>
 				</div>
@@ -300,7 +304,7 @@
 						</div>
 						<div class="review-text">
 							<h5>Assasin’’s Creed</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
+							<p>Take a break from the hustle and bustle of everyday life and immerse yourself in the electrifying atmosphere</p>
 						</div>
 					</div>
 				</div>
@@ -311,7 +315,7 @@
 						</div>
 						<div class="review-text">
 							<h5>Doom</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
+									<p>Featuring state-of-the-art graphics and animations, our games transport you to a world of luxury and sophistication.</p>
 						</div>
 					</div>
 				</div>
@@ -322,7 +326,8 @@
 						</div>
 						<div class="review-text">
 							<h5>Overwatch</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
+							<p> Join one of our thrilling tournaments and compete against players from around the world for your chance </p>
+
 						</div>
 					</div>
 				</div>
@@ -332,8 +337,8 @@
 							<div class="score pink">9.7</div>
 						</div>
 						<div class="review-text">
-							<h5>GTA</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
+							<h5>Gambling</h5>
+									<p>From scratch cards to bingo, there's always something new and exciting to try your hand at.</p>
 						</div>
 					</div>
 				</div>
@@ -353,7 +358,7 @@
 				<div class="col-lg-4">
 					<div class="footer-logo text-white">
 						<img src="img/footer-logo.png" alt="">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
+						
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-6">
@@ -364,7 +369,7 @@
 								<div class="lb-thumb set-bg" data-setbg="img/latest-blog/1.jpg"></div>
 								<div class="lb-content">
 									<div class="lb-date">June 21, 2018</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum </p>
+									
 									<a href="#" class="lb-author">By Admin</a>
 								</div>
 							</div>
@@ -372,7 +377,7 @@
 								<div class="lb-thumb set-bg" data-setbg="img/latest-blog/2.jpg"></div>
 								<div class="lb-content">
 									<div class="lb-date">June 21, 2018</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum </p>
+									
 									<a href="#" class="lb-author">By Admin</a>
 								</div>
 							</div>
@@ -380,7 +385,7 @@
 								<div class="lb-thumb set-bg" data-setbg="img/latest-blog/3.jpg"></div>
 								<div class="lb-content">
 									<div class="lb-date">June 21, 2018</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum </p>
+									
 									<a href="#" class="lb-author">By Admin</a>
 								</div>
 							</div>

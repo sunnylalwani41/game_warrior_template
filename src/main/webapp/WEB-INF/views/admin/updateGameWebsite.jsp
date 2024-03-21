@@ -81,6 +81,7 @@
 									<li><a href="fetchCreateId">Create Id Request</a></li>
 									<li><a href="fetchGames">Update Game website</a></li>
 									<li><a href="fetchAllUpi">Payment method updation</a></li>
+									<li><a href="fetchAllWithdrawRequest">Withdraw Request</a></li>
 									<li><a href="adminLogout">Logout</a></li>
 								</ul>
 							</div>

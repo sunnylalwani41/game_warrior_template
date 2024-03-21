@@ -2,6 +2,7 @@ package com.gamewarrior.Game.Warrior.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.mail.MessagingException;
@@ -279,6 +280,7 @@ public class TransactionController {
 			if(walletService.withdrawableWalletAmountDeduction(amount, userId, session, "Direct money transfer to Bank Account")) {
 				try {
 					withdrawRequest.setBankName(bank);
+					withdrawRequest.setUserId(userId);
 			        withdrawRequest.setAccountNumber(accountNumber);
 			        withdrawRequest.setAccountHolderName(accountHolderName);
 			        withdrawRequest.setIfsc(ifsc);
@@ -307,5 +309,75 @@ public class TransactionController {
 				response.sendRedirect("withdraw");
 			}
         }
+    }
+    
+    @GetMapping("/fetchAllWithdrawRequest")
+    public void fetchAllWithdrawRequestHandler(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    	List<WithdrawRequest> withdrawRequests= withdrawRequestService.fetchAllWithdrawRequest();
+    	HttpSession session = request.getSession();
+    	
+    	if(withdrawRequests==null) {
+    		session.setAttribute("errorMessage", "No withdraw request found.");
+    	}
+    	else {
+    		session.setAttribute("withdrawRequests", withdrawRequests);
+    	}
+    	response.sendRedirect("adminWithdrawRequest");
+    }
+    
+    @PostMapping("/approveWithdrawRequest")
+    public void approveWithdrawRequestHandler(@RequestParam String utr, @RequestParam Integer id, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    	WithdrawRequest withdrawRequest = null;
+    	HttpSession session = request.getSession();
+    	User user = null;
+    	
+    	try {
+    		withdrawRequest= withdrawRequestService.fetchWithdrawRequestById(id);
+	    	user = userService.fetchProfile(withdrawRequest.getUserId());
+	    	
+	    	withdrawRequest.setReferenceNumber(utr);
+	    	withdrawRequest.setStatus(Status.SUCCESS);
+	    	withdrawRequest.setTimestamp(LocalDateTime.now());
+    	}
+    	catch(Exception exception) {
+    		session.setAttribute("errorMessage", exception.getMessage());
+    	}
+    	
+    	if(withdrawRequest !=null) {
+	    	withdrawRequestService.saveWithdrawRequest(withdrawRequest);
+	    	
+	    	session.setAttribute("message", "Successfully update the withdraw request.");
+    	}
+    	response.sendRedirect("fetchAllWithdrawRequest");
+    }
+    
+    @PostMapping("/rejectWithdrawRequest")
+    public void rejectWithdrawRequestHandler(@RequestParam Integer id, HttpServletRequest request, HttpServletResponse response) throws WalletException, UserException, MessagingException, IOException {
+    	WithdrawRequest withdrawRequest = null;
+    	HttpSession session = request.getSession();
+    	User user = null;
+    	
+    	try {
+    		withdrawRequest= withdrawRequestService.fetchWithdrawRequestById(id);
+	    	user = userService.fetchProfile(withdrawRequest.getUserId());
+	    	
+	    	withdrawRequest.setReferenceNumber("Rejected");
+	    	withdrawRequest.setStatus(Status.SUCCESS);
+	    	withdrawRequest.setTimestamp(LocalDateTime.now());
+    	}
+    	catch(Exception exception) {
+    		session.setAttribute("errorMessage", exception.getMessage());
+    	}
+    	
+    	if(withdrawRequest !=null) {
+	    	withdrawRequestService.saveWithdrawRequest(withdrawRequest);
+	    	
+	    	walletService.withdrawableWalletAmountAddition(withdrawRequest.getAmount(), withdrawRequest.getUserId(), session, "Rejected");
+	    	
+	    	emailService.sendCustomMessage(user.getEmail(), "Withdraw Request has been Rejected", "Your withdraw Request has been Rejected.\nFor more information, please contact to admin.", user);
+	    	
+	    	session.setAttribute("message", "Successfully update the withdraw request.");
+    	}
+    	response.sendRedirect("fetchAllWithdrawRequest");
     }
 }

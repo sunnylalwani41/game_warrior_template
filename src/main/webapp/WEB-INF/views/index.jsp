@@ -162,9 +162,7 @@
       <img class="d-block w-100 img-fluid" src="img/maxresdefault.jpg" alt="First slide">
   <div class="carousel-caption d-none d-md-block">
     <h2 class="display-4">The Best <span>Games</span> Out There</h2>
-    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada <br> lorem
-									maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien.
-									<br>Suspendisse cursus faucibus finibus.</p>
+    <p class="lead">Be the best gamer with us and have the best experience of playing with us</p>
 								<a href="#" class="btn btn-primary btn-lg">Read More</a>
 								<c:if test="${not empty userId }">
 							<div class="transaction">
@@ -202,9 +200,7 @@
       <img class="d-block w-100 img-fluid" src="img/slider-1.jpg" alt="First slide">
   <div class="carousel-caption d-none d-md-block">
     <h2 class="display-4">The Best <span>Games</span> Out There</h2>
-    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada <br> lorem
-									maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien.
-									<br>Suspendisse cursus faucibus finibus.</p>
+     <p class="lead">Be the best gamer with us and have the best experience of playing with us</p>
 								<a href="#" class="btn btn-primary btn-lg">Read More</a>
 								<c:if test="${not empty userId }">
 							<div class="transaction">
@@ -243,9 +239,8 @@
      <img class="d-block w-100 img-fluid" src="img/slider-2.jpg" alt="...">
   <div class="carousel-caption d-none d-md-block">
    <h2 class="display-4">The Best <span>Games</span> Out There</h2>
-    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada <br> lorem
-									maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien.
-									<br>Suspendisse cursus faucibus finibus.</p>
+     <p class="lead">Be the best gamer with us and have the best experience of playing with us</p>
+     <p class="lead">Kindly play with your own risk</p>>
 								<a href="#" class="btn btn-primary btn-lg">Read More</a>
 								<c:if test="${not empty userId }">
 							<div class="transaction">
@@ -285,9 +280,8 @@
      <img class="d-block w-100 img-fluid" src="img/slider-3.jpg" alt="...">
   <div class="carousel-caption d-none d-md-block">
    <h2 class="display-4">The Best <span>Games</span> Out There</h2>
-    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada <br> lorem
-									maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien.
-									<br>Suspendisse cursus faucibus finibus.</p>
+    <p class="lead">Be the best gamer with us and have the best experience of playing with us</p>
+     <p class="lead">Kindly play with your own risk</p>
 								<a href="#" class="btn btn-primary btn-lg">Read More</a>
 								<c:if test="${not empty userId }">
 							<div class="transaction">
@@ -327,9 +321,8 @@
      <img class="d-block w-100 img-fluid" src="img/slider-4.jpg" alt="...">
   <div class="carousel-caption d-none d-md-block">
    <h2 class="display-4">The Best <span>Games</span> Out There</h2>
-    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada <br> lorem
-									maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien.
-									<br>Suspendisse cursus faucibus finibus.</p>
+   <p class="lead">Be the best gamer with us and have the best experience of playing with us</p>
+     <p class="lead">Kindly play with your own risk</p>>
 								<a href="#" class="btn btn-primary btn-lg">Read More</a>
 								<c:if test="${not empty userId }">
 							<div class="transaction">
@@ -383,12 +376,9 @@
 				<div class="ln-title">Latest News</div>
 				<div class="news-ticker">
 					<div class="news-ticker-contant">
-						<div class="nt-item"><span class="new">new</span>Lorem ipsum dolor sit amet, consectetur
-							adipiscing elit. </div>
-						<div class="nt-item"><span class="strategy">strategy</span>Isum dolor sit amet, consectetur
-							adipiscing elit. </div>
-						<div class="nt-item"><span class="racing">racing</span>Isum dolor sit amet, consectetur
-							adipiscing elit. </div>
+						<div class="nt-item"><span class="new">new</span>First Winner </div>
+						<div class="nt-item"><span class="strategy">strategy</span>Second Winner </div>
+						<div class="nt-item"><span class="racing">racing</span>Third Winner</div>
 					</div>
 				</div>
 			</div>
@@ -403,8 +393,8 @@
 							<div class="feature-item set-bg" data-setbg="img/aviator-1-1200x900.jpg">
 								<span class="cata new">new</span>
 								<div class="fi-content text-white">
-									<h5><a href="#">Suspendisse ut justo tem por, rutrum</a></h5>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+									<h5><a href="#">Welcome to the avitator game</a></h5>
+									<p>where your adventure begins! Immerse yourself in a fantastical world filled with mystical creatures, ancient ruins, and epic quests waiting to be conquered.</p>
 									<a href="#" class="fi-comment">3 Comments</a>
 								</div>
 							</div>
@@ -413,8 +403,8 @@
 							<div class="feature-item set-bg" data-setbg="img/Picture33-1.webp">
 								<span class="cata strategy">strategy</span>
 								<div class="fi-content text-white">
-									<h5><a href="#">Justo tempor, rutrum erat id, molestie</a></h5>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+									<h5><a href="#">Welcome to the thrilling world of our Casino Game! </a></h5>
+									<p>Get ready to experience the glitz and glamour of Las Vegas right from the comfort of your own home.</p>
 									<a href="#" class="fi-comment">3 Comments</a>
 								</div>
 							</div>
@@ -423,8 +413,8 @@
 							<div class="feature-item set-bg" data-setbg="img/excitingcasinogames-feat.jpg">
 								<span class="cata new">new</span>
 								<div class="fi-content text-white">
-									<h5><a href="#">Nullam lacinia ex eleifend orci porttitor</a></h5>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+									<h5><a href="#">Try your luck at the slot machines, where the reels are spinning and the jackpots</a></h5>
+									<p>From traditional fruit machines to themed video slots, there's no shortage of excitement and big wins to be had. </p>
 									<a href="#" class="fi-comment">3 Comments</a>
 								</div>
 							</div>
@@ -433,8 +423,8 @@
 							<div class="feature-item set-bg" data-setbg="img/iStock-1188019651_628b32aa563ca.jpg">
 								<span class="cata racing">racing</span>
 								<div class="fi-content text-white">
-									<h5><a href="#">Lacinia ex eleifend orci suscipit</a></h5>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+									<h5><a href="#">If table games are more your style, take a seat at one of our virtual tables and test your skills</a></h5>
+									<p>Whether you prefer blackjack, poker, roulette, or baccarat, you'll find all the classic casino favorites right here./p>
 									<a href="#" class="fi-comment">3 Comments</a>
 								</div>
 							</div>
@@ -459,9 +449,8 @@
 									<div class="cata new">new</div>
 								</div>
 								<div class="rgi-content">
-									<h5>Suspendisse ut justo tem por, rutrum</h5>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit amet,
-										consectetur elit. </p>
+									<h5>Feeling lucky? Take a spin on the roulette wheel</h5>
+									<p>place your bets on red or black, odd or even, or your lucky number. With every spin, the anticipation builds as you wait to see where the ball will land.</p>
 									<a href="#" class="comment">3 Comments</a>
 									<div class="rgi-extra">
 										<div class="rgi-star"><img src="img/icons/star.png" alt=""></div>
@@ -476,9 +465,8 @@
 									<div class="cata racing">racing</div>
 								</div>
 								<div class="rgi-content">
-									<h5>Susce pulvinar metus nulla, vel facilisis sem </h5>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit amet,
-										consectetur elit. </p>
+									<h5>And for those looking for the ultimate thrill, step into our live casino </h5>
+									<p>Experience the excitement of a land-based casino without ever having to leave your home.</p>
 									<a href="#" class="comment">3 Comments</a>
 									<div class="rgi-extra">
 										<div class="rgi-star"><img src="img/icons/star.png" alt=""></div>
@@ -493,9 +481,8 @@
 									<div class="cata adventure">Adventure</div>
 								</div>
 								<div class="rgi-content">
-									<h5>Suspendisse ut justo tem por, rutrum</h5>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit amet,
-										consectetur elit. </p>
+									<h5>Interact with real dealers in real-time.</h5>
+									<p>With stunning graphics, immersive sound effects, and seamless gameplay, our Casino Game delivers the ultimate gaming experience.</p>
 									<a href="#" class="comment">3 Comments</a>
 									<div class="rgi-extra">
 										<div class="rgi-star"><img src="img/icons/star.png" alt=""></div>
@@ -573,7 +560,7 @@
 								</div>
 								<div class="review-text">
 									<h5>Assasin’’s Creed</h5>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
+									<p>Take a break from the hustle and bustle of everyday life and immerse yourself in the electrifying atmosphere</p>
 								</div>
 							</div>
 						</div>
@@ -584,7 +571,7 @@
 								</div>
 								<div class="review-text">
 									<h5>Doom</h5>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
+									<p>Featuring state-of-the-art graphics and animations, our games transport you to a world of luxury and sophistication.</p>
 								</div>
 							</div>
 						</div>
@@ -595,7 +582,7 @@
 								</div>
 								<div class="review-text">
 									<h5>Overwatch</h5>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
+									<p> Join one of our thrilling tournaments and compete against players from around the world for your chance </p>
 								</div>
 							</div>
 						</div>
@@ -605,8 +592,8 @@
 									<div class="score pink">9.7</div>
 								</div>
 								<div class="review-text">
-									<h5>GTA</h5>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
+									<h5>Gambling</h5>
+									<p>From scratch cards to bingo, there's always something new and exciting to try your hand at.</p>
 								</div>
 							</div>
 						</div>

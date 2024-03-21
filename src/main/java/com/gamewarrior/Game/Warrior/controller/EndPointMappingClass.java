@@ -120,4 +120,9 @@ public class EndPointMappingClass {
 	public String updatePaymentMethod() {
 		return "admin/updatePaymentMethod";
 	}
+	
+	@GetMapping("/adminWithdrawRequest")
+	public String adminWithdrawRequest() {
+		return "admin/adminWithdrawRequest";
+	}
 }
