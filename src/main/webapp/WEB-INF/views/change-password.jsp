@@ -30,9 +30,9 @@
         
         </head>
 <body>
-    <div id="preloder">
+    <!-- <div id="preloder">
 		<div class="loader"></div>
-	</div>
+	</div> -->
 	
 	<c:if test="${not empty userId }">
 		<%

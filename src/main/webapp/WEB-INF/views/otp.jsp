@@ -31,9 +31,9 @@
 	<script src="https://kit.fontawesome.com/e99a9eb445.js" crossorigin="anonymous"></script>
         </head>
 <body>
-    <div id="preloder">
+    <!-- <div id="preloder">
 		<div class="loader"></div>
-	</div>
+	</div> -->
 	
 	<c:if test="${not empty userId }">
 		<%

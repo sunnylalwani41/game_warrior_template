@@ -37,9 +37,9 @@
 
 		<body>
 			<!-- Page Preloder -->
-			<div id="preloder">
+			<!-- <div id="preloder">
 				<div class="loader"></div>
-			</div>
+			</div> -->
 			<c:if test="${empty userId}">
 				<% session.setAttribute("errorMessage", "Invalid User! please login" ); response.sendRedirect("login");
 					%>
