@@ -380,4 +380,14 @@ public class TransactionController {
     	}
     	response.sendRedirect("fetchAllWithdrawRequest");
     }
+    
+    @GetMapping("/fetchWalletTransaction")
+    public void fetchWalletTransactionHandler(HttpServletResponse response, HttpServletRequest request) throws WalletException, UserException, IOException {
+    	HttpSession session = request.getSession();
+    	Integer userId = (Integer)session.getAttribute("userId");
+    	Wallet wallet= walletService.getWalletByUserId(userId);
+    	
+    	session.setAttribute("wallet", wallet);
+    	response.sendRedirect("/passbook");
+    }
 }

@@ -26,37 +26,7 @@
 			<link rel="stylesheet" href="css/responsive.css"/>
 			<script src="https://kit.fontawesome.com/e99a9eb445.js" crossorigin="anonymous"></script>
 			<style>
-				/* html,
-				body,
-				.intro {
-					height: 100%;
-				}
-
-				table td,
-				table th {
-					text-overflow: ellipsis;
-					white-space: nowrap;
-					overflow: hidden;
-				}
-
-				thead th {
-					color: #fff;
-				}
-
-				.card {
-					margin-top: 10%;
-					height: 10%;
-				}
-
-				thead {
-					top: 0;
-					position: sticky;
-				}
-				.blankpage {
-					height: 800%;
-					width: 70%;
-					padding-left: 19%;
-				} */
+				
 				h2{
 					margin-bottom: 10px;
 				}
@@ -71,10 +41,6 @@
 
 			<c:if test="${empty userId}">
 				<% response.sendRedirect("login"); %>
-			</c:if>
-
-			<c:if test="${empty passbookDetail}">
-				<% response.sendRedirect("fetchTransactions"); %>
 			</c:if>
 			<!-- Header section -->
 		<header class="header-section">
@@ -178,56 +144,43 @@
 			<section class="intro">
 				<div class="card">
 					<c:choose>
-						<c:when test="${not empty transactionDetails}">
-							<h2 class="text-center text-white p2 bg-dark bg-gradient text-uppercase">Pending Deposit Request</h2>
+						<c:when test="${not empty wallet.walletTransactions}">
+							<h2 class="text-center text-white p2 bg-dark bg-gradient text-uppercase">Wallet Transaction History</h2>
 						<div class="container">
 						<table id="example" class="table table-striped table-responsive border-dark table-hover text-capitalize">
 						<thead class="table-dark table-active text-uppercase text-whites">
 									<tr>
-										<th scope="col">Id</th>
-										<th scope="col">Mobile No</th>
-										<th scope="col">Account No</th>
-										<th scope="col">IFSC</th>
-										<th scope="col">Account Holder Name</th>
-										<th scope="col">Amount</th>
 										<th scope="col">Transaction Id</th>
-										<th scope="col">Order Id</th>
-										<th scope="col">Date and Time</th>
+										<th scope="col">Remark</th>
+										<th scope="col">Amount</th>
+										<th scope="col">Cr/Dr</th>
+										<th scope="col">Total Remaining Amount</th>
+										<th scope="col">Timestamp</th>
 									</tr>
 								</thead>
 								<tbody>
-									<% int i=1; %>
-										<c:forEach items="${transactionDetails}" var="trans">
-											<tr>
-												<td>
-													${trans.id }
-												</td>
-												<td>
-													${trans.mobile }
-												</td>
-												<td>
-													${trans.accountNumber}
-												</td>
-												<td>
-													${trans.ifsc}
-												</td>
-												<td>
-													${trans.accountHolderName}
-												</td>
-												<td>
-													${trans.amount}
-												</td>
-												<td>
-													${trans.transactionId}
-												</td>
-												<td>
-													${trans.contactId}
-												</td>
-												<td>
-													${trans.timestamp}
-												</td>
-											</tr>
-										</c:forEach>
+									<c:forEach items="${wallet.walletTransactions}" var="trans">
+										<tr>
+											<td>
+												${trans.id}
+											</td>
+											<td>
+												${trans.remark}
+											</td>
+											<td>
+												${trans.amount}
+											</td>
+											<td>
+												${trans.status}
+											</td>
+											<td>
+												${trans.totalAmount}
+											</td>
+											<td>
+												${trans.localDateTime}
+											</td>
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 						</c:when>
@@ -239,7 +192,6 @@
 					</c:choose>
 				</div>
 			</section>
-			<% session.removeAttribute("passbookDetail"); %>
 			<footer class="footer-section">
 				<div class="container">
 					<ul class="footer-menu">

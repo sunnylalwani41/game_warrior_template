@@ -125,4 +125,9 @@ public class EndPointMappingClass {
 	public String adminWithdrawRequest() {
 		return "admin/adminWithdrawRequest";
 	}
+	
+	@GetMapping("/pendingRequest")
+	public String pendingRequest() {
+		return "pendingRequest";
+	}
 }

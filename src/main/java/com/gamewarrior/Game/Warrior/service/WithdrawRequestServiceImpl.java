@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gamewarrior.Game.Warrior.dao.WithdrawRequestRepo;
+import com.gamewarrior.Game.Warrior.dto.Status;
 import com.gamewarrior.Game.Warrior.exception.WithdrawRequestException;
 import com.gamewarrior.Game.Warrior.model.WithdrawRequest;
 
@@ -28,5 +29,9 @@ public class WithdrawRequestServiceImpl implements WithdrawRequestService{
 	public WithdrawRequest fetchWithdrawRequestById(Integer id) throws WithdrawRequestException {
 		return withdrawRequestRepo.findById(id).orElseThrow(() -> new WithdrawRequestException("Something went wrong! Please contact to website owner"));
 	}
-	
+
+	@Override
+	public List<WithdrawRequest> fetchPendingWithdrawRequestByUserId(Integer userId) {
+		return withdrawRequestRepo.findByUserIdAndStatus(userId, Status.PENDING);
+	}	
 }

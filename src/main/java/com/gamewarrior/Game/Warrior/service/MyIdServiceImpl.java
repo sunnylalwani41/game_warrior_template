@@ -33,4 +33,9 @@ public class MyIdServiceImpl implements MyIdService{
 		return myIdRepo.findByUserId(userId);
 	}
 
+	@Override
+	public List<MyId> pendingRequestofMyIdForPerticularUserId(Integer id) {
+		return myIdRepo.findByUserIdAndStatus(id, false);
+	}
+
 }

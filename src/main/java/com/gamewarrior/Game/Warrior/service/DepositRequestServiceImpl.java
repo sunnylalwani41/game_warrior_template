@@ -29,4 +29,9 @@ public class DepositRequestServiceImpl implements DepositRequestService{
 		return depositRequestRepo.findById(id).orElseThrow(()-> new TransactionException("Invalid Deposit Request id"));
 	}
 
+	@Override
+	public List<DepositRequest> fetchPendingDepositRequestByUserId(Integer userId) {
+		return depositRequestRepo.findByUserIdAndStatus(userId, false);
+	}
+
 }

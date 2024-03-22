@@ -11,4 +11,6 @@ public interface WithdrawRequestService {
 	public List<WithdrawRequest> fetchAllWithdrawRequest();
 	
 	public WithdrawRequest fetchWithdrawRequestById(Integer id) throws WithdrawRequestException;
+	
+	public List<WithdrawRequest> fetchPendingWithdrawRequestByUserId(Integer userId);
 }

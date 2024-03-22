@@ -1,6 +1,7 @@
 package com.gamewarrior.Game.Warrior.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.mail.MessagingException;
 
@@ -15,10 +16,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gamewarrior.Game.Warrior.dao.UserRepo;
 import com.gamewarrior.Game.Warrior.exception.UserException;
+import com.gamewarrior.Game.Warrior.model.DepositRequest;
 import com.gamewarrior.Game.Warrior.model.Message;
+import com.gamewarrior.Game.Warrior.model.MyId;
 import com.gamewarrior.Game.Warrior.model.User;
+import com.gamewarrior.Game.Warrior.model.WithdrawRequest;
 import com.gamewarrior.Game.Warrior.service.ClientService;
+import com.gamewarrior.Game.Warrior.service.DepositRequestService;
+import com.gamewarrior.Game.Warrior.service.MyIdService;
 import com.gamewarrior.Game.Warrior.service.UserService;
+import com.gamewarrior.Game.Warrior.service.WithdrawRequestService;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServletRequest;
@@ -29,9 +36,14 @@ import jakarta.servlet.http.HttpSession;
 public class UserController {
 	@Autowired
 	private UserService userService;
-	
 	@Autowired
 	private ClientService clientService;
+	@Autowired
+	private MyIdService myIdService;
+	@Autowired
+	private DepositRequestService depositRequestService;
+	@Autowired
+	private WithdrawRequestService withdrawRequestService;
 
 	@GetMapping("/logout")
 	public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -144,4 +156,20 @@ public class UserController {
 			response.sendRedirect("login");
 		}
 	}
+	
+    @GetMapping("/fetchPendingRequest")
+    public void fetchPendingRequestHandler(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    	HttpSession session = request.getSession();
+    	Integer userId = (Integer)session.getAttribute("userId");
+    	
+    	List<MyId> pendingMyIds= myIdService.pendingRequestofMyIdForPerticularUserId(userId);
+    	List<DepositRequest> pendingDepositRequests = depositRequestService.fetchPendingDepositRequestByUserId(userId);
+    	List<WithdrawRequest> pendingWithdrawRequests = withdrawRequestService.fetchPendingWithdrawRequestByUserId(userId);
+    	
+    	session.setAttribute("pendingMyIds", pendingMyIds);
+    	session.setAttribute("pendingDepositRequests", pendingDepositRequests);
+    	session.setAttribute("pendingWithdrawRequests", pendingWithdrawRequests);
+    	
+    	response.sendRedirect("/pendingRequest");
+    }
 }

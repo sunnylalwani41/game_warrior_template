@@ -79,7 +79,7 @@
 									
 												</li>
 												<li>
-													<a href="fetchTransactions">
+													<a href="fetchWalletTransaction">
 														<i class="fa-solid fa-book"></i>
 														Transaction History
 													</a>
@@ -181,7 +181,7 @@
 							</div>
 							<div class="transaction">
 								<div class="user-panel">
-									<a href="fetchTransactions">
+									<a href="fetchWalletTransaction">
 										<i class="fa-solid fa-book"></i>
 										Transaction History
 									</a>
@@ -219,7 +219,7 @@
 							</div>
 							<div class="transaction">
 								<div class="user-panel">
-									<a href="fetchTransactions">
+									<a href="fetchWalletTransaction">
 										<i class="fa-solid fa-book"></i>
 										Transaction History
 									</a>
@@ -259,7 +259,7 @@
 							</div>
 							<div class="transaction">
 								<div class="user-panel">
-									<a href="fetchTransactions">
+									<a href="fetchWalletTransaction">
 										<i class="fa-solid fa-book"></i>
 										Transaction History
 									</a>
@@ -300,7 +300,7 @@
 							</div>
 							<div class="transaction">
 								<div class="user-panel">
-									<a href="fetchTransactions">
+									<a href="fetchWalletTransaction">
 										<i class="fa-solid fa-book"></i>
 										Transaction History
 									</a>
@@ -341,7 +341,7 @@
 							</div>
 							<div class="transaction">
 								<div class="user-panel">
-									<a href="fetchTransactions">
+									<a href="fetchWalletTransaction">
 										<i class="fa-solid fa-book"></i>
 										Transaction History
 									</a>

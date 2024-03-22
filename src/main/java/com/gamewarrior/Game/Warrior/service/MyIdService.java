@@ -13,4 +13,6 @@ public interface MyIdService {
 	public MyId fetchMyIdById(Integer id) throws MyIdException;
 	
 	public List<MyId> fetchAllMyIdByPerticularUserId(Integer userId);
+	
+	public List<MyId> pendingRequestofMyIdForPerticularUserId(Integer id);
 }

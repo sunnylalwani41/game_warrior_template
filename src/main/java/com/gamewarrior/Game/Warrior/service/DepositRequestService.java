@@ -11,4 +11,6 @@ public interface DepositRequestService {
 	public List<DepositRequest> fetchAllDepositRequest();
 	
 	public DepositRequest fetchById(Integer id) throws TransactionException;
+	
+	public List<DepositRequest> fetchPendingDepositRequestByUserId(Integer userId);
 }
