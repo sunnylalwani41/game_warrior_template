@@ -97,6 +97,7 @@
 						<table id="example" class="table table-striped table-responsive border-dark table-hover text-center">
 							<thead class="table-dark table-active text-uppercase text-whites">
 								<tr>
+									<th>Transaction Id</th>
 									<th>USER ID</th>
 									<th>UPI ID</th>
 									<th>Display Name</th>
@@ -110,6 +111,7 @@
 								<c:forEach items="${depositRequests}" var="pendingRequest">
 									<c:if test="${not pendingRequest.status }">
 										<tr>
+											<td>${pendingRequest.id }</td>
 											<td>${pendingRequest.userId }</td>
 											<td>${pendingRequest.upiId }</td>
 											<td>${pendingRequest.upiName}</td>
@@ -165,6 +167,7 @@
 						<table id="example" class="table table-striped table-responsive  table-center table-hover text-center" >
 							<thead class="table-dark table-active text-uppercase text-whites">
 								<tr>
+									<th>Transaction ID</th>
 									<th>USER ID</th>
 									<th>UPI ID</th>
 									<th>Display Name</th>
@@ -180,6 +183,7 @@
 									<c:if test="${completeRequest.status }">
 
 										<tr>
+											<td>${completeRequest.id }</td>
 											<td>${completeRequest.userId }</td>
 											<td>${completeRequest.upiId }</td>
 											<td>${completeRequest.upiName}</td>

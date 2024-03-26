@@ -27,34 +27,36 @@
 }
 
 .button-container{
-	display: flex;
-	justify-content: center;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
 }
 
-#button1 {
-	width: 40%;
-}
+
 
 #button1>button{
 	width: 100%;
 	font-weight: bold;
 	padding: 10px;
-	background-color: red;
+	border: none;
+	color: black;
+	background-color: white;
 }
 
 #button2 {
 	align-items: end;
 	float: right;
-	width: 40%;
 }
 
-#button2>button{
+#button2>button, #button3>button{
 	width: 100%;
 	font-weight: bold;
 	padding: 10px;
+	background-color: black;
+	color: white;
+	border: none;
 }
 
-#content2 {
+#content2, #content3 {
 	display: none;
 }
 .create_id {

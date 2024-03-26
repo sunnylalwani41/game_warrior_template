@@ -99,6 +99,7 @@
 						<table id="example" class="table table-striped table-responsive border-dark table-hover text-center">
 							<thead class="table-dark table-active text-uppercase text-whites">
 								<tr>
+									<th>Transaction Id</th>
 									<th>USER ID</th>
 									<th>Mobile No.</th>
 									<th>Bank Name</th>
@@ -114,6 +115,7 @@
 								<c:forEach items="${withdrawRequests}" var="pendingRequest">
 									<c:if test="${pendingRequest.status eq 'PENDING'}">
 										<tr>
+											<td>${pendingRequest.id}</td>
 											<td>${pendingRequest.userId }</td>
 											<td>${pendingRequest.mobile }</td>
 											<td>${pendingRequest.bankName}</td>

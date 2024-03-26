@@ -183,6 +183,7 @@
 									</c:forEach>
 								</tbody>
 							</table>
+							</div>
 						</c:when>
 						<c:otherwise>
 							<img class="blankpage" src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-2506.jpg?w=740&t=st=1705560867~exp=1705561467~hmac=5dc60af5ded74c5bdc9f93cf0948faa6be2f2aea0070995a7a3867d8ffc515ed"

@@ -29,7 +29,11 @@
 			<link rel="stylesheet" href="css/responsive.css"/>
 			<!-- Font Awesome kit -->
 			<script src="https://kit.fontawesome.com/e99a9eb445.js" crossorigin="anonymous"></script>
-
+			<link rel="stylesheet" href="css/deposit.css">
+			<link rel="stylesheet"
+				href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+			<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+			
 
 			<style>
 				.mainBox {
@@ -105,18 +109,42 @@
 				function showContent1() {
 					document.getElementById('content1').style.display = 'block';
 					document.getElementById('content2').style.display = 'none';
-					document.querySelector("#button1>button").style.backgroundColor = 'red';
-					document.querySelector("#button2>button").style.backgroundColor = 'blue';
+					document.getElementById('content3').style.display = 'none';
+					document.querySelector("#button1>button").style.backgroundColor = 'white';
+					document.querySelector("#button2>button").style.backgroundColor = 'black';
+					document.querySelector("#button2>button").style.color= 'white';
+					document.querySelector("#button3>button").style.backgroundColor = 'black';
+					document.querySelector("#button3>button").style.color= 'white';
+					document.querySelector("#button1>button").style.color = 'black';
 				}
 
 				// Function to show content for Button 2
 				function showContent2() {
 					document.getElementById('content1').style.display = 'none';
+					document.getElementById('content3').style.display = 'none';
 					document.getElementById('content2').style.display = 'flex';
 					document.getElementById('content2').style.flexDirection = 'column';
 					document.getElementById('content2').style.alignItems = 'center';
-					document.querySelector("#button1 > button").style.backgroundColor = 'blue';
-					document.querySelector("#button2 > button").style.backgroundColor = 'red';
+					document.querySelector("#button1 > button").style.backgroundColor = 'black';
+					document.querySelector("#button3 > button").style.backgroundColor = 'black';
+					document.querySelector("#button2 > button").style.backgroundColor = 'white';
+					document.querySelector("#button2>button").style.color= 'black';
+					document.querySelector("#button1>button").style.color = 'white';
+					document.querySelector("#button3>button").style.color = 'white';
+				}
+				
+				let showContent3 =() =>{
+					document.getElementById('content1').style.display = 'none';
+					document.getElementById('content2').style.display = 'none';
+					document.getElementById('content3').style.display = 'flex';
+					document.getElementById('content3').style.flexDirection = 'column';
+					document.getElementById('content3').style.alignItems = 'center';
+					document.querySelector("#button1 > button").style.backgroundColor = 'black';
+					document.querySelector("#button2 > button").style.backgroundColor = 'black';
+					document.querySelector("#button3 > button").style.backgroundColor = 'white';
+					document.querySelector("#button3>button").style.color= 'black';
+					document.querySelector("#button1>button").style.color = 'white';
+					document.querySelector("#button2>button").style.color = 'white';
 				}
 			</script>
 
@@ -131,12 +159,6 @@
 			<c:if test="${empty userId}">
 				<c:if test="${not pageContext.response.isCommitted()}">
 					<% response.sendRedirect("login"); %>
-				</c:if>
-			</c:if>
-
-			<c:if test="${empty idDetails}">
-				<c:if test="${not pageContext.response.isCommitted()}">
-					<% response.sendRedirect("fetchIdDetails"); %>
 				</c:if>
 			</c:if>
 			
@@ -234,10 +256,13 @@
 
 			<div class="button-container">
 				<div id="button1">
-					<button class="btn btn-primary" onclick="showContent1()">My Id</button>
+					<button class="btn btn-primary" onclick="showContent1()">Pending Id Request</button>
 				</div>
 				<div id="button2">
-					<button class="btn btn-primary" onclick="showContent2()">Create Id for games</button>
+					<button class="btn btn-primary" onclick="showContent2()">Pending Deposit Request</button>
+				</div>
+				<div id="button3">
+					<button class="btn btn-primary" onclick="showContent3()">Pending Withdraw Request</button>
 				</div>
 			</div>
 
@@ -255,9 +280,10 @@
 					</c:if>
 					<div class="container-myId">
 						<div class="container-createId">
-				<table class="table table-responsive">
-					<thead>
-						<tr>
+				<h1 class="text-center text-white p2 bg-dark bg-gradient text-uppercase">Pending Create Id Request</h1>
+					<div class="container">
+					<table id="example" class="table table-striped table-responsive border-dark table-hover text-center">
+						<thead class="table-dark table-active text-uppercase text-whites">
 							<th>Website Name</th>
 							<th>Username</th>
 							<th>Password</th>
@@ -265,7 +291,7 @@
 							<th>Links</th>
 						</tr>
 					</thead>
-					<c:forEach items="${myIds}" var="id">
+					<c:forEach items="${pendingMyIds}" var="id">
 						<tbody>
 							<c:choose>
 								<c:when test="${id.status}">
@@ -288,81 +314,114 @@
 									Pending
 								</td>
 								<td>
-								<a href="${id.website}" target="_blank"><i
-class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
+								<a href="${id.website}" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
 							</tr>
 							</c:otherwise>
 							</c:choose>
 						</tbody>
 					</c:forEach>
 				</table>
-			</div>
-					
-					
-					
-					
-						
+				</div>
+			</div>					
 					</div>
 				</div>
 				<% int index=0; %>
 				<div id="content2" class="content">
-					<c:forEach items="${games}" var="game">
-						<div class="mainBox" id="mainBox">
-							<div class="contain">
-								<div class="contains">
-									<img style="height: 50px;" id="logo_image2" src="${game.logo }"
-										alt="${game.websiteName}" />
-									<div style="margin-left: 2%;">
-										${game.websiteName} <br>
-										${game.website}
-									</div>
-								</div>
-								<div>
-									<form action="fetchGame" method="post" id="create_button">
-										<button style="border-radius: 10%;">Create ID</button>
-										<input type="hidden" name="gameId" value="${game.id}">
-										<div class="arrow" onclick="toggleBox(<%= index %>)"><i class="fa-solid fa-angle-down"></i>
-										</div>
-										<% index++;%>
-									</form>
-								</div>
-							</div>
-							<div class="dataBox" id="dataBox">
-								<div>
-									<div class="contain-heading">
-										<h6 class="left-align">Min Bet</h6>
-										<h6 class="right-align"><i class="fa-solid fa-coins"></i></h6>
-									</div>
-									<c:forEach items="${game.gameName}" var="gameVarient">
-										<div class="contain-data">
-											<p class="left-paragraph">${gameVarient}</p>
-											<p class="right-paragraph">100</p>
-										</div>
-									</c:forEach>
-
-								</div>
-							</div>
+					<c:forEach items="${pendingDepositRequests}" var="depositRequest">
+						<h1 class="text-center text-white p2 bg-dark bg-gradient text-uppercase">Pending Deposit Request</h1>
+						<div class="container">
+						<table id="example" class="table table-striped table-responsive border-dark table-hover text-center">
+							<thead class="table-dark table-active text-uppercase text-whites">
+								<tr>
+									<th>Transaction ID</th>
+									<th>UPI ID</th>
+									<th>Display Name</th>
+									<th>UTR Number </th>
+									<th>Payment Screenshot</th>
+									<th>Amount</th>
+									<th>Status</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:if test="${not depositRequest.status }">
+									<tr>
+										<td>${depositRequest.id }</td>
+										<td>${depositRequest.upiId }</td>
+										<td>${depositRequest.upiName}</td>
+										<c:choose>
+											<c:when test="${not empty depositRequest.utr }">
+												<td>
+													<span class="upiID" onclick="copyTheUpi('<%= index %>')">
+														${depositRequest.utr}
+													</span>
+													<i class="fa-regular fa-copy copyButton" onclick="copyTheUpi('<%= index %>')"></i>
+													<i class="fa-solid fa-circle-check copyComplete" style="display: none;"></i>
+													<% index++; %>
+												</td>
+											</c:when>
+											<c:otherwise>
+												<td>Not Available</td>
+											</c:otherwise>
+										</c:choose>
+										<td>
+											<div style="display: flex; flex-direction:column;">
+												<a href="${depositRequest.path}" target="_blank" style="margin-bottom:7px">
+													<img class="image-container" src="${depositRequest.path}"
+														alt="${depositRequest.userId }">
+												</a>
+												<a href="${depositRequest.path}" target="_blank">
+													<button class="btn btn-success">Click to view</button>
+												</a>
+											</div>
+										</td>
+										<td>
+											---
+										</td>
+										<td>
+											Pending
+										</td>
+									</tr>
+								</c:if>
+							</tbody>
+						</table>
 						</div>
 					</c:forEach>
 				</div>
-
-					<script>
-						function toggleBox(index) {
-							console.log(index);
-							var mainBox = document.getElementsByClassName("mainBox")[index];
-							var dataBox = document.getElementsByClassName("dataBox")[index];
-
-							if (dataBox.style.display === "none" || dataBox.style.display === "") {
-								// mainBox.style.height = "200px"; /* Adjust the height as needed */
-								dataBox.style.display = "block";
-							} else {
-								mainBox.style.height = "auto";
-								mainBox.style.justifyContent="center"/* Reset to auto height */
-								dataBox.style.display = "none";
-							}
-						}
-
-					</script>
+				<div id="content3" class="content">
+					<h1 class="text-center text-white p2 bg-dark bg-gradient text-uppercase">Pending Withdraw Request</h1>
+					<div class="container">
+					<table id="example" class="table table-striped table-responsive border-dark table-hover text-center">
+						<thead class="table-dark table-active text-uppercase text-whites">
+							<tr>
+								<th>Transaction ID</th>
+								<th>Bank Name</th>
+								<th>Account Number</th>
+								<th>IFSC</th>
+								<th>Account Holder Name</th>
+								<th>Amount</th>
+								<th>Timestamp</th>
+								<th>Status</th>
+							</tr>
+						</thead>
+						<tbody>
+						<c:forEach items="${pendingWithdrawRequests}" var="withdrawRequest">
+							<c:if test="${withdrawRequest.status eq 'PENDING'}">
+								<tr>
+									<td>${withdrawRequest.id}</td>
+									<td>${withdrawRequest.bankName}</td>
+									<td>${withdrawRequest.accountNumber}</td>
+									<td>${withdrawRequest.ifsc}</td>
+									<td>${withdrawRequest.accountHolderName}</td>
+									<td>${withdrawRequest.amount}</td>
+									<td>${withdrawRequest.timestamp}</td>
+									<td>Pending</td>
+								</tr>
+							</c:if>
+						</c:forEach>
+						</tbody>
+					</table>
+					</div>
+					</div>
 			</section>
 
 			<!-- Footer section -->
@@ -389,6 +448,7 @@ class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
 
 
 			<!--====== Javascripts & Jquery ======-->
+			<script src="js/depositRequest.js"></script>
 			<script src="js/jquery-3.2.1.min.js"></script>
 			<script src="js/bootstrap.min.js"></script>
 			<script src="js/owl.carousel.min.js"></script>
