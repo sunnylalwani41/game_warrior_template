@@ -105,8 +105,10 @@
 				function showContent1() {
 					document.getElementById('content1').style.display = 'block';
 					document.getElementById('content2').style.display = 'none';
-					document.querySelector("#button1>button").style.backgroundColor = 'red';
-					document.querySelector("#button2>button").style.backgroundColor = 'blue';
+					document.querySelector("#button1>button").style.backgroundColor = 'white';
+					document.querySelector("#button2>button").style.backgroundColor = 'black';
+					document.querySelector("#button1>button").style.color = 'black';
+					document.querySelector("#button2>button").style.color = 'white';
 				}
 
 				// Function to show content for Button 2
@@ -115,8 +117,10 @@
 					document.getElementById('content2').style.display = 'flex';
 					document.getElementById('content2').style.flexDirection = 'column';
 					document.getElementById('content2').style.alignItems = 'center';
-					document.querySelector("#button1 > button").style.backgroundColor = 'blue';
-					document.querySelector("#button2 > button").style.backgroundColor = 'red';
+					document.querySelector("#button1 > button").style.backgroundColor = 'black';
+					document.querySelector("#button2 > button").style.backgroundColor = 'white';
+					document.querySelector("#button1 > button").style.color = 'white';
+					document.querySelector("#button2 > button").style.color = 'black';
 				}
 			</script>
 
@@ -174,6 +178,31 @@
 													<a href="#"><i class="fa-solid fa-wallet" style="color: black"> : </i>${balance}</a>
 												</li>
 												<li>
+													<a href="fetchUpiDetails">
+														<i class="fa-solid fa-file-arrow-down" style="color:green"></i>
+														Deposit
+													</a>
+												</li>
+												<li>
+													<a href="withdraw">
+														<i class="fa-solid fa-file-arrow-up" style="color:red"></i>
+														Withdraw
+													</a>
+									
+												</li>
+												<li>
+													<a href="fetchWalletTransaction">
+														<i class="fa-solid fa-book"></i>
+														Transaction History
+													</a>
+												</li>
+												<li>
+													<a href="fetchPendingRequest">
+													<i class="fa-regular fa-hourglass-half"></i>
+													Pending Request
+													</a>
+												</li>
+												<li>
 													<a href="logout">
 														<i class="fa-solid fa-arrow-right-from-bracket"></i>
 														Logout
@@ -205,9 +234,33 @@
 												</a>
 											</li>
 											<li>
-													<i class="fa-solid fa-wallet"> : ${balance}</i> 
-												
+												<i class="fa-solid fa-wallet"> : ${balance}</i>
 											</li>
+											<li>
+													<a href="fetchUpiDetails">
+														<i class="fa-solid fa-file-arrow-down" style="color:green"></i>
+														Deposit
+													</a>
+												</li>
+												<li>
+													<a href="withdraw">
+														<i class="fa-solid fa-file-arrow-up" style="color:red"></i>
+														Withdraw
+													</a>
+									
+												</li>
+												<li>
+													<a href="fetchWalletTransaction">
+														<i class="fa-solid fa-book"></i>
+														Transaction History
+													</a>
+												</li>
+												<li>
+													<a href="fetchPendingRequest">
+													<i class="fa-regular fa-hourglass-half"></i>
+													Pending Request
+													</a>
+												</li>
 											<li>
 												<a href="logout">
 													<i class="fa-solid fa-arrow-right-from-bracket"></i>
@@ -232,7 +285,7 @@
 
 			<!-- Live chat -->
 
-			<div class="button-container">
+			<div class="button-container" style="grid-template-columns: repeat(2, 1fr);">
 				<div id="button1">
 					<button class="btn btn-primary" onclick="showContent1()">My Id</button>
 				</div>

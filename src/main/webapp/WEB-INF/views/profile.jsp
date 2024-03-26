@@ -77,6 +77,31 @@
 													<a href="#"><i class="fa-solid fa-wallet" style="color: black"> : </i>${balance}</a>
 												</li>
 												<li>
+													<a href="fetchUpiDetails">
+														<i class="fa-solid fa-file-arrow-down" style="color:green"></i>
+														Deposit
+													</a>
+												</li>
+												<li>
+													<a href="withdraw">
+														<i class="fa-solid fa-file-arrow-up" style="color:red"></i>
+														Withdraw
+													</a>
+									
+												</li>
+												<li>
+													<a href="fetchWalletTransaction">
+														<i class="fa-solid fa-book"></i>
+														Transaction History
+													</a>
+												</li>
+												<li>
+													<a href="fetchPendingRequest">
+													<i class="fa-regular fa-hourglass-half"></i>
+													Pending Request
+													</a>
+												</li>
+												<li>
 													<a href="logout">
 														<i class="fa-solid fa-arrow-right-from-bracket"></i>
 														Logout
@@ -111,6 +136,31 @@
 													<i class="fa-solid fa-wallet"> : ${balance}</i> 
 												
 											</li>
+											<li>
+													<a href="fetchUpiDetails">
+														<i class="fa-solid fa-file-arrow-down" style="color:green"></i>
+														Deposit
+													</a>
+												</li>
+												<li>
+													<a href="withdraw">
+														<i class="fa-solid fa-file-arrow-up" style="color:red"></i>
+														Withdraw
+													</a>
+									
+												</li>
+												<li>
+													<a href="fetchWalletTransaction">
+														<i class="fa-solid fa-book"></i>
+														Transaction History
+													</a>
+												</li>
+												<li>
+													<a href="fetchPendingRequest">
+													<i class="fa-regular fa-hourglass-half"></i>
+													Pending Request
+													</a>
+												</li>
 											<li>
 												<a href="logout">
 													<i class="fa-solid fa-arrow-right-from-bracket"></i>

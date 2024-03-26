@@ -85,6 +85,13 @@
 													</a>
 												</li>
 												<li>
+													<a href="fetchPendingRequest">
+													<i class="fa-regular fa-hourglass-half"></i>
+													Pending Request
+													</a>
+												</li>
+												
+												<li>
 													<a href="logout">
 														<i class="fa-solid fa-arrow-right-from-bracket"></i>
 														Logout
@@ -119,6 +126,7 @@
 													<i class="fa-solid fa-wallet"> : ${balance}</i> 
 												
 											</li>
+											
 											<li>
 												<a href="logout">
 													<i class="fa-solid fa-arrow-right-from-bracket"></i>
