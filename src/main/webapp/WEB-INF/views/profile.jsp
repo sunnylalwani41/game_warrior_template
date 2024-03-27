@@ -194,6 +194,7 @@
                 <div class="profile-info">
                     <p>Full Name :</p><p> ${requestScope.name }</p>
                     <p>Email :</p> <p> ${requestScope.email}</p>
+                    <p>Email :</p> <p> ${requestScope.email}</p>
                 </div>
             </div>
         </div>

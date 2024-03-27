@@ -10,9 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gamewarrior.Game.Warrior.configure.SecurityConfig;
+import com.gamewarrior.Game.Warrior.dao.ReferralRepo;
 import com.gamewarrior.Game.Warrior.dao.UserRepo;
 import com.gamewarrior.Game.Warrior.exception.UserException;
 import com.gamewarrior.Game.Warrior.model.Notification;
+import com.gamewarrior.Game.Warrior.model.Referral;
 import com.gamewarrior.Game.Warrior.model.User;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,12 +25,12 @@ import jakarta.servlet.http.HttpSession;
 public class UserServiceImpl implements UserService{
 	@Autowired
 	private EmailService emailService;
-	
 	@Autowired
 	private UserRepo userRepo;
-	
 	@Autowired
 	private SecurityConfig securityConfig;
+	@Autowired
+	private ReferralRepo referralRepo;
 
 	@Override
 	public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -114,4 +116,26 @@ public class UserServiceImpl implements UserService{
 		userRepo.save(user);
 	}
 
+	@Override
+	public void checkReferral(HttpSession session) throws UserException {
+		String email = (String)session.getAttribute("email");
+		User user = userRepo.findByEmail(email);
+		Referral referral = referralRepo.findByReferralUserId(user.getId());
+		
+		if(referral!=null) {
+			User referrerUser =  fetchProfile(referral.getReferrerUserId());
+			
+			referrerUser.setReferralPoint(referrerUser.getReferralPoint()+100);
+		}
+	}
+
+	@Override
+	public User findUserByReferralCode(String referralCode) throws UserException {
+		User user = userRepo.findByReferralCode(referralCode);
+		
+		if(user!=null)
+			return user;
+		
+		throw new UserException("Invalid referralCode! please go back and try again.");
+	}
 }

@@ -10,4 +10,6 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public interface UserRepo extends JpaRepository<User, Integer> {
     public User findByEmail(String email);
+    
+    public User findByReferralCode(String referralCode);
 }

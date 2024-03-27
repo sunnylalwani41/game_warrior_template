@@ -152,15 +152,17 @@
             <div class="register-box">
                 <p class="register-head">Register</p>
                 <form action="/sendAuthentication" method="post">
-                    <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+                    <input type="text" id="firstName" name="firstName" placeholder="First Name*" required>
                     <br>
-                    <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+                    <input type="text" id="lastName" name="lastName" placeholder="Last Name*" required>
                     <br>
-                    <input type="email" id="email" name="email" placeholder="Email Address" required>
+                    <input type="email" id="email" name="email" placeholder="Email Address*" required>
                     <br>
-                    <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" maxlength="10" required>
+                    <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number*" maxlength="10" required>
                     <br>
-                    <input type="password" id="password" name="password" placeholder="Set Password" required>
+                    <input type="password" id="password" name="password" placeholder="Set Password*" required>
+                    <br>
+                    <input type="text" id="referralCode" name="referralCode" placeholder="Referral Code" />
                     <br>
                     <button id="nextButton" type="submit">Register</button>
                 </form>

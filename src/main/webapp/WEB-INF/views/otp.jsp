@@ -76,6 +76,13 @@
 
 					%>
 				</c:if>
+				<c:if test="${not empty referralMessage}">
+					<div class="errorContainer">${referralMessage}</div>
+					<%
+						session.removeAttribute("referralMessage");
+
+					%>
+				</c:if>
 				<c:if test="${not empty message}">
 					<div class="errorContainer">${message}</div>
 					<%

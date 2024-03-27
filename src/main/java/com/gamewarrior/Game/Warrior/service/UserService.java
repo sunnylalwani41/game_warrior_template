@@ -24,4 +24,8 @@ public interface UserService {
 	public User fetchProfile(Integer userId) throws UserException;
 	
 	public void saveUserDetail(User user);
+	
+	public void checkReferral(HttpSession session) throws UserException;
+	
+	public User findUserByReferralCode(String referralCode) throws UserException;
 }

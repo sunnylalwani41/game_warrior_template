@@ -24,6 +24,9 @@ public class User {
     @Column(unique = true)
     private String email;
     private String mobile;
+    @Column(unique=true)
+    private String referralCode;
+    private Integer referralPoint;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     private LocalDateTime timestamp;
