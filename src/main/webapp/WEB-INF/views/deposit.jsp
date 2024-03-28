@@ -259,7 +259,7 @@
 						  </div>
 							<form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data" class="row g-3">
 							  <div class="col-md-12">
-							   <input type="file" id="fileInput" name="file" style="display:none;" required>
+							   <input type="file" id="fileInput" name="file" accept="image/*" style="display:none;" required>
 							  </div>
 							  <div class="col-md-12">
 							    <div class="row justify-content-center">
