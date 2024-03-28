@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -158,10 +160,13 @@ public class TransactionController {
     			try {
 	    			String filename = transactionService.uploadFile(file, selectedUpiId, userId);
 	    			
-	    			String path = ServletUriComponentsBuilder.fromCurrentContextPath().path("/deposit/"+userId+"/").path(filename).toUriString();
+	    			HttpServletRequest urlRequest = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+	    			String baseUrl = ServletUriComponentsBuilder.fromRequestUri(urlRequest).replacePath(null).build().toUriString();
+	    			String path = baseUrl + "/deposit/" + userId + "/" + filename;
+
 	    			DepositRequest depositRequest = new DepositRequest();
 	    			UpiDetail upiDetail = upiDetailService.fetchUpiDetailById(selectedUpiId);
-	    					
+	    			
 	    			session.setAttribute("message", "BankingTransaction successfully done! This request will be processed within 2 days.");
 	    			
 	    			depositRequest.setPath(path);
