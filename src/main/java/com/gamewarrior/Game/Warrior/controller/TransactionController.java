@@ -62,6 +62,8 @@ public class TransactionController {
 	private WithdrawRequestService withdrawRequestService;
 	@Autowired
 	private NotificationService notificationService;
+	@Autowired
+	private HttpServletRequest urlRequest;
 	
 	@GetMapping("/fetchUpiDetails")
 	public void fetchUpiDetailHandler(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -160,7 +162,6 @@ public class TransactionController {
     			try {
 	    			String filename = transactionService.uploadFile(file, selectedUpiId, userId);
 	    			
-	    			HttpServletRequest urlRequest = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
 	    			String baseUrl = ServletUriComponentsBuilder.fromRequestUri(urlRequest).replacePath(null).build().toUriString();
 	    			String path = baseUrl + "/deposit/" + userId + "/" + filename;
 
