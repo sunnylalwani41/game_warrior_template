@@ -164,6 +164,7 @@ public class TransactionController {
 	    			
 	    			String baseUrl = ServletUriComponentsBuilder.fromRequestUri(urlRequest).replacePath(null).build().toUriString();
 	    			String path = baseUrl + "/deposit/" + userId + "/" + filename;
+	    			path = path.replace("127.0.0.1:4050", "kheloexchanges.com");
 
 	    			DepositRequest depositRequest = new DepositRequest();
 	    			UpiDetail upiDetail = upiDetailService.fetchUpiDetailById(selectedUpiId);
